@@ -1,0 +1,4617 @@
+/*
+Cleanto - Admin style Main
+Version : 3.3
+*/
+
+html {
+    -webkit-font-smoothing: antialiased !important;
+}
+
+body {
+    font-family: Lato !important;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 22px;
+    background: #ffffff;
+    color: #5d5d5d !important;
+}
+
+.ct-wrapper {
+    clear: both;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+
+#cta header.ct-header {
+    position: relative;
+}
+
+#cta #cta-top-nav .navbar-header a.navbar-brand,
+#cta #cta-main-navigation .navbar-header a.navbar-brand {
+    font-weight: 600;
+	max-width: 400px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
+}
+#cta #cta-top-nav .navbar-header a.navbar-brand img,
+#cta #cta-main-navigation .navbar-header a.navbar-brand img{
+	width: 100%;
+}
+
+#cta #cta-top-nav .navbar-toggle .icon-bar,
+#cta #cta-main-navigation .navbar-toggle .icon-bar {
+    background: #fff;
+}
+
+#cta #cta-top-nav .navbar {
+    min-height: 50px;
+    border: 0 none;
+    margin: 0;
+}
+
+#cta #cta-main-navigation .navbar-fixed-top.cta-admin-nav {
+    top: 50px;
+}
+
+#cta #cta-main-navigation .navbar {
+    min-height: 65px;
+    border: 0 none;
+    z-index: 999;
+}
+
+#cta #cta-main-navigation .navbar .nav.cta-nav-tab li,
+#cta #cta-main-navigation .navbar .nav.user-nav-bar li {
+    float: left;
+    min-width: 90px;
+    height: 65px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    list-style: none;
+    border-left: 1px solid #4A4A4A;
+    border-right: 1px solid #292929;
+}
+
+#cta #cta-main-navigation .navbar .nav.cta-nav-tab > li > a,
+#cta #cta-main-navigation .navbar .nav.user-nav-bar > li > a {
+    font-family: inherit;
+    text-shadow: none;
+    color: #BCBCBC;
+    font-size: 12px;
+    padding: 0 15px;
+    line-height: 22px;
+    font-weight: bold;
+    font-weight: 400;
+    background-image: unset;
+    height: 100%;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#cta #cta-main-navigation .navbar .nav.cta-nav-tab > li > a .fa,
+#cta #cta-main-navigation .navbar .nav.user-nav-bar > li > a .fa {
+    position: relative;
+    top: 2px;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    margin-right: 0px;
+    font-size: 24px;
+}
+
+#cta #cta-main-navigation .navbar .nav.cta-nav-tab > li > a span,
+#cta #cta-main-navigation .navbar .nav.user-nav-bar > li > a span {
+    display: block;
+    padding-bottom: 2px;
+}
+
+#cta #cta-main-navigation .navbar .nav.cta-nav-tab > .active > a,
+#cta #cta-main-navigation .navbar .nav.user-nav-bar > .active > a,
+#cta #cta-main-navigation .navbar .nav.cta-nav-tab > .active > a:focus,
+#cta #cta-main-navigation .navbar .nav.user-nav-bar > .active > a:focus {
+    background-color: #242C33;
+    color: #FFF;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+}
+
+#cta #cta-main-navigation .navbar .nav.cta-nav-tab > li > a:hover,
+#cta #cta-main-navigation .navbar .nav.user-nav-bar > li > a:hover {
+    background-color: rgb(85, 88, 92);
+    color: #FFF;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+}
+
+#cta #cta-top-nav {
+    font-family: inherit;
+    border-radius: 0px;
+    background: #2E363E none no-repeat scroll 0% 0%;
+    border: medium none;
+    filter: none;
+    height: 50px;
+    border-bottom: 1px solid #000;
+}
+
+#cta #cta-main-navigation {
+    font-family: inherit;
+    border-radius: 0px;
+    background: #2E363E none no-repeat scroll 0% 0%;
+    border: medium none;
+    filter: none;
+    height: 65px;
+    border-bottom: 1px solid #000;
+}
+
+
+/* for show at top in chrome */
+
+#cta .datepicker-dropdown {
+    z-index: 1060 !important;
+}
+
+#cta #cta-top-nav .navbar-right {
+    margin-right: 0px;
+}
+
+#cta #cta-top-nav .navbar-right label {
+    color: #fff;
+    line-height: 45px;
+}
+
+#cta #cta-top-nav .navbar-right .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 160px;
+    top: 0px;
+    right: 5px;
+    padding-left: 10px;
+}
+
+#cta #cta-top-nav .navbar-right .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) .btn {
+    padding: 3px 6px;
+}
+
+#cta #ct-notification-top {
+    display: inline-block;
+    padding: 0 2px;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-family: Montserrat !important;
+}
+
+#cta #ct-notifications i.fa-angle-down,
+#cta #ct-user-info i.fa-angle-down {
+    position: relative;
+    top: 4px;
+    left: 5px;
+}
+
+
+/* .modal-backdrop {		position: absolute !important;		z-index: 99 !important;	}	*/
+
+#cta #cta-top-nav .navbar .nav > li > a.ct-notifications-new {
+    float: none;
+    position: relative;
+}
+
+#cta .ct-overlay-notification.visible{
+	visibility: visible;
+	background-color: rgba(0,0,0,.5);
+	pointer-events: auto;
+	z-index: 9999;
+}
+#cta .ct-overlay-notification{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	visibility: hidden;
+	transition-duration: .2s;
+	transition-timing-function: ease-in;
+	transition-property: background-color,visibility;
+	background-color: rgba(0,0,0,0.4);
+	z-index: 9999;
+}
+#cta .ct-notifications-inner{
+	height: 99.5%;
+	max-width: 90%;
+	top: 0;
+	right: -400px;
+	width: 400px;
+	border: 1px solid gray;
+	border-width: 0px;
+	-webkit-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+	background-color: #fff;
+	-webkit-box-shadow: 0px 0px 7px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 0px 7px rgba(0,0,0,0.3);
+	-o-box-shadow: 0px 0px 7px rgba(0,0,0,0.3);
+	-ms-box-shadow: 0px 0px 7px rgba(0,0,0,0.3);
+	box-shadow: 0px 0px 7px rgba(0,0,0,0.3);
+	position: fixed;
+	z-index: 99999;
+	box-sizing: border-box;
+}
+#cta .ct-notifications-inner.visible{
+	right: 0px;
+	-webkit-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;
+}
+#cta .ct-notification-main .notification-header {
+    margin: 0px;
+	height: 50px;
+	font-size: 16px;
+	line-height: 50px;
+	text-align: center;
+	display: block;
+	text-transform: capitalize;
+	font-family: Montserrat;
+}
+
+#cta .ct-notification-main .notification-header #ct-close-notifications {
+    position: relative;
+    cursor: pointer;
+	font-size: 40px;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-decoration: none;
+	font-family: initial;
+}
+/*
+#cta .ct-notification-main .notification-header #ct-close-notifications i:hover{
+    transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+} */
+
+#cta .ct-notification-main .ct-recent-booking-container {
+    text-align: left;
+    margin: 0px;
+    padding: 0px 0px 10px;
+    position: absolute;
+	overflow: auto;
+	display: inline-block;
+	height: 90%;
+	width: 100%;
+}
+
+#cta .ct-notification-main ul.ct-recent-booking-list {
+    list-style-type: none;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+#cta .ct-notification-main ul.ct-recent-booking-list li {
+    cursor: pointer;
+    padding: 0px 13px;
+    background: #f8f8f8;
+    display: table;
+}
+
+#cta .ct-notification-main ul.ct-recent-booking-list .list-inner {
+    padding: 10px 0px;
+    float: left;
+    word-wrap: break-word;
+    width: 100%;
+    border-bottom: 1px solid rgba(156, 156, 156, 0.36);
+    display: inline-block;
+}
+
+#cta .ct-notification-main ul.ct-recent-booking-list .list-inner span.booking-text {
+    font-size: 13px;
+    font-family: inherit;
+    line-height: 20px;
+    text-align: justify;
+    position: relative;
+    width: 100%;
+    float: left;
+}
+
+#cta .ct-notification-main ul.ct-recent-booking-list li .list-inner span.booking-time {
+    font-size: 11px;
+    font-family: inherit;
+    line-height: 18px;
+    margin-top: 5px;
+    position: relative;
+    clear: left;
+}
+
+
+/* css loader */
+
+#cta .ct-loading-main {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    z-index: 99999;
+}
+
+#cta .loader,
+#cta .loader:before,
+#cta .loader:after {
+    background: #ffffff;
+    -webkit-animation: load1 1s infinite ease-in-out;
+    -moz-animation: load1 1s infinite ease-in-out;
+    -o-animation: load1 1s infinite ease-in-out;
+    -ms-animation: load1 1s infinite ease-in-out;
+    animation: load1 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+}
+
+#cta .loader:before,
+#cta .loader:after {
+    position: absolute;
+    top: 0;
+    content: '';
+}
+
+#cta .loader:before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    -moz-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+#cta .loader {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-indent: -9999em;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    -moz-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+#cta .loader:after {
+    left: 1.5em;
+}
+
+@-webkit-keyframes load1 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0 #ffffff;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #ffffff;
+        height: 5em;
+    }
+}
+
+@-moz-keyframes load1 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0 #ffffff;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #ffffff;
+        height: 5em;
+    }
+}
+
+@keyframes load1 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0 #ffffff;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #ffffff;
+        height: 5em;
+    }
+}
+
+
+/* css loader grey mode*/
+
+#cta .ct-loading-grey-main {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    /* background: rgba(0,0,0,0.5); */
+    overflow: auto;
+    z-index: 99999;
+}
+
+#cta .loader-grey,
+#cta .loader-grey:before,
+#cta .loader-grey:after {
+    background: #a5a2a2;
+    -webkit-animation: load2 1s infinite ease-in-out;
+    -moz-animation: load2 1s infinite ease-in-out;
+    -o-animation: load2 1s infinite ease-in-out;
+    -ms-animation: load2 1s infinite ease-in-out;
+    animation: load2 1s infinite ease-in-out;
+    width: 1em;
+    height: 4em;
+}
+
+#cta .loader-grey:before,
+#cta .loader-grey:after {
+    position: absolute;
+    top: 0;
+    content: '';
+}
+
+#cta .loader-grey:before {
+    left: -1.5em;
+    -webkit-animation-delay: -0.32s;
+    -moz-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+#cta .loader-grey {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-indent: -9999em;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation-delay: -0.16s;
+    -moz-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+#cta .loader-grey:after {
+    left: 1.5em;
+}
+
+@-webkit-keyframes load2 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0 #a5a2a2;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #a5a2a2;
+        height: 5em;
+    }
+}
+
+@-moz-keyframes load2 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0 #a5a2a2;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #a5a2a2;
+        height: 5em;
+    }
+}
+
+@keyframes load2 {
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 0 #a5a2a2;
+        height: 4em;
+    }
+    40% {
+        box-shadow: 0 -2em #a5a2a2;
+        height: 5em;
+    }
+}
+
+#cta .ct-load-bar {
+  position: relative;
+  margin-top: 20px;
+  width: 100%;
+  height: 6px;
+  background-color: #fdba2c;
+}
+#cta .ct-bar {
+  content: "";
+  display: inline;
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 50%;
+  text-align: center;
+}
+#cta .ct-bar:nth-child(1) {
+  background-color: #da4733;
+  animation: loading 3s linear infinite;
+}
+#cta .ct-bar:nth-child(2) {
+  background-color: #3b78e7;
+  animation: loading 3s linear 1s infinite;
+}
+#cta .ct-bar:nth-child(3) {
+  background-color: #fdba2c;
+  animation: loading 3s linear 2s infinite;
+}
+@keyframes loading {
+    from {left: 50%; width: 0;z-index:100;}
+    33.3333% {left: 0; width: 100%;z-index: 10;}
+    to {left: 0; width: 100%;}
+}
+
+/* alert all messages */
+
+#cta .ct-alert-msg-show-main {
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    top: 10px;
+    display: none;
+}
+
+#cta .ct-all-alert-messags.alert {
+    position: relative;
+    top: 50px;
+    padding: 10px 20px;
+    margin: 0px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 30px;
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.30), 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.30), 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+    -ms-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.30), 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.30), 0 4px 15px 0 rgba(0, 0, 0, 0.25);
+    background: #fff;
+}
+
+#cta button.dropdown-toggle span i.fa-calendar-check-o.booking-staff-assigned{
+	position: relative;
+	right: -4px;
+	color: #f00;
+}
+.dropdown-menu.open ul li.selected a span.fa-calendar-check-o.booking-staff-assigned{
+	position: relative;
+	top: 0px;
+	color: #f00;
+}
+
+
+/* new line icons font size */
+
+#cta a#ct-notifications i.icon-bell,
+#cta i.icon-user,
+#cta a#ct-notifications .fa-angle-down {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+	font-weight: bold;
+}
+
+
+/* Add manual booking css 	#cta .ct-search-customer-main .search-container{		margin-left: 20px;		margin-top: 30px;		margin-right: 20px;		padding-bottom: 30px;		position: relative;	}	#cta .search-container .search-icon{		position: absolute;		right: 7px;		z-index: 99;		top: 7px;	}	#cta .search-container ul.ct-search-result-list{		display: none;		list-style-type: none;		background: none repeat scroll 0 0 #FFF;		font-weight: normal;		font-size: 14px;		width: 100%;		margin-top: -2px;		position: absolute;		max-height: 150px;		z-index: 99;		overflow: auto;		cursor: pointer;	}	#cta .search-container ul.ct-search-result-list li img.list-customer-image{		width: 30px;		height: 30px;	}	#cta .search-container ul.ct-search-result-list li span.list-customer-contact{		line-height: 30px;	}	#cta .search-container ul.ct-search-result-list li:hover{		background: rgba(0,0,0, 0.10);	}	#cta .search-container .ct-searching-customer{		display: none;		padding: 8px 10px;		position: absolute;		width: 100%;		top: 30px;		font-size: 18px;	}*/
+
+
+/* appointment details modal popup */
+
+#cta .modal-md {
+    width: 450px;
+}
+
+#cta #booking-details .nav > .active > a,
+#cta #edit-booking-details-view .nav > .active > a {
+    background-color: #fff !important;
+    color: #555 !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+}
+
+#cta #booking-details .nav > li > a:hover,
+#cta #edit-booking-details-view .nav > li > a:hover {
+    background-color: #fff !important;
+    color: #555 !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+}
+
+#cta #edit-booking-details-view img.ct-user-img,
+#cta #booking-details img.ct-user-img {
+    width: 40px;
+    height: 40px;
+}
+
+#cta .modal-body table {
+    width: 100%;
+}
+
+#cta .modal-footer table td,
+#cta .modal-body table td {
+    padding: 5px;
+}
+
+#cta #booking-details .modal-body .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
+#cta #edit-booking-details-view .modal-body .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),
+#cta #add-new-booking-details .modal-body .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100%;
+}
+
+#cta #booking-details .modal-body .form-group {
+    margin-bottom: 1px;
+}
+
+#cta #booking-details .modal-body .bootstrap-select.btn-group .dropdown-menu {
+    max-height: 260px !important;
+}
+
+#cta #booking-details .modal-body .bootstrap-select.btn-group .dropdown-menu li a {
+    line-height: 23px;
+    padding: 5px 14px;
+}
+
+#cta #cta-dashboard.panel,
+#cta #cta-services-panel.panel,
+#cta #cta-clean-services-panel.panel,
+#cta #cta-staff-panel.panel,
+#cta #cta-customers-listing.panel,
+#cta #cta-customers-listing.panel .panel-default,
+#cta #cta-payments.panel,
+#cta #cta-payments.panel .panel-default,
+#cta #ct-settings.panel,
+#cta #ct-settings .ct-setting-details div .panel,
+#cta #ct-settings .ct-setting-details div .panel-default {
+    box-shadow: unset;
+    border: 0px none;
+    margin-bottom: 10px;
+	position: relative;
+}
+
+
+/* dashborad index page */
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li > a {
+    border: 1px solid #E7ECF1;
+    display: block;
+    overflow: hidden;
+    padding: 15px;
+}
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li.active > a {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .13) !important;
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .13) !important;
+    -o-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12) !important;
+    -ms-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .13) !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .13) !important;
+}
+
+#cta #cta-dashboard .fa-calendar-check-o {
+    margin: 0px;
+}
+
+#cta #cta-dashboard .ct-title-amount-stats,
+#cta #cta-dashboard .ct-icon-booking-stats {
+    width: 100%;
+    float: left;
+    display: block;
+}
+
+
+/*	#cta #cta-dashboard h4.ct-dash-header{		font-size: 24px;		font-weight: 400;		margin: 0px 0px 15px;		color: #778492;		float: left;		display: inline-block;	}	*/
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li > a {
+    border: 1px solid #E7ECF1;
+    display: block;
+    overflow: hidden;
+    padding: 4px 15px;
+}
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li > a h4.ct-dash-header {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0px 10px;
+    color: #778492;
+    display: block;
+}
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li > a h4.ct-dash-header span {
+    font-size: 14px;
+    line-height: 22px;
+    color: #337AB7;
+    display: none;
+}
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li.active > a {
+    padding: 10px 15px;
+}
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li.active > a h4.ct-dash-header {
+    font-size: 20px;
+}
+
+#cta #cta-dashboard .ct-top-menus-stats.nav > li.active > a h4.ct-dash-header span {
+    display: block;
+}
+
+#cta .ct-top-bar-details .ct-today-right .ct-text,
+#cta .ct-top-bar-details .ct-this-week-right .ct-text,
+#cta .ct-top-bar-details .ct-this-year-right .ct-text,
+#cta .ct-top-bar-details .ct-total-details .ct-text {
+    font-size: 17px;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    line-height: 34px;
+}
+
+#cta .ct-top-bar-details .ct-today-right .ct-value,
+#cta .ct-top-bar-details .ct-this-week-right .ct-value,
+#cta .ct-top-bar-details .ct-this-year-right .ct-value {
+    line-height: 28px;
+    font-weight: 400;
+    text-align: center;
+    font-size: 26px;
+    display: block;
+}
+
+#cta .ct-total-details .ct-text {
+    line-height: 28px;
+    font-weight: 400;
+    display: inline-block;
+    font-size: 16px;
+    line-height: 31px;
+}
+
+#cta .ct-total-details .ct-value {
+    line-height: 28px;
+    font-weight: 400;
+    display: inline-block;
+    font-size: 16px;
+    min-width: 80px;
+}
+
+#cta #cta-dashboard .ct-title-amount-stats .ct-stats-total {
+    display: block;
+    font-size: 28px;
+    font-weight: 300;
+    color: #3E4F5E;
+    position: relative;
+    top: 8px;
+}
+
+#cta #cta-dashboard .ct-dash-icon {
+    float: left;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    font-size: 17px;
+    line-height: 41px;
+    color: #FFF;
+    text-align: center;
+    padding: 10px;
+    margin-right: 15px;
+}
+
+#cta #cta-dashboard .ct-dash-icon.today {
+    background: #616774 none repeat scroll 0% 0% !important;
+}
+
+#cta #cta-dashboard .ct-dash-icon.this-week {
+    background: #5AD3D1 none repeat scroll 0% 0% !important;
+}
+
+#cta #cta-dashboard .ct-dash-icon.this-year {
+    background: #FF5A5E none repeat scroll 0% 0% !important;
+}
+
+#cta #cta-dashboard .ct-stats-title {
+    padding-top: 2px;
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: #8E9DAA;
+}
+
+#cta #cta-dashboard .ct-stats-counting {
+    display: block;
+    font-size: 21px;
+    font-weight: 600;
+    color: #3E4F5E;
+}
+
+#cta #cta-dashboard .ct-left-menu-stats ul li a {
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 400;
+    color: inherit;
+    line-height: 30px;
+    padding: 5px 0px;
+    text-align: center;
+}
+
+#cta .nav li.active a {
+    font-weight: 600;
+}
+
+#cta #cta-dashboard .ct-left-menu-stats {
+    background: #E1E7EB none repeat scroll 0% 0%;
+    height: 100%;
+    min-width: 170px;
+    color: #8D8D8D;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+#cta #cta-dashboard .ct-statistic-month-main table.ct-statistic-month tr td {
+    padding: 9px 15px;
+}
+
+#cta #cta-dashboard .ct-all-stats canvas.ct-today-canvas,
+#cta #cta-dashboard .ct-all-stats canvas.ct-week-canvas,
+#cta #cta-dashboard .ct-all-stats canvas.ct-year-canvas {
+    width: 400px;
+    height: 370px;
+}
+
+
+/* new appointments listing */
+
+#cta #cta-dashboard .ct-today-bookings-main,
+#cta #cta-dashboard .ct-latest-activity {
+    height: 380px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-booking-list,
+#cta #cta-dashboard .ct-latest-activity .ct-bookings-activity-list {
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 20px;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-list,
+#cta #cta-dashboard .ct-latest-activity .ct-activity-list {
+    border-bottom: 1px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+    width: 100%;
+}
+
+#cta .ct-notification-main ul.ct-recent-booking-list .list-inner span.booking-text .ct-label,
+#cta #cta-dashboard .ct-latest-activity .ct-activity-list .ct-label {
+    padding: 3px 10px
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-list:hover,
+#cta #cta-dashboard .ct-latest-activity .ct-activity-list:hover {
+    background: #f9f9f9;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-list .ct-today-left {
+    min-width: 80px;
+    padding-right: 10px;
+    display: table-cell;
+    vertical-align: middle;
+    float: left;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-list .ct-today-center {
+    display: table-cell;
+    vertical-align: top;
+    overflow: hidden;
+    float: left;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-list .ct-today-center.col-md-7,
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-list .ct-today-right.col-md-3 {
+    padding: 0px;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-list .ct-today-right {
+    display: table-cell;
+    vertical-align: top;
+    overflow: hidden;
+    float: right;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main i.icon-user,
+#cta #cta-dashboard .ct-latest-activity i.icon-user {
+    font-size: inherit;
+    position: relative;
+    top: unset;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-today-center .ct-service-text,
+#cta #cta-dashboard .ct-latest-activity .ct-activity-list .ct-service-text {
+    color: #315D51;
+    font-size: 14px;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-dashboard .panel-default > .panel-heading {
+    background-color: unset;
+    border-color: unset;
+    background-image: none;
+    border: none !important;
+}
+
+#cta #cta-dashboard .panel-heading {
+    background: transparent;
+    border-radius: 0px;
+    border-bottom: 0px;
+    padding: 15px 15px 5px 15px;
+    position: relative;
+    z-index: 3;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    float: left;
+    width: 100%;
+    display: block;
+}
+
+#cta #cta-dashboard .ct-statistic-month-main .panel-body,
+#cta #cta-dashboard .ct-today-bookings .panel-body,
+#cta #cta-dashboard .ct-bookings-activity .panel-body {
+    padding: 0px;
+}
+
+#cta #cta-dashboard .ct-statistic-month-main hr#hr,
+#cta #cta-dashboard .ct-today-bookings hr#hr,
+#cta #cta-dashboard .ct-bookings-activity hr#hr {
+    margin: 0px;
+}
+
+#cta #cta-dashboard .ct-today-bookings-main .ct-no-today-booking-message,
+#cta #cta-dashboard .ct-latest-activity .ct-no-booking-activity-message {
+    text-align: center;
+    margin: 22% 0px;
+}
+
+
+/* customers details */
+
+
+
+#cta #booking-details .modal-body img.ct-user-img #cta #edit-booking-details-view .modal-body img.ct-user-img {
+    width: 50px;
+    height: 50px;
+}
+
+#cta .ct-header .modal-content .modal-footer,
+#cta #booking-details .modal-content .modal-footer,
+#cta #edit-booking-details-view .modal-content .modal-footer {
+    text-align: center;
+	clear: both;
+}
+
+#cta .ct-header .ct-delete-appointment-cal-popup,
+#cta #booking-details #ct-delete-appointment,
+#cta #booking-details-dashboard .ct-delete-appointment-cal-popup,
+#cta #booking-details-calendar .book_cancel,
+#cta #edit-booking-details-view .book_cancel,
+#cta #edit-booking-details-view .book_cancel_apt {
+    color: #CC3F3B;
+    float: none !important;
+}
+
+#cta .ct-header .confirm_book,
+#cta #booking-details .ct-confirm-appointment,
+#cta #booking-details-calendar .ct-confirm-appointment-cal,
+#cta #booking-details-dashboard .ct-confirm-appointment,
+#cta #edit-booking-details-view .confirm_book {
+    color: #54AE54;
+}
+
+#cta .ct-header #ct-reject-appointment-cal-popup,
+#cta #booking-details #ct-reject-appointment,
+#cta #booking-details-calendar .book_rejct,
+#cta #edit-booking-details-view .book_rejct,
+#cta #edit-booking-details-view .book_das_appt {
+    color: #2c2c2c;
+}
+
+#cta .ct-header .modal-footer .ct-footer-popup-btn,
+#cta #booking-details .modal-footer .ct-footer-popup-btn,
+#cta #edit-booking-details-view .modal-footer .ct-footer-popup-btn {
+    line-height: 53px;
+}
+/*
+#cta .ct-header .modal-footer .ct-footer-popup-btn .ct-small-btn,
+#cta #booking-details .modal-footer .ct-footer-popup-btn .ct-small-btn,
+#cta #edit-booking-details-view .modal-footer .ct-footer-popup-btn .ct-small-btn {
+    padding: 6px 2px;
+}
+*/
+#cta #booking-details-calendar .close,
+#cta #booking-details-dashboard .close,
+#cta #change-detail-password .close,
+#cta #booking-details .close,
+#cta #user-booking-details .close,
+#cta #update-user-booking-details .close,
+#cta #edit-booking-details-view .close,
+#cta #add-new-booking-details .close,
+#cta .ct-account-config .close,
+#cta .delete-account-form .close {
+    float: right;
+    font-size: 50px;
+    position: absolute;
+    right: 12px;
+    top: 5px;
+}
+
+
+/****************************/
+
+
+/****  Appointments page style ***/
+
+#cta #ct-calendar-all{
+	background: #ffffff;
+}
+#cta #ct-calendar-all .ct-legends-panel-body{
+	padding: 5px;
+}
+#cta #ct-calendar-all .ct-booking-calendar {
+    float: none !important;
+    width: 95% !important;
+    display: block !important;
+    margin: 0px auto 50px !important;
+    cursor: default !important;
+}
+
+#cta #ct-calendar-all .ct-legends-main {
+    float: none;
+    width: 95%;
+    margin: 0px auto;
+}
+
+#cta .popover {
+    min-width: 200px;
+}
+
+#cta .fc-day-grid-event .fc-content div hr#hr {
+    margin: 3px 0px 2px !important;
+}
+
+#cta .fc-row .fc-content-skeleton tbody td {
+    padding-bottom: 5px;
+}
+
+#cta .fc-day-grid-event .fc-content i.fa-check,
+#cta .fc-time-grid-event .fc-content i.fa-check,
+#cta .fc-day-grid-event .fc-content i.fa-pencil-square-o,
+#cta .fc-time-grid-event .fc-content i.fa-pencil-square-o,
+#cta .fc-day-grid-event .fc-content i.fa-ban,
+#cta .fc-time-grid-event .fc-content i.fa-ban,
+#cta .fc-day-grid-event .fc-content i.fa-times,
+#cta .fc-time-grid-event .fc-content i.fa-times,
+#cta .fc-day-grid-event .fc-content i.fa-info-circle,
+#cta .fc-time-grid-event .fc-content i.fa-info-circle,
+#cta .fc-day-grid-event .fc-content i.fa-times-circle-o,
+#cta .fc-time-grid-event .fc-content i.fa-times-circle-o,
+#cta .fc-day-grid-event .fc-content i.fa-thumbs-o-up,
+#cta .fc-time-grid-event .fc-content i.fa-thumbs-o-up,
+#cta .fc-day-grid-event .fc-content i.fa-thumbs-o-down,
+#cta .fc-time-grid-event .fc-content i.fa-thumbs-o-down {
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+}
+
+#cta .fc-time-grid-event {
+    min-height: 32px;
+}
+
+#cta #ct-calendar-all .ct-legends-main .ct-legends-inner ul li i.fa {
+    font-size: 16px;
+}
+
+#cta #ct-calendar-all .ct-legends-main .ct-legends-inner ul li {
+    font-size: 15px;
+}
+
+#cta .ct-calendar-top-bar {
+    float: left;
+    width: 100%;
+    min-height: 70px;
+    display: block;
+    cursor: pointer;
+}
+
+#cta .ct-calendar-top-bar .ct-search-calander-btn .ct-submit-btn {
+    margin: 0px;
+}
+
+#cta .ct-calendar-top-bar .ct-search-calander-btn {
+    padding: 20px 5px 10px;
+}
+
+#cta .ct-frequently-discount-collapse-div .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 195px;
+}
+
+#cta .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 300px;
+}
+
+#cta div#reportrange {
+    width: 370px;
+}
+
+#cta .fc {
+    /* extra precedence to overcome jqui */
+    font-size: 14px;
+    clear: both;
+}
+
+#cta .fc-toolbar {
+    height: 60px;
+    background: #36404b;
+    color: #fff;
+    border-radius: 1px;
+    border-top: 1px solid #36404b;
+    border-left: 1px solid #36404b;
+    border-right: 1px solid #36404b;
+}
+
+#cta .fc-agenda-view .fc-day-grid,
+td.fc-widget-content hr.fc-divider.fc-widget-header {
+    display: none;
+}
+
+#cta .fc-widget-header th.fc-axis.fc-widget-header {
+    width: 21px !important;
+}
+
+
+/* new code for custom date picker in full calendar */
+
+#cta .main-calendar {
+    position: relative;
+    display: block;
+}
+
+
+/* header style */
+
+#cta .fc button {
+    padding: 5px 10px;
+    height: auto;
+}
+
+#cta .fc-toolbar h2 {
+    color: #fff;
+    font-size: 24px !important;
+    line-height: 54px;
+    font-family: Helvetica;
+}
+
+#cta button.fc-today-button {
+    float: left;
+    display: inline-block;
+}
+
+#cta .fc button {
+    background: none !important;
+    border: none;
+    color: #fff;
+}
+
+#cta .fc-icon-left-single-arrow:after {
+    content: "\f100";
+    font-family: FontAwesome !important;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: 24px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#cta .fc-icon-right-single-arrow:after {
+    content: "\f101";
+    font-family: FontAwesome !important;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: 24px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+/*	#cta .fc-center .fc-prev-button,	#cta .fc-center .fc-next-button{		background-image: linear-gradient(to bottom, #F0AD4E 0px, #EB9316 100%);		background-image: -webkit-linear-gradient(to bottom, #F0AD4E 0px, #EB9316 100%);		background-image: -moz-linear-gradient(to bottom, #F0AD4E 0px, #EB9316 100%);		background-image: -o-linear-gradient(to bottom, #F0AD4E 0px, #EB9316 100%);		background-repeat: repeat-x;		border-color: #E38D13;		color: #fff;	}	#cta .fc-today-button,	#cta .fc-button-group .fc-state-active{		background-image: linear-gradient(to bottom, #5CB85C 0px, #419641 100%)!important;		background-image: -webkit-linear-gradient(to bottom, #5CB85C 0px, #419641 100%)!important;		background-image: -moz-linear-gradient(to bottom, #5CB85C 0px, #419641 100%)!important;		background-image: -o-linear-gradient(to bottom, #5CB85C 0px, #419641 100%)!important;		background-repeat: repeat-x !important;		border-color: #3E8F3E !important;		color: #fff;	}	#cta .fc-button-group .fc-state-default{		background-image: linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%);		background-image: -webkit-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%);		background-image: -moz-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%);		background-image: -o-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%);		background-repeat: repeat-x;		border-color: #28A4C9;		color: #fff;	}	*/
+
+#cta .fc-state-default.fc-corner-left {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+#cta .fc-state-default.fc-corner-right {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+#cta .fc button {
+    height: 60px;
+    padding: 0 15px;
+    text-transform: capitalize;
+    font-size: 1em;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.fc-state-down,
+.fc-state-active {
+    box-shadow: none !important;
+    background-color: #efefef !important;
+}
+#cta #ct-settings .ct-setting-details .tab-content > .active {
+    overflow-x: hidden;
+}
+
+
+/* table */
+
+#cta .fc table th {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+}
+
+
+/* caledar booking details popup */
+
+#cta .ct-header li.ct-custmers {
+    padding: 10px 0px 0px !important;
+}
+
+#cta #edit-booking-details-view .modal-md {
+    width: 450px !important;
+}
+
+#cta .ct-header .modal-md {
+    width: 390px;
+}
+
+#cta .ct-header .booking-details-index-dashboard .modal-md {
+    width: 450px;
+}
+
+#cta .vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+#cta .vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#cta .modal-content {
+    width: inherit;
+    height: inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}
+
+#cta h6.ct-customer-details-hr,
+#cta #ct-calendar-all h6.ct-customer-details-hr {
+    font-size: 15px;
+    font-weight: bold;
+}
+#cta .ct-header ul.ct-cal-booking-details hr,
+#cta #ct-calendar-all ul.ct-cal-booking-details hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#cta .ct-header ul.ct-cal-booking-details li,
+#cta #ct-calendar-all ul.ct-cal-booking-details li {
+    padding: 1px 0px;
+    margin: 0;
+    clear: both;
+    font-size: 13px;
+    list-style: none;
+	display: inline-block;
+	line-height: 12px;
+
+}
+#cta .ct-header ul.ct-cal-booking-details li.ct-second-child,
+#cta #ct-calendar-all ul.ct-cal-booking-details li.ct-second-child {
+	top: -7px;
+	left: 120px;
+	width: 260px;
+	position: relative;
+}
+#cta .ct-header ul.ct-cal-booking-details li.ct-second-child span,
+#cta #ct-calendar-all ul.ct-cal-booking-details li.ct-second-child span{
+	position: relative;
+	top: 2px;
+}
+
+#cta .ct-header ul.ct-cal-booking-details li label,
+#cta #ct-calendar-all ul.ct-cal-booking-details li label {
+    width: 95px;
+    float: left;
+    color: #626262;
+    text-align: left;
+    margin-right: 17px;
+    margin-bottom: 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+#cta .ct-header ul.ct-cal-booking-details li.ct-second-child span,
+#cta #ct-calendar-all ul.ct-cal-booking-details li.ct-second-child span {
+    width: unset !important;
+}
+
+#cta .ct-header ul.ct-cal-booking-details li span.span-scroll,
+#cta #ct-calendar-all ul.ct-cal-booking-details li span.span-scroll {
+    float: left;
+    color: #333;
+    font-size: 13px;
+    line-height: 16px;
+    width: 300px;
+    word-wrap: break-word;
+    max-height: 70px;
+    overflow: auto;
+}
+#cta .ct-header ul.ct-cal-booking-details li span.span-scroll-staff,
+#cta #ct-calendar-all ul.ct-cal-booking-details li span.span-scroll-staff {
+    float: left;
+    color: #333;
+    font-size: 13px;
+    line-height: 16px;
+    width: 300px;    
+}
+
+
+
+#cta .ct-header .ct-booking-status,
+#cta #ct-calendar-all .ct-booking-status {
+    position: relative;
+    right: 10px;
+    top: -1px;
+    text-align: center;
+    font-size: 10px;
+}
+
+#cta .ct-header .ct-curr-status hr#hr,
+#cta #ct-calendar-all .ct-curr-status hr#hr {
+    margin: 0px 0px 3px;
+}
+
+#cta .ct-header .ct-booking-status,
+#cta #ct-calendar-all .ct-booking-status {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 16px;
+    padding-left: 7px;
+    float: left;
+    color: #31bf57;
+}
+
+#cta .ct-header .ct-booking-status em,
+#cta #ct-calendar-all .ct-booking-status em {
+	font-style: normal;
+	font-family: lato;
+	margin-left: 5px;
+	text-transform: capitalize;
+	width: 240px;
+	display: inline-block;
+	text-align: left;
+}
+
+#cta .ct-header .ct-booking-status span.badge,
+#cta #ct-calendar-all .ct-booking-status span.badge {
+    display: inline-block;
+    padding: 4px;
+    min-width: 5px;
+    position: relative;
+    right: 4px;
+    top: -2px;
+}
+
+#cta .ct-appointment-popup {
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    width: 380px;
+    background: #fff;
+    margin: 30px auto;
+}
+
+
+/****************************/
+
+
+/****  Staff style ***/
+
+#cta #cta-staff-panel.tab-content {
+    padding: 15px;
+}
+
+#cta #cta-staff-panel .panel-body {
+    background: #fff;
+    padding: 0 15px;
+}
+
+#cta #cta-staff-panel .ct-staff-container {
+    width: 95%;
+    margin: 0px auto;
+    padding: 0px;
+    clear: both;
+}
+
+#cta #cta-staff-panel #ct-add-new-staff {
+    position: relative;
+    top: -7px;
+}
+
+#cta #cta-staff-panel .ct-staff-container h3 {
+    padding: 10px 0px 5px;
+    font-size: 22px;
+}
+
+#cta #cta-staff-panel .ct-staff-list {
+    background: #F1F5F7 none repeat scroll 0% 0%;
+    min-height: 670px;
+    min-width: 170px;
+    color: #8D8D8D;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+}
+
+#cta #cta-staff-panel .ct-staff-list span.ct-staff-name {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    color: #8D8D8D;
+    line-height: 15px;
+    text-indent: 2px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 88%;
+	position: relative;
+	top: 3px;
+}
+
+#cta #cta-staff-panel .ct-staff-list ul li.active span.ct-staff-name {
+    color: #495861 !important;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff {
+    margin-top: 15px;
+    overflow-y: auto;
+	max-height: 470px;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list a {
+    padding: 8px 0 8px 5px;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list span.ct-manager-star {
+    position: absolute;
+    top: 13px;
+    right: 25px;
+    text-align: center;
+    line-height: 13px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list span.ct-manager-star input[type="checkbox"] {
+    display: none !important;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list span.ct-manager-star input[type="checkbox"] + label span i.fa-star {
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list span.ct-manager-star input[type="checkbox"]:checked + label span i.fa-star:before {
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -o-transition: all .3s;
+    -ms-transition: all .3s;
+    transition: all .3s;
+    color: #EDB900;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list span.ct-manager-star input[type="checkbox"]:checked + label span .ct-text:after {
+    content: "Manager";
+    position: absolute;
+    display: block;
+    right: -15px;
+}
+
+#cta #cta-staff-panel .ct-staff-list .popover {
+    max-width: 340px;
+    width: 430px;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .ct-member-image-uploader .popover {
+    max-width: 150px;
+    width: 200px;
+}
+
+#cta #cta-staff-panel .ct-staff-list h3.popover-title {
+    background-color: #F8F8F8;
+    font-size: 15px;
+    padding: 8px 14px;
+    display: block;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list .ct-staff-clone {
+    display: inline-block;
+    width: 22px;
+    position: relative;
+    top: 5px;
+    left: 0px;
+}
+
+#cta #cta-staff-panel .ct-staf-img-small {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    /* border: thin solid #555555 !important; */
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list .ct-staff-image {
+    display: inline-block;
+    width: 30px;
+    width: 30px;
+    position: relative;
+    top: 0px;
+    right: 0px;
+}
+
+#cta #cta-staff-panel .ct-clone-staff {
+    padding: 1px 3px;
+    position: relative;
+    top: 0px;
+    right: 2px;
+}
+
+#cta #cta-staff-panel .ct-clone-staff .ct-clone-staff i.fa-clone {
+    font-size: 12px !important;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list {
+    width: auto;
+    height: auto;
+    padding: 2px;
+    margin: 3px 0px;
+    position: relative;
+}
+
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list a:focus,
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list a:hover,
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list:hover,
+#cta #cta-staff-panel .ct-staff-list .ct-left-staff li.staff-list.active {
+    background: #dctctb;
+    -webkit-transition: all 300ms ease-in-out 0s;
+    -moz-transition: all 300ms ease-in-out 0s;
+    -o-transition: all 300ms ease-in-out 0s;
+    -ms-transition: all 300ms ease-in-out 0s;
+    transition: all 300ms ease-in-out 0s;
+}
+
+
+/* right side staff member service list and price rules and top menu */
+
+#cta #cta-staff-panel .intl-tel-input .country-list {
+    min-width: 270px;
+}
+
+#cta #cta-staff-panel .ct-staff-top-header {
+    line-height: 30px;
+    color: #3C4C5C;
+    font-size: 24px;
+    float: left;
+    width: 100%;
+    padding: 35px 0px 10px 0px;
+}
+
+#cta #cta-staff-panel .ct-staff-top-header .popover {
+    max-width: 170px;
+    width: 180px;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details {
+    width: 100%;
+    margin-top: 20px;
+    padding: 0px;
+}
+
+#cta #cta-staff-panel .ct-staff-right-menu {
+    text-transform: uppercase;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details table {
+    float: left;
+    width: 100%;
+}
+#cta #cta-staff-panel .ct-staff-right-details table tr td:first-child {
+    min-width: 22%;
+}
+
+
+/* staff > services */
+
+#cta .member-services .panel {
+    border: unset;
+}
+
+#cta .member-services .panel-default {
+    box-shadow: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    -o-box-shadow: unset;
+    border-color: unset;
+}
+
+#cta .member-services .ct-staff-service-panel.panel {
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    -o-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+#cta .member-services .ct-staff-service-panel.panel-default {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#cta .member-services {
+    padding: 0px;
+}
+
+#cta .member-services input[type="checkbox"] {
+    display: none;
+}
+
+#cta .member-services .ct-service-time-member,
+#cta .member-services .ct-service-price-member {
+    line-height: 35px;
+    position: relative;
+    padding: 0px 5px;
+    min-width: 80px;
+    float: left;
+    display: inline-block;
+    text-align: right;
+}
+
+#cta #ct-staff-dashboard table tr td,
+#cta #cta-staff-panel table tr td {
+    padding: 5px;
+}
+#cta #ct-staff-dashboard table.offdaystable tr td.ct-calendar-box{
+	min-height: 300px;
+}
+
+/* staff service listing */
+
+#cta .member-services .ct-staff-service-panel .panel-heading {
+    padding: 3px 13px;
+    float: left;
+    width: 100%;
+}
+
+#cta .member-services .ct-staff-service-panel .panel-heading .ct-toggle {
+    margin: 4px 4px 4px 0px;
+    position: relative;
+}
+
+#cta .member-services .ct-staff-service-panel .panel-heading span.ct-service-title {
+    line-height: 33px;
+}
+
+
+/* staff pricing rules */
+
+#cta .member-services .ct-provider-custom-price-menu,
+#cta .member-services .ct-staff-price-rules .panel-body {
+    padding: 10px;
+}
+
+#cta .member-services .ct-staff-price-rules .panel,
+#cta .member-services .ct-staff-price-rules .panel-default {
+    box-shadow: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    -o-box-shadow: unset;
+    border-color: transparent;
+}
+
+#cta .member-services ul#ct-staff-breaks li.row {
+    line-height: 37px;
+    padding: 0px 0px 7px;
+}
+
+#cta .member-services .ct-staff-price-rules ul#ct-staff-price span.ct-day-name {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#cta .member-services .ct-staff-price-rules ul#ct-staff-price li.row {
+    line-height: 37px;
+    padding: 0px 0px 7px 0px;
+}
+
+#cta .member-services .ct-staff-price-rules .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 105px;
+}
+
+#cta .member-services .ct-staff-price-rules .bootstrap-select.btn-group .dropdown-menu {
+    max-height: 260px !important;
+}
+
+#cta .member-services .ct-staff-price-rules .bootstrap-select.btn-group .dropdown-menu li a {
+    line-height: 23px;
+    padding: 5px 14px;
+}
+
+#cta .member-services .ct-staff-price-rules .ct-price-hours-to {
+    font-size: 12px;
+    margin: 0px 5px;
+}
+
+#cta .member-services .ct-staff-price-rules li#ct-add-price-row {
+    display: none;
+}
+
+
+/* staff > availabilty weekly */
+
+#cta .member-availabilty .ct-staff-time-schedule .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 110px;
+}
+
+#cta .member-availabilty .ct-staff-time-schedule .bootstrap-select.btn-group .dropdown-menu {
+    max-height: 260px !important;
+}
+
+#cta .member-availabilty .ct-staff-time-schedule .bootstrap-select.btn-group .dropdown-menu li a {
+    line-height: 23px;
+    padding: 5px 14px;
+}
+
+#cta .member-availabilty ul#ct-staff-timing li.active {
+    float: left;
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 10px;
+    padding: 10px 5px 10px 10px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#cta .member-availabilty .ct-staff-time-schedule .ct-staff-hours-to {
+    font-size: 12px;
+    margin: 0px 5px;
+}
+
+
+/*  staff breaks */
+
+
+/* hide box shadow and border color in breaks and availabilty */
+
+#cta .member-availabilty .panel,
+#cta .member-addbreaks .panel,
+#cta .member-offtime .panel,
+#cta .member-service-details .panel {
+    box-shadow: unset !important;
+    border: 0px !important;
+}
+
+#cta .member-availabilty .panel-default,
+#cta .member-addbreaks .panel-default,
+#cta .member-offtime .panel-default,
+#cta .member-service-details .panel-default {
+    border-color: unset !important;
+}
+
+#cta .member-addbreaks .ct-staff-breaks-schedule .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 105px;
+}
+
+#cta .member-addbreaks .ct-staff-breaks-schedule .bootstrap-select.btn-group .dropdown-menu {
+    max-height: 260px !important;
+}
+
+#cta .member-addbreaks .ct-staff-breaks-schedule .bootstrap-select.btn-group .dropdown-menu ul {
+    overflow-y: auto;
+}
+
+#cta .member-addbreaks .ct-staff-breaks-schedule .bootstrap-select.btn-group .dropdown-menu li a {
+    line-height: 23px;
+    padding: 5px 14px;
+}
+
+#cta .member-addbreaks .ct-staff-breaks-schedule .bootstrap-select.btn-group .dropdown-menu li {
+    margin: 0px !important;
+}
+
+#cta .member-addbreaks ul#ct-staff-breaks li.active {
+    float: left;
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 10px;
+    padding: 10px 5px 10px 10px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#cta .member-addbreaks ul#ct-staff-breaks li .list-unstyled li {
+    margin-bottom: 10px;
+}
+
+#cta .member-addbreaks .ct-staff-breaks-schedule .ct-staff-hours-to {
+    font-size: 12px;
+    margin: 0px 5px;
+}
+
+#cta .member-addbreaks ul#ct-staff-breaks span.ct-day-name {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#cta .member-offdays .highlight {
+    color: #fff !important;
+    background: #ff0000;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .member-offdays .offdaystable .all {
+    cursor: pointer;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .member-offdays .offdaystable .cta-col4 {
+    min-height: 268px !important;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .member-offtime .ct-member-offtime-inner {
+    float: left;
+    width: 100%;
+    min-height: 70px;
+    display: block;
+    cursor: pointer;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .member-offdays {
+   position: relative;
+	float: left;
+	width: 100%;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .member-offdays table.offdaystable tr td.ct-calendar-box {
+    min-height: 310px;
+	padding: 0 15px !important;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .member-offdays table.offdaystable tr td .ct-schedule-month-name div {
+    font-size: 18px;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+
+#cta #cta-staff-panel .ct-staff-right-details .ct-service-comm-staff #tab.btn-group a{
+	padding: 6px 15px 6px 25px;
+}
+#cta #cta-staff-panel .ct-staff-right-details .ct-service-comm-staff #tab.btn-group a.active:before{
+    content: "\f00c";
+	font-family: FontAwesome;
+	position: absolute;
+	left: 7px;
+	z-index: 9;
+}
+
+#cta #cta-staff-panel #staff-booking-payments .table-responsive{
+    overflow-x: unset !important;
+}
+
+
+
+/********************************************/
+
+
+/*******   Customers  page ****************/
+
+#cta #cta-customers-listing {
+    background: #F1F5F7 none repeat scroll 0% 0%;
+    border-color: #8D8D8D;
+    border-radius: 2px;
+}
+
+#cta #cta-customers-listing .tab-content {
+    padding: 15px;
+}
+
+td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.details td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}
+
+
+/********************************************/
+
+
+/*******   Clean SERVICES page ****************/
+
+#cta #cta-clean-services-panel {
+    background: #F1F5F7;
+    border-color: #8D8D8D;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+#cta #cta-clean-services-panel .panel-body,
+#cta #ct-settings #frequently-discount .panel-body {
+    background: #fff;
+    padding: 15px 15px 0px 15px;
+}
+
+#cta #cta-clean-services-panel .panel-default .panel-body,
+#cta #ct-settings #frequently-discount .panel-default .panel-body,
+#cta #ct-settings #labels ul.ct-labels-lang-ul .panel-default .panel-body {
+    padding: 10px;
+}
+
+
+#cta #cta-clean-services-panel .panel-default .ct-service-collapse-div.col-md-6 {
+    padding: 0px;
+}
+
+#cta #cta-clean-services-panel .panel-heading,
+#cta #ct-settings #frequently-discount .panel-heading,
+#cta #ct-settings #labels ul.ct-labels-lang-ul .panel-heading,
+#cta #ct-settings #manageable-form-fields ul.ct-labels-error-ul li.ct-labels-error-listing .panel-heading{
+    padding: 5px 10px;
+}
+
+#cta #cta-clean-services-panel .panel-heading,
+#cta #cta-clean-services-panel .panel,
+#cta #cta-clean-services-panel .panel-default,
+#cta #ct-settings #frequently-discount .panel-heading,
+#cta #ct-settings #frequently-discount .panel,
+#cta #ct-settings #frequently-discount .panel-default,
+#cta #ct-settings #labels ul.ct-labels-lang-ul .panel-heading,
+#cta #ct-settings #manageable-form-fields ul.ct-labels-error-ul li.ct-labels-error-listing .panel-heading {
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-clean-services-panel .ct-clean-service-container {
+    width: 90%;
+    margin: 0px auto;
+    padding: 0px;
+    clear: both;
+}
+
+#cta #cta-clean-services-panel .ct-clean-service-container h3 {
+    padding: 10px 0px 5px;
+    font-size: 22px;
+}
+
+#cta #cta-clean-services-panel .ct-service-list {
+    background: #F1F5F7 none repeat scroll 0% 0%;
+    min-height: 670px;
+    min-width: 170px;
+    color: #8D8D8D;
+    text-align: left;
+    margin: 0px;
+    padding: 0px 0px 15px 0px;
+}
+
+#cta #cta-clean-services-panel .ct-service-list span.ct-service-name {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: #8D8D8D;
+    line-height: 21px;
+    text-align: left;
+}
+
+#cta #cta-clean-services-panel .ct-service-list span.ct-service-name i.fa-th {
+    margin-right: 5px;
+}
+
+#cta #cta-clean-services-panel .ct-service-list span.ct-service-name i.fa {
+    margin-right: 5px;
+    cursor: move;
+}
+
+#cta #cta-clean-services-panel .ct-clean-service-details.col-lg-9,
+#cta #ct-settings .ct-setting-details.col-lg-9 {
+    padding: 0px !important;
+}
+
+#cta #cta-clean-services-panel .ct-services-right-details .col-md-12 {
+    padding: 0px 0px 0px 15px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-right-details i.fa-th-list {
+    margin-right: 5px;
+    cursor: move;
+    position: relative;
+    top: 2px;
+}
+
+#cta #cta-clean-services-panel .ct-service-list ul li.active span.ct-service-name {
+    color: #495861 !important;
+    border-radius: 0px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: #3c4c5c;
+    line-height: 21px;
+    text-align: left;
+}
+
+#cta #cta-clean-services-panel .ct-service-list .ct-left-service {
+    margin-top: 15px;
+    overflow-y: auto;
+}
+
+
+/* new style for service list left side */
+
+#cta #cta-clean-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li {
+    width: auto;
+    height: auto;
+    padding: 5px;
+    margin-top: 5px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 24px;
+}
+
+#cta #cta-clean-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li a:focus,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li a:focus,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li a:hover,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li a:hover,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li:hover,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li:hover,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li.active {
+    background: #dctctb;
+}
+
+#cta #cta-clean-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li .ct-service-sort-icon,
+#cta #cta-clean-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li .ct-service-sort-icon {
+    display: block;
+    width: 30px;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 5px 0px;
+    cursor: move;
+}
+
+#cta #cta-clean-services-panel .ct-service-list .nav li a {
+    padding: 3px 5px;
+}
+
+#cta #cta-clean-services-panel .ct-service-list .popover {
+    max-width: 220px;
+    width: 200px;
+}
+
+#cta #cta-clean-services-panel .ct-services-right-details ul li .popover {
+    width: 170px;
+    max-width: 200px;
+}
+
+#cta #cta-clean-services-panel .ct-service-list h3.popover-title {
+    background-color: #F8F8F8;
+    font-size: 15px;
+    padding: 8px 14px;
+    display: block;
+}
+
+
+/* right side services details and top menu */
+
+#cta #cta-clean-services-panel .ct-clean-service-top-header {
+    line-height: 30px;
+    color: #3C4C5C;
+    font-size: 24px;
+    float: left;
+    width: 100%;
+    padding: 15px 0px 10px 15px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-service-top-header .popover {
+    max-width: 230px;
+    width: 200px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-service-right-details {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#cta #cta-clean-services-panel .ct-service-right-menu {
+    text-transform: uppercase;
+}
+
+#cta #cta-clean-services-panel table tr td,
+#cta #ct-settings #frequently-discount table tr td {
+    padding: 5px;
+}
+
+#cta #ct-settings #manageable-form-fields ul.ct-labels-error-ul li.ct-labels-error-listing.panel,
+#cta #ct-settings #labels ul.ct-labels-lang-ul li.ct-labels-lang-listing.panel,
+#cta #ct-settings #frequently-discount .ct-frequently-discount-panel.panel {
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05) !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05) !important;
+    border: 1px solid transparent !important;
+    margin-bottom: 10px;
+}
+#cta #ct-settings #manageable-form-fields ul.ct-labels-error-ul li.ct-labels-error-listing.panel-default,
+#cta #ct-settings #labels ul.ct-labels-lang-ul li.ct-labels-lang-listing.panel-default,
+#cta #ct-settings #frequently-discount .ct-frequently-discount-panel.panel-default {
+    border-color: #ddd !important;
+}
+
+/* right side listing new style */
+
+#cta #cta-clean-services-panel .panel-heading .panel-title,
+#cta #ct-settings #frequently-discount .panel-heading .panel-title,
+#cta #ct-settings #labels ul.ct-labels-lang-ul li.ct-labels-lang-listing .panel-title,
+#cta #ct-settings #manageable-form-fields ul.ct-labels-error-ul li.ct-labels-error-listing .panel-title {
+    line-height: 31px;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel .panel-title span.ct-clean-service-title-name,
+#cta #ct-settings #frequently-discount .ct-frequently-discount-panel .panel-title span.ct-frequently-discount-panel-title-name,
+#cta #ct-settings #labels ul.ct-labels-lang-ul li.ct-labels-lang-listing .panel-title span.ct-label-lang-panel-title-name {
+    width: 88%;
+    float: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 33px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel .panel-title .manage-price-calculation-btn,
+#cta #cta-clean-services-panel .ct-clean-services-panel .panel-title .price-cal-method-btn,
+#cta #cta-clean-services-panel .ct-clean-services-panel .panel-title .quantity-rules-btn {
+    margin: 2px 10px 0 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel .panel-title .manage-addons-btn,
+#cta #cta-clean-services-panel .ct-clean-services-panel .panel-title .delete-clean-service-btn {
+    margin: 2px 0px 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#cta #cta-clean-services-panel .panel-heading .panel-title .badge {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    -moz-border-radius: 0px 5px !important;
+    -webkit-border-radius: 0px 5px !important;
+    -o-border-radius: 0px 5px !important;
+    -ms-border-radius: 0px 5px !important;
+    border-radius: 0px 5px !important;
+    margin: 0px 5px;
+}
+
+#cta #cta-clean-services-panel .panel .collapse.in {
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-clean-services-panel .ct-service-new-service li .cta-col1 {
+    min-width: 20px !important;
+    position: relative;
+    right: 10px;
+}
+
+#cta #cta-clean-services-panel .panel-heading .panel-title .ct-service-time-main,
+#cta #cta-clean-services-panel .panel-heading .panel-title .ct-service-price-main {
+    font-size: 13px;
+}
+
+#cta #cta-clean-services-panel .ct-create-service-table {
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-clean-services-panel .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark:before {
+    content: "\f00c";
+    font-family: FontAwesome;
+}
+
+#cta #cta-clean-services-panel .ct-all-service-category .bootstrap-select {
+    width: 350px;
+}
+
+#cta #cta-clean-services-panel .ct-service-duration .bootstrap-select {
+    width: 110px;
+}
+
+
+/* #cta .ct-services-panel  .ct-create-service-table .demo{		width:130px;		cursor: pointer;	} */
+
+#cta #cta-clean-services-panel .ct-service-duration .bootstrap-select.btn-group .dropdown-menu li a {
+    line-height: 23px;
+    padding: 5px 14px;
+}
+
+#cta #cta-clean-services-panel .ct-service-duration .dropdown-menu > li > a:focus,
+#cta #cta-clean-services-panel .ct-service-duration .dropdown-menu > li > a:hover {
+    background: transparent linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    background: transparent -webkit-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    background: transparent -moz-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    background: transparent -o-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+
+/* service listing */
+
+#cta #cta-clean-services-panel .ct-add-new-service {
+    display: none;
+}
+
+
+/* serivce addons custom images style */
+
+
+/* 2. serivces dropdown */
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons span.cta-addon-img-icon,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon span.cta-addon-img-icon {
+    font-size: 20px;
+    padding: 10px 5px;
+    position: relative;
+    top: 15px;
+    left: 0px;
+    float: left;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-imagelist-dropdown,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-imagelist-dropdown {
+    margin-top: 15px;
+    float: left;
+    display: block;
+    width: 65%;
+    position: relative;
+    padding-left: 15px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addon-selection-main,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addon-selection-main {
+    display: block;
+    height: auto;
+    width: 100%;
+    position: relative;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addon-is,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addon-is {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e5e5e5;
+    border-radius: 4px;
+    width: 100%;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-list,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-list {
+    padding: 6px 10px;
+	position: relative;
+	height: 46px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-list:hover,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-list:hover {
+    background-color: #F8F8F8;
+    cursor: pointer;
+    color: #555;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addon-is .cta-addons-list:after {
+    content: "\e604";
+    font-family: 'simple-line-icons';
+    position: absolute;
+    top: 31%;
+    right: 3%;
+    z-index: 99;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addon-is .cta-addons-list:after {
+    content: "\e604";
+    font-family: 'simple-line-icons';
+    position: absolute;
+    top: 32%;
+    right: 3%;
+    z-index: 99;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-list i.icon-puzzle,
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-list img.cta-addons-image,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-list i.icon-puzzle,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-list img.cta-addons-image {
+    width: 46px;
+    height: 46px;
+    border-radius: 3px;
+    vertical-align: middle;
+    font-size: 46px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-align: center;
+	line-height: 46px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-list i.icon-puzzle:before,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-list i.icon-puzzle:before {
+    font-size: 34px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-list h3.cta-addons-name,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-list h3.cta-addons-name {
+    font-size: 14px;
+    display: inline-block;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 100%;
+	margin: 0;
+	padding-left: 30px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-selection-main .cta-addons-dropdown,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-selection-main .cta-addons-dropdown {
+    display: none;
+    background-color: #FFF;
+    border-bottom: 1px solid #e5e5e5;
+    overflow-y: auto;
+    position: absolute;
+    max-height: 300px;
+    width: 100%;
+    z-index: 9999;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    margin-top: -3px;
+    border-radius: 0 0 4px 4px;
+}
+
+#cta #cta-clean-services-panel .ct-clean-services-panel.cta-addon-icons .cta-addons-selection-main .cta-addons-dropdown .cta-addons-list,
+#cta #cta-clean-services-panel .ct-add-new-service.cta-add-new-addon .cta-addons-selection-main .cta-addons-dropdown .cta-addons-list {
+    border-top: thin solid #E5e5e5;
+}
+
+#cta #cta-clean-services-panel .ct-add-new-price-method {
+    display: none;
+}
+
+#cta #cta-clean-services-panel .ct-add-new-price-unit {
+    display: none;
+}
+#cta #ct-settings #manageable-form-fields ul.ct-labels-error-ul li.ct-labels-error-listing,
+#cta #ct-settings #frequently-discount ul#frequently-discount li,
+#cta #cta-clean-services-panel ul#sortable-services li,
+#cta #ct-settings #labels ul.ct-labels-lang-ul li.ct-labels-lang-listing,
+#cta #cta-clean-services-panel ul.my-sortable-addons-services li,
+#cta #cta-clean-services-panel ul.myservicemethodload li,
+#cta #cta-clean-services-panel ul#sortable-services-unit li{
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+#cta #cta-clean-services-panel ul.myservicemethodload li,
+#cta #cta-clean-services-panel ul#sortable-services-unit li{
+	margin-bottom: 10px;
+}
+#cta #cta-clean-services-panel .bootstrap-select.btn-group .dropdown-menu li {
+    margin-bottom: unset !important;
+}
+
+#cta #cta-clean-services-panel ul.ct-select-staff-ul li span.ct-service-provider-list {
+    width: 73%;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 34px;
+}
+
+
+/* service manage unit price */
+
+#cta #cta-clean-services-panel .panel-default .panel-body .manage-unit-price-main .price-rules-select,
+#cta #cta-clean-services-panel .panel-default .panel-body .add-new-manage-unit-price .price-rules-select {
+    padding: 0;
+    margin: 0 15px 0 0;
+    overflow: hidden;
+    background-color: #fff;
+    position: relative;
+    width: 70px;
+    float: left;
+}
+
+#cta #cta-clean-services-panel .panel-default .panel-body .manage-unit-price-main .price-rules-select select,
+#cta #cta-clean-services-panel .panel-default .panel-body .add-new-manage-unit-price .price-rules-select select {
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-style: solid;
+}
+
+#cta #cta-clean-services-panel .panel-default .panel-body .manage-unit-price-main .price-rules-select:after,
+#cta #cta-clean-services-panel .panel-default .panel-body .add-new-manage-unit-price .price-rules-select:after {
+    top: 50%;
+    right: 20%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    border-color: rgba(0, 0, 0, 0);
+    border-top-color: #555;
+    border-width: 5px;
+    margin-top: -2px;
+    z-index: 100;
+}
+
+#cta #cta-clean-services-panel .panel-body .manage-unit-price-main ul li {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#cta #cta-clean-services-panel .panel-body .manage-unit-price-main a.update-addon-rule,
+#cta #cta-clean-services-panel .panel-body .manage-unit-price-main a.delete-addon-rule,
+#cta #cta-clean-services-panel .panel-body .add-new-manage-unit-price a.add-addon-price-rule {
+    margin: 0 5px 0 5px;
+}
+
+
+/********************************************/
+
+
+/*******   SERVICES page ****************/
+
+#cta #cta-services-panel {
+    background: #F1F5F7;
+    border-color: #8D8D8D;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+#cta #cta-services-panel .panel-body {
+    background: #fff;
+    padding: 15px 15px 0px 15px;
+}
+
+#cta #cta-services-panel .panel-default .panel-body {
+    padding: 0px 5px 10px 5px;
+}
+
+#cta #cta-services-panel .panel-default .ct-service-collapse-div.col-md-7 {
+    padding: 0px;
+}
+
+#cta #cta-services-panel .panel-heading {
+    padding: 5px 10px;
+}
+
+#cta #cta-services-panel .panel-heading,
+#cta #cta-services-panel .panel,
+#cta #cta-services-panel .panel-default {
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-services-panel .ct-service-container {
+    width: 90%;
+    margin: 0px auto;
+    padding: 0px;
+    clear: both;
+}
+
+#cta #cta-services-panel .ct-service-container h3 {
+    padding: 10px 0px 5px;
+    font-size: 22px;
+}
+
+#cta #cta-services-panel .ct-service-list {
+    background: #F1F5F7 none repeat scroll 0% 0%;
+    min-height: 670px;
+    min-width: 170px;
+    color: #8D8D8D;
+    text-align: left;
+    margin: 0px;
+    padding: 0px 0px 15px 0px;
+}
+
+#cta #cta-services-panel .ct-service-list span.ct-service-name {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: #8D8D8D;
+    line-height: 21px;
+    text-align: left;
+}
+
+#cta #cta-services-panel .ct-service-list span.ct-service-name i.fa-th {
+    margin-right: 5px;
+}
+
+#cta #cta-services-panel .ct-service-list span.ct-service-name i.fa {
+    margin-right: 5px;
+    cursor: move;
+}
+
+#cta #cta-services-panel .ct-service-details.col-lg-9,
+#cta #ct-settings .ct-setting-details.col-lg-9 {
+    padding: 0px !important;
+}
+
+#cta #cta-services-panel .ct-services-right-details .col-md-12 {
+    padding: 0px 0px 0px 15px;
+}
+
+#cta #cta-services-panel .ct-services-right-details i.fa-th-list {
+    margin-right: 5px;
+    cursor: move;
+    position: relative;
+    top: 2px;
+}
+
+#cta #cta-services-panel .ct-service-list ul li.active span.ct-service-name {
+    color: #495861 !important;
+    border-radius: 0px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 400;
+    color: #3c4c5c;
+    line-height: 21px;
+    text-align: left;
+}
+
+#cta #cta-services-panel .ct-service-list .ct-left-service {
+    margin-top: 15px;
+    overflow-y: auto;
+}
+
+
+/* new style for service list left side */
+
+#cta #cta-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li,
+#cta #cta-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li {
+    width: auto;
+    height: auto;
+    padding: 5px;
+    margin-top: 5px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 24px;
+}
+
+#cta #cta-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li a:focus,
+#cta #cta-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li a:focus,
+#cta #cta-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li a:hover,
+#cta #cta-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li a:hover,
+#cta #cta-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li:hover,
+#cta #cta-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li:hover,
+#cta #cta-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li,
+#cta #cta-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li.active {
+    background: #dctctb;
+}
+
+#cta #cta-services-panel .ct-service-list .ct-left-services li.ct-left-service-menu-li .ct-service-sort-icon,
+#cta #cta-services-panel .ct-service-list .ct-left-service li.ct-left-service-menu-li .ct-service-sort-icon {
+    display: block;
+    width: 30px;
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 5px 0px;
+    cursor: move;
+}
+
+#cta #cta-services-panel .ct-service-list .nav li a {
+    padding: 3px 5px;
+}
+
+#cta #cta-services-panel .ct-service-list .popover {
+    max-width: 220px;
+    width: 200px;
+}
+
+#cta #cta-services-panel .ct-services-right-details ul li .popover {
+    width: 170px;
+    max-width: 200px;
+}
+
+#cta #cta-services-panel .ct-service-list h3.popover-title {
+    background-color: #F8F8F8;
+    font-size: 15px;
+    padding: 8px 14px;
+    display: block;
+}
+
+
+/* right side services details and top menu */
+
+#cta #cta-services-panel .ct-service-top-header {
+    line-height: 30px;
+    color: #3C4C5C;
+    font-size: 24px;
+    float: left;
+    width: 100%;
+    padding: 15px 0px 10px 15px;
+}
+
+#cta #cta-services-panel .ct-service-top-header .popover {
+    max-width: 230px;
+    width: 200px;
+}
+
+#cta #cta-services-panel .ct-service-right-details {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#cta #cta-services-panel .ct-service-right-menu {
+    text-transform: uppercase;
+}
+
+#cta #cta-services-panel table tr td {
+    padding: 5px;
+}
+
+
+/* right side listing new style */
+
+#cta #cta-services-panel .panel-heading .panel-title {
+    line-height: 30px;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-services-panel .ct-services-panel .panel-title span.ct-service-title-name {
+    width: 83%;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 33px;
+}
+
+#cta #cta-services-panel .panel-heading .panel-title .badge {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    -moz-border-radius: 0px 5px !important;
+    -webkit-border-radius: 0px 5px !important;
+    -o-border-radius: 0px 5px !important;
+    -ms-border-radius: 0px 5px !important;
+    border-radius: 0px 5px !important;
+    margin: 0px 5px;
+}
+
+#cta #cta-services-panel .panel .collapse.in {
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-services-panel .ct-service-new-service li .cta-col1 {
+    min-width: 20px !important;
+    position: relative;
+    right: 10px;
+}
+
+#cta #cta-services-panel .panel-heading .panel-title .ct-service-time-main,
+#cta #cta-services-panel .panel-heading .panel-title .ct-service-price-main {
+    font-size: 13px;
+}
+
+#cta #cta-services-panel .ct-create-service-table {
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-services-panel .bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a span.check-mark:before {
+    content: "\f00c";
+    font-family: FontAwesome;
+}
+
+#cta #cta-services-panel .ct-all-service-category .bootstrap-select {
+    width: 350px;
+}
+
+#cta #cta-services-panel .ct-service-duration .bootstrap-select {
+    width: 110px;
+}
+
+
+/* #cta .ct-services-panel  .ct-create-service-table .demo{		width:130px;		cursor: pointer;	} */
+
+#cta #cta-services-panel .ct-service-duration .bootstrap-select.btn-group .dropdown-menu li a {
+    line-height: 23px;
+    padding: 5px 14px;
+}
+
+#cta #cta-services-panel .ct-service-duration .dropdown-menu > li > a:focus,
+#cta #cta-services-panel .ct-service-duration .dropdown-menu > li > a:hover {
+    background: transparent linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    background: transparent -webkit-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    background: transparent -moz-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    background: transparent -o-linear-gradient(to bottom, #5BC0DE 0px, #2AABD2 100%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+
+/* service listing */
+
+#cta #cta-services-panel .ct-add-new-service {
+    display: none;
+}
+
+#cta #cta-services-panel ul#sortable-services li {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#cta #cta-services-panel .bootstrap-select.btn-group .dropdown-menu li {
+    margin-bottom: unset !important;
+}
+
+#cta #cta-services-panel ul.ct-select-staff-ul li span.ct-service-provider-list {
+    width: 73%;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 34px;
+}
+
+
+/****************************/
+
+
+/*   Settings page  */
+
+
+/* setting page enable disable custom style */
+
+#cta #ct-settings table .form-group label.ctoggle-large .toggle,
+#cta #ct-settings table .form-group label.ctoggle-postal-code .toggle,
+#cta #ct-settings table .form-group label.ctoggle-tax-vat .toggle,
+#cta #ct-settings table .form-group label.ctoggle-patial-deposit .toggle,
+#cta #ct-settings table .form-group label.ctoggle-cancel-policy .toggle,
+#cta #ct-settings table .form-group label.ctoggle-multiple-booking-same-time .toggle,
+#cta #ct-settings table .form-group label.ctoggle-appointment-auto-confirm .toggle,
+#cta #ct-settings table .form-group label.ctoggle-allow-dc-terms-condition .toggle,
+#cta #ct-settings table .form-group label.ctoggle-allow-dc-privacy_policy .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct_allow_front_desc .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct_subheaders .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct_vc_status .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct_p_status .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-pay-locally .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-paypal-checkout .toggle,
+#cta #ct-settings table .form-group label.ctoggle-paypal-guest-payment .toggle,
+#cta #ct-settings table .form-group label.ctoggle-paypal-test-mode .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-authorizedotnet-payment-checkout .toggle,
+#cta #ct-settings table .form-group label.ctoggle-authorize-sandbox-mode .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-stripe-payment-checkout .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-twocheckout-payment-checkout .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-payumoney-payment-checkout .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-bank-transfer-payment-checkout .toggle,
+#cta #ct-settings table .form-group label.ctoggle-2checkout-test-mode .toggle,
+#cta #ct-settings table .form-group label.ctoggle-admin-email-notification .toggle,
+#cta #ct-settings table .form-group label.ctoggle-client-email-notification .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-sms-service-ena-dis .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-sms-noti-twilio .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct-sms-reminder-client-status .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct-sms-reminder-admin-status .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-sms-noti-plivo .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct-sms-reminder-client-status-plivo .toggle,
+#cta #ct-settings table .form-group label.ctoggle-ct-sms-reminder-admin-status-plivo .toggle,
+#cta #ct-settings .panel-heading label.ctoggle-frequently-discount .toggle,
+#cta #ct-settings #manageable-form-fields ul.ct-labels-error-ul li.ct-labels-error-listing label.ctoggle .toggle{
+    min-width: 72px !important;
+}
+
+#cta #ct-settings table .form-group label.ct_ext_payments_list_css .toggle,
+#cta #ct-settings .panel-heading label.ct_ext_payments_list_css .toggle{
+    min-width: 72px !important;
+}
+/*
+#cta #ct-settings .tab-content > .tab-pane,
+#cta #ct-settings .tab-content > .tab-pane.fade,
+#cta #ct-settings .tab-content > .tab-pane.fade.in{
+	visibility:hidden;
+	display: block !important;
+	height: 0px;
+}
+#cta #ct-settings .tab-content > .active.in,
+#cta #ct-settings .tab-content > .tab-pane.fade.active,
+#cta #ct-settings .tab-content > .tab-pane.fade.active.in{
+	visibility:visible !important;
+	height: 100%;
+} */
+
+#cta #ct-settings #sms-reminder .ct-all-sms-gateway-main .ct-sms-gateway .panel-heading {
+    float: left;
+    width: 100%;
+}
+
+/* common style for form-group */
+
+#cta #ct-settings #general-setting .form-group,
+#cta #ct-settings #appearance-setting .form-group,
+#cta #ct-settings #payment-setting .ct-payment-methods .form-group,
+#cta #ct-settings #sms-reminder .ct-sms-reminder-input .form-group,
+#cta #ct-settings #labels .ct-labels-all .form-group {
+    margin-bottom: 1px;
+    float: left;
+    margin-right: 5px;
+}
+
+#cta #ct-settings #general-setting .panel,
+#cta #ct-settings #payment-setting .panel,
+#cta #ct-settings #email-setting .panel {
+    box-shadow: unset;
+    border: 0px none;
+    margin-bottom: 10px;
+}
+
+#cta #ct-settings .panel-heading.cta-top-right {
+    color: #333;
+    background-color: #F5F5F5;
+    border-color: #8D8D8D;
+    position: fixed;
+    width: 75%;
+    float: left;
+    z-index: 99;
+}
+
+#cta #ct-settings .panel-heading {
+    color: #333;
+    background-color: #F5F5F5;
+    border-color: #8D8D8D;
+}
+
+#cta #ct-settings #email-setting .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 194px;
+}
+
+#cta #ct-settings .panel-heading h1.panel-title {
+    text-align: left;
+}
+
+#cta .panel-heading h1.panel-title {
+    font-size: 16px;
+    text-align: center;
+    line-height: 25px;
+}
+
+#cta #ct-settings .panel-heading .cta-setting-fix-btn {
+    position: absolute;
+    right: 50px;
+    top: 5px;
+}
+
+#cta #ct-settings .cta-panel-default {
+    background: #F1F5F7;
+    margin-top: 20px;
+    border-color: #8D8D8D;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+
+#cta #ct-settings .cta-panel-default .panel-body {
+    padding: 15px;
+}
+
+#cta #ct-staff-dashboard .staff-dashboard.ct-left-menu,
+#cta #ct-settings .ct-left-menu {
+    background: #E1E7EB none repeat scroll 0% 0%;
+	position: relative;
+	height: calc(100vh - 120px);
+	overflow: auto;
+    min-width: 170px;
+    color: #8D8D8D;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+#cta #ct-settings .ct-setting-details{
+	position: relative;
+	height: calc(100vh - 120px);
+	overflow: auto;
+}
+#cta #ct-staff-dashboard .ct-left-menu ul li:after,
+#cta #ct-settings .ct-left-menu ul li:after {
+    content: "";
+    height: 1px;
+    background-color: rgb(215, 215, 215);
+    text-align: center;
+    clear: left;
+    width: 100%;
+    display: block;
+}
+#cta #ct-staff-dashboard .ct-left-menu ul li a{
+	 font-size: 15px !important; 
+}
+#cta #ct-staff-dashboard .ct-left-menu ul li a,
+#cta #ct-settings .ct-left-menu ul li a {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8D8D8D;
+    line-height: 20px;
+    padding: 30px 0px;
+    text-align: center;
+}
+
+#cta #ct-settings .ct-left-menu ul li.active a,
+#cta #ct-staff-dashboard .ct-left-menu ul li.active a,
+#cta #ct-settings .ct-left-menu ul li a:hover,
+#cta #ct-staff-dashboard .ct-left-menu ul li a:hover {
+    background-color: #F1F5F7 !important;
+    color: #495861 !important;
+    border-radius: 0px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    color: #C1C8CD;
+    line-height: 20px;
+    padding: 30px 0px;
+    text-align: center;
+}
+#cta #ct-settings .ct-setting-details table.ct-common-table tr td {
+    padding: 5px;
+}
+
+#cta #ct-settings .ct-general-setting .ct-setting-menu {
+    color: #000;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+#cta #ct-settings #general-setting .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100%;
+}
+
+#cta #ct-settings #general-setting .bootstrap-select.btn-group .dropdown-menu {
+    max-height: 260px !important;
+    overflow: hidden;
+}
+
+#cta #ct-settings #general-setting .bootstrap-select.btn-group .dropdown-menu li a {
+    line-height: 23px;
+    padding: 5px 14px;
+}
+
+#cta #ct-settings #general-setting .ct-tax-vat-input-container,
+#cta #ct-settings #general-setting .multiple-booking-container {
+    position: relative;
+    float: left;
+    width: 100%;
+    line-height: 36px;
+}
+
+#cta #ct-settings #general-setting i.ct-tax-percent {
+    position: relative;
+    top: 1px;
+    right: -5px;
+}
+
+#cta #ct-settings #general-setting .mycollapse_patial-deposit i.fa-percent {
+    position: relative;
+    top: 1px;
+    right: -5px;
+}
+
+#cta .ct-custom-radio ul.ct-radio-list li.ct-partial-li-width {
+    width: 20%;
+}
+
+#cta .ct-custom-radio ul.ct-radio-list li.ct-privacy-policy-li-width {
+    width: 90%;
+}
+
+#cta #ct-settings #general-setting .ct-tax-vat-input-container .ct-partial-input-per {
+    float: left;
+}
+
+#cta #ct-settings #general-setting i.ct-partial-deposit-percent {
+    position: relative;
+    top: 1px;
+    right: -5px;
+}
+
+#cta #ct-settings #general-setting .ct-partial-deposit-input-container .ct-partial-input-per {
+    float: left;
+}
+
+
+/* setting > appearance setting css */
+
+#cta #ct-settings #appearance-setting .minicolors .minicolors-input,
+#cta #ct-settings .minicolors-theme-bootstrap .minicolors-swatch {
+    cursor: pointer;
+}
+
+
+/* setting > payment gateways setting css */
+
+#cta #ct-settings #payment-setting .ct-all-payments-main .ct-payment-methods,
+#cta #ct-settings #sms-reminder .ct-all-sms-gateway-main .ct-sms-gateway {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+/*
+#cta #ct-settings #sms-reminder .ct-all-sms-gateway-main .ct-sms-gateway .panel-heading {
+    float: left;
+    width: 100%;
+}
+*/
+
+#cta #ct-settings #payment-setting .panel-group {
+    margin-bottom: 0px !important;
+}
+
+#cta #ct-settings #payment-setting .ct-paypal-setting-warning {
+    position: relative;
+    float: left;
+    display: inline-block;
+    bottom: 7px;
+}
+
+#cta #ct-settings #payment-setting .ct-all-payments-main .ct-payment-methods img.cta-paypal-img-payments,
+#cta #ct-settings #payment-setting .ct-all-payments-main .ct-payment-methods img.cta-authorize-img-payments,
+#cta #ct-settings #sms-reminder .ct-all-sms-gateway-main .ct-sms-gateway img.cta-sms-gateway-img {
+    position: relative;
+    left: 5px;
+}
+#cta #ct-settings #payment-setting .ct-all-payments-main .ct-payment-methods .payment-icon{
+	position: relative;
+	margin-left: 10px;
+	display: inline-block;
+
+}
+#cta #ct-settings #payment-setting .ct-all-payments-main .ct-payment-methods .payment-icon i.fa.fa-money{
+	font-size: 26px;
+}
+
+
+#cta #ct-settings #payment-setting .ct-payment-methods .ct-enable-disable-right.ct-pay-locally {
+    display: inline-block;
+    position: relative;
+    top: -6px;
+    right: 0px;
+}
+
+#cta #ct-settings #payment-setting .ct-payment-methods .ct-enable-disable-right {
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    right: 0px;
+}
+
+
+/* super admin email template editing */
+
+#cta #cta-email-templates .tab-content ul li {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#cta #cta-email-templates .tab-content ul li .panel-heading {
+    float: left;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+#cta #cta-email-templates ul li .panel-body .ct-email-temp-collapse-div.col-md-12 {
+    padding: 10px 0px;
+}
+
+#cta #cta-email-templates ul li .panel-body {
+    padding: 0px 5px 10px 5px;
+}
+
+#cta #cta-email-templates ul li span.ct-template-name {
+    width: 85%;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 34px;
+    text-overflow: ellipsis;
+}
+
+#cta #cta-email-templates .tab-content {
+    padding: 0px 15px;
+}
+
+#cta #cta-email-templates .tab-content #client-email-template h4.panel-title,
+#cta #cta-email-templates .tab-content #admin-provider-email-template h4.panel-title {
+    line-height: 26px;
+}
+
+#cta #cta-email-templates .tab-content #client-email-template #accordion,
+#cta #cta-email-templates .tab-content #admin-provider-email-template #accordion {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-email-templates .tab-content #client-email-template #accordion .ct-email-panel,
+#cta #cta-email-templates .tab-content #admin-provider-email-template #accordion .ct-email-panel {
+    float: left;
+    width: 100%;
+    margin: 0px 0px 5px 0px !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#cta #cta-email-templates .tab-content #client-email-template #accordion .ct-email-panel .panel-heading,
+#cta #cta-email-templates .tab-content #admin-provider-email-template #accordion .ct-email-panel .panel-heading {
+    padding: 5px 10px;
+    display: inline-block;
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-email-templates .panel-collapse table.ct-email-table tr td {
+    padding: 5px;
+}
+
+#cta #cta-email-templates #client-email-template input[type="checkbox"],
+#cta #cta-email-templates #admin-provider-email-template input[type="checkbox"] {
+    display: none;
+}
+
+#cta #cta-email-templates .ct-yes-no-email-right {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    right: 0px;
+}
+
+#cta #cta-email-templates #client-email-template .ct-email-panel .panel-heading .ct-toggle,
+#cta #cta-email-templates #admin-provider-email-template .ct-email-panel .panel-heading .ct-toggle {
+    margin: 4px 4px 4px 0px;
+    position: relative;
+    bottom: 4px;
+}
+
+
+/* setting > Email,sms template setting css */
+
+#cta #email-template ul li .panel-body .ct-email-temp-collapse-div.np,
+#cta #sms-template ul li .panel-body .ct-sms-temp-collapse-div.np {
+    padding: 15px 0 !important;
+}
+
+#cta #ct-settings #email-template .tab-content ul li,
+#cta #ct-settings #sms-template .tab-content ul li {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#cta #ct-settings #email-template ul li .panel-heading,
+#cta #ct-settings #sms-template ul li .panel-heading {
+    float: left;
+    width: 100%;
+}
+
+#cta #ct-settings #email-template ul li .panel-heading,
+#cta #ct-settings #sms-template ul li .panel-heading {
+    padding: 5px 10px;
+}
+
+#cta #ct-settings #email-template .tab-content,
+#cta #ct-settings #sms-template .tab-content {
+    padding: 0px 15px;
+}
+
+#cta #ct-settings #email-template .tab-content #client-email-template h4.panel-title,
+#cta #ct-settings #email-template .tab-content #admin-email-template h4.panel-title,
+#cta #ct-settings #email-template .tab-content #staff-email-template h4.panel-title,
+#cta #ct-settings #sms-template .tab-content #client-sms-template h4.panel-title,
+#cta #ct-settings #sms-template .tab-content #admin-sms-template h4.panel-title {
+    line-height: 34px;
+}
+
+#cta #ct-settings #email-template .tab-content #client-email-template #accordion,
+#cta #ct-settings #email-template .tab-content #admin-provider-email-template #accordion,
+#cta #ct-settings #sms-template .tab-content #client-sms-template #accordion,
+#cta #ct-settings #sms-template .tab-content #admin-sms-template #accordion {
+    padding: 0px;
+    margin: 0px;
+    float: left;
+    width: 100%;
+}
+
+#cta #ct-settings #email-template .tab-content #client-email-template #accordion .ct-email-panel,
+#cta #ct-settings #email-template .tab-content #admin-email-template #accordion .ct-email-panel,
+#cta #ct-settings #sms-template .tab-content #client-sms-template #accordion .ct-sms-panel,
+#cta #ct-settings #sms-template .tab-content #admin-sms-template #accordion .ct-sms-panel {
+    float: left;
+    width: 100%;
+    margin: 0px 0px 5px 0px !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+#cta #ct-settings #email-template .tab-content #client-email-template #accordion .ct-email-panel .panel-heading,
+#cta #ct-settings #email-template .tab-content #admin-email-template #accordion .ct-email-panel .panel-heading,
+#cta #ct-settings #sms-template .tab-content #client-sms-template #accordion .ct-sms-panel .panel-heading,
+#cta #ct-settings #sms-template .tab-content #admin-sms-template #accordion .ct-sms-panel .panel-heading {
+    padding: 5px 10px;
+    display: inline-block;
+    float: left;
+    width: 100%;
+}
+
+#cta #ct-settings #email-template .panel-collapse table.ct-email-table tr td,
+#cta #ct-settings #sms-template .panel-collapse table.ct-email-table tr td {
+    padding: 5px;
+}
+
+#cta #ct-settings #client-email-template input[type="checkbox"],
+#cta #ct-settings #admin-email-template input[type="checkbox"],
+#cta #ct-settings #client-sms-template input[type="checkbox"],
+#cta #ct-settings #admin-sms-template input[type="checkbox"] {
+    display: none;
+}
+
+#cta #ct-settings #email-template .ct-yes-no-email-right,
+#cta #ct-settings #sms-template .ct-yes-no-sms-right {
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    line-height: 26px;
+    margin-right: 10px;
+}
+
+#cta #ct-settings #client-email-template .ct-email-panel .panel-heading .ct-toggle,
+#cta #ct-settings #admin-email-template .ct-email-panel .panel-heading .ct-toggle,
+#cta #ct-settings #client-sms-template .ct-sms-panel .panel-heading .ct-toggle,
+#cta #ct-settings #admin-sms-template .ct-sms-panel .panel-heading .ct-toggle {
+    margin: 4px 4px 4px 0px;
+    position: relative;
+    bottom: 4px;
+}
+
+
+/* settings > sms settings */
+
+#cta #ct-settings #sms-reminder .ct-enable-disable-right {
+    display: inline-block;
+    position: relative;
+    top: -8px;
+    right: 0px;
+}
+
+#cta #ct-settings #sms-reminder .ct-sms-gateway .ct-enable-disable-right {
+    display: inline-block;
+    position: relative;
+    top: -2px;
+    right: 0px;
+}
+
+#cta #ct-settings #sms-reminder .panel-heading .panel-title a.ct-tooltip-link {
+    top: 0px;
+}
+
+#cta #ct-settings #sms-reminder td#hr {
+    padding: 0px;
+}
+
+#cta #ct-settings #sms-reminder .ct-sms-reminder-input table tbody th {
+    padding: 8px;
+}
+
+
+/* settings > Labels settings */
+
+#cta #ct-settings #labels table tbody th {
+    padding: 8px;
+}
+
+
+/* settings > manage form fields settings */
+
+#cta #ct-settings #manage-form-fields table tbody tr td div.form-group {
+    margin: 0px;
+}
+
+#cta #ct-settings #manage-form-fields .ct-min-max {
+    width: 125px;
+}
+
+#cta #ct-settings #manage-form-fields .ct-min-max i.fa {
+    margin: 0px;
+}
+
+#cta #ct-settings #manage-form-fields .ct-min-max .ct-btn-text {
+    width: 40%;
+    cursor: not-allowed;
+    pointer-events: none;
+    margin: 0px;
+    border-color: #cfcfcf;
+    text-align: center;
+    font-size: 15px;
+    height: 34px;
+    padding: 5px 10px;
+}
+
+
+/* settings > Promocode settings */
+
+#cta #ct-settings #promocode .btn-xs.ct-edit-coupon {
+    float: left;
+}
+
+#cta #ct-settings #promocode .ct-edit-coupon,
+#cta #ct-settings #promocode .delete_coupon {
+    position: relative;
+    cursor: pointer;
+}
+
+#cta #ct-settings #promocode .tab-content {
+    padding: 0px 15px;
+}
+
+#cta #ct-settings #promocode .panel-collapse table.ct-email-table tr td {
+    padding: 5px;
+}
+
+#cta #ct-settings #promocode #datepicker {
+    width: 180px;
+    margin: 0 20px 20px 20px;
+}
+
+#cta #ct-settings #promocode #datepicker > span:hover {
+    cursor: pointer;
+}
+
+#cta #ct-settings #promocode .panel-default #add-new-promocode .table-responsive {
+    min-height: 700px;
+}
+
+
+/* settings > custom form fields checkbox style */
+
+#cta .frmb .checkbox input[type="checkbox"] {
+    position: unset !important;
+    margin: unset !important;
+}
+
+#cta .frmb .hidden {
+    display: block !important;
+}
+/* front tool tips */
+#cta #ct-settings #front_tooltips .ct-enable-disable-right {
+    display: inline-block;
+    position: relative;
+    top: -8px;
+    right: 0px;
+}
+
+/****************************/
+
+
+/****************************/
+
+
+/*  payments  */
+
+#cta #cta-payments .tab-content {
+    padding: 15px;
+}
+
+#cta #cta-payments .dataTables_wrapper .dataTables_length {
+    margin: 5px 0px;
+    float: left;
+}
+
+#cta #cta-payments div.dataTables_wrapper div.dataTables_filter {
+    margin: 5px 0px;
+    float: right;
+}
+
+#cta #cta-payments div.dt-buttons {
+    text-align: center;
+    float: none;
+}
+
+
+/****************************/
+
+
+/****************************/
+
+
+/*  Export  */
+
+#cta #cta-export-details .tab-content {
+    padding: 15px;
+}
+
+#cta #cta-export-details .dataTables_wrapper .dataTables_length,
+#cta #cta-export-details div.dataTables_wrapper div.dataTables_filter {
+    margin: 5px 0px;
+}
+
+#cta #cta-export-details div.dt-buttons,
+#cta #cta-staff-panel div.dt-buttons {
+    text-align: center;
+    float: none;
+}
+
+
+#cta #manageable-form-fields .spinner {
+	width: 120px;
+}
+#cta #manageable-form-fields .spinner input {
+	text-align: center;
+	padding: 5px 33px;
+}
+#cta #manageable-form-fields .input-group-btn-horizontal {
+  position: relative;
+  white-space: nowrap;
+  width: 100%;
+  vertical-align: middle;
+  display: table-cell;
+}
+#cta #manageable-form-fields .input-group-btn-horizontal > .btn {
+  display: block;
+  float: none;
+  width: 30%;
+  max-width: 30%;
+  padding: 8px;
+  position: absolute;
+  border-radius: 0;
+  z-index: 9;
+}
+#cta #manageable-form-fields .input-group-btn-horizontal > .btn.ct-addition-btn{
+	right: 0;
+	top:0;
+	float: right;
+}
+#cta #manageable-form-fields .input-group-btn-horizontal > .btn.ct-subtraction-btn{
+	left: 0;
+	top:0;
+	float: left;
+}
+
+#cta #manageable-form-fields .input-group-btn-horizontal > .btn.ct-subtraction-btn {
+  border-radius: 4px 0 0 4px;
+}
+#cta #manageable-form-fields .input-group-btn-horizontal > .btn.ct-addition-btn {
+   border-radius: 0 4px 4px 0;
+}
+#cta #manageable-form-fields .input-group-btn-horizontal i{
+
+}
+
+
+/****************************/
+
+
+/****************************/
+
+
+/*  Customers listing  */
+
+#cta #cta-customers-listing .dataTables_wrapper .dataTables_length {
+    margin: 5px 0px;
+    float: left;
+}
+
+#cta #cta-customers-listing div.dataTables_wrapper div.dataTables_filter {
+    margin: 5px 0px;
+    float: right;
+}
+
+#cta div.dataTables_wrapper div.dataTables_filter input {
+    width: auto !important;
+}
+
+#cta #cta-customers-listing div.dt-buttons,
+#cta #registered-client-booking-details_wrapper div.dt-buttons {
+    text-align: center;
+    float: none;
+}
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child {
+    padding-left: 30px !important;
+}
+#cta .dataTables_wrapper .dataTables_length,
+#cta div.dataTables_wrapper div.dataTables_filter{
+    margin-bottom: 15px !important;
+	margin-top: 30px !important;    
+}	
+#cta .dataTables_wrapper .dataTables_length#ct-staff-member-offtime-list_length,
+#cta div.dataTables_wrapper div#ct-staff-member-offtime-list_filter.dataTables_filter{
+    margin-bottom: 5px !important;
+	margin-top: 5px !important;    
+}	
+
+div.dataTables_wrapper div.dataTables_info {
+    float: left;
+}
+
+#cta div.dataTables_wrapper div.dataTables_paginate {
+    float: right;
+	z-index: 99;
+}
+
+#cta #cta-customers-listing .booking-details-modal .modal-lg {
+    width: 84%;
+}
+
+#cta #cta-customers-listing .booking-details-modal .close {
+    float: right;
+    font-size: 50px;
+    position: absolute;
+    right: 12px;
+    top: 5px;
+}
+
+#cta #cta-customers-listing td.ct-bookings-td {
+    position: relative;
+}
+
+#cta #cta-customers-listing tr.child td li span.dtr-data .badge,
+#cta #cta-customers-listing td.ct-bookings-td .badge,
+#cta #cta-user-profile tr.child td li span.dtr-data .badge,
+#cta #cta-user-profile td a.ct-my-booking-user .badge,
+#cta #cta-user-appointments td a.myappointment_popup .badge,
+#cta #cta-export-details #services-info-export .ct-bookings-td span.badge {
+    padding: 3px 5px !important;
+    border: 1px solid !important;
+    top: initial !important;
+    margin: -11px 0px !important;
+    position: absolute !important;
+}
+#cta #cta-user-appointments h4.header4{
+	margin-bottom: 30px;
+}
+
+
+/****** Style Star Rating Widget *****/
+
+#cta #user-booking-details #service-review .modal-md {
+    width: 350px !important;
+}
+
+#cta #user-booking-details #service-review textarea.review-textarea {
+    width: 100% !important;
+}
+
+#cta #cta-user-appointments .rating {
+    border: none;
+    float: right;
+    margin-left: 10px;
+    position: relative;
+    top: -7px;
+}
+
+#cta #cta-user-appointments .rating > input {
+    display: none;
+}
+
+#cta #cta-user-appointments .rating > label:before {
+    margin: 0px 3px;
+    font-size: 25px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+#cta #cta-user-appointments .rating > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+#cta #cta-user-appointments .rating > label {
+    color: #ddd;
+    float: right;
+}
+
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+#cta #cta-user-appointments .rating > input:checked ~ label,
+
+/* show gold star when clicked */
+
+#cta #cta-user-appointments .rating:not(:checked) > label:hover,
+
+/* hover current star */
+
+#cta #cta-user-appointments .rating:not(:checked) > label:hover ~ label {
+    color: #FFD700;
+}
+
+
+/* hover previous stars in list */
+
+#cta #cta-user-appointments .rating > input:checked + label:hover,
+
+/* hover current star when changing rating */
+
+#cta #cta-user-appointments .rating > input:checked ~ label:hover,
+#cta #cta-user-appointments .rating > label:hover ~ input:checked ~ label,
+
+/* lighten current selection */
+
+#cta #cta-user-appointments .rating > input:checked ~ label:hover ~ label {
+    color: #FFED85;
+}
+
+#cta #cta-user-profile .col-md-10 .col-md-6 {
+    min-height: 67px;
+}
+
+
+/* dynamic with coding on login and rest password and registration	html{		background: url('../images/bg.jpg') center center/cover no-repeat fixed;		width: 100%;		height: 100%;	}  */
+
+#cta #cta-login .cta-main-login,
+#cta #cta-reset-pass .cta-main-reset-pass,
+#cta #cta-register .cta-main-register {
+    float: left;
+    display: inline-table;
+}
+
+#cta #cta-login .cta-main-login,
+#cta #cta-reset-pass .cta-main-reset-pass,
+#cta #cta-register .cta-main-register {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .45);
+}
+
+#cta #cta-login .cta-login-form,
+#cta #cta-reset-pass .cta-reset-pass-form,
+#cta #cta-register .cta-register-form {
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    width: 91.66667%;
+    max-width: 43em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    position: relative;
+    background: #fff;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    color: #7e7975;
+    margin-top: 30px;
+}
+
+#cta #cta-login .cta-login-form .form-container,
+#cta #cta-reset-pass .cta-reset-pass-form .form-container {
+    width: 83.3333%;
+    float: none;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 21em;
+    padding-top: 1.2em;
+}
+
+#cta #cta-register .cta-register-form .form-container-register {
+    width: 95.3333%;
+    float: none;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 40em;
+    padding-top: 10px;
+}
+
+
+/* new input style */
+
+#cta #cta-login .new-input,
+#cta #cta-register .new-input,
+#cta #cta-reset-pass .new-input {
+    position: relative;
+}
+
+#cta #cta-login .ct-input-field:focus,
+#cta #cta-register .ct-input-field:focus,
+#cta #cta-reset-pass .ct-input-field:focus {
+    outline: none;
+}
+
+#cta #cta-login .ct-input-label,
+#cta #cta-register .ct-input-label,
+#cta #cta-reset-pass .ct-input-label {
+    display: inline-block;
+    float: right;
+    padding: 0 1em;
+    width: 40%;
+    color: #696969;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#cta #cta-login .ct-input-label-content,
+#cta #cta-register .ct-input-label-content,
+#cta #cta-reset-pass .ct-input-label-content {
+    position: relative;
+    display: block;
+    padding: 1.6em 0;
+    width: 100%;
+}
+
+#cta #cta-login .ct-input-field-cta,
+#cta #cta-register .ct-input-field-cta,
+#cta #cta-reset-pass .ct-input-field-cta {
+    width: 100%;
+    border: 1px solid #ccc;
+    -webkit-transition: background-color 0.25s, border-color 0.25s;
+    -moz-transition: background-color 0.25s, border-color 0.25s;
+    -o-transition: background-color 0.25s, border-color 0.25s;
+    -webkit-transition: background-color 0.25s, border-color 0.25s;
+    transition: background-color 0.25s, border-color 0.25s;
+}
+
+#cta #cta-login .ct-input-label-cta,
+#cta #cta-register .ct-input-label-cta,
+#cta #cta-reset-pass .ct-input-label-cta {
+    width: 89%;
+    text-align: left;
+    position: absolute;
+    bottom: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    padding: 0 12px;
+    -webkit-transform: translate3d(0, 3em, 0);
+    transform: translate3d(0, 2em, 0);
+    -webkit-transition: -webkit-transform 0.25s ease-in-out;
+    -moz-transition: -webkit-transform 0.25s ease-in-out;
+    -o-transition: -webkit-transform 0.25s ease-in-out;
+    -ms-transition: -webkit-transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out;
+}
+
+#cta #cta-login .ct-input-label-content-cta,
+#cta #cta-register .ct-input-label-content-cta,
+#cta #cta-reset-pass .ct-input-label-content-cta {
+    color: #8B8C8B;
+    padding: 3px 0;
+    line-height: 12px;
+    -webkit-transition: -webkit-transform 0.25s ease-in-out;
+    -moz-transition: -webkit-transform 0.25s ease-in-out;
+    -o-transition: -webkit-transform 0.25s ease-in-out;
+    -ms-transition: -webkit-transform 0.25s ease-in-out;
+    transition: transform 0.25s ease-in-out;
+}
+
+#cta #cta-login .ct-input-label-content-cta:after,
+#cta #cta-register .ct-input-label-content-cta:after,
+#cta #cta-reset-pass .ct-input-label-content-cta:after {
+    content: attr(data-content);
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    color: inherit;
+    padding: 0.1em 0;
+    font-size: 14px;
+}
+
+#cta #cta-login .ct-input-field-cta:focus + .ct-input-label-cta,
+#cta #cta-register .ct-input-field-cta:focus + .ct-input-label-cta,
+#cta #cta-reset-pass .ct-input-field-cta:focus + .ct-input-label-cta,
+#cta #cta-login .cta-input-filled .ct-input-label-cta,
+#cta #cta-register .cta-input-filled .ct-input-label-cta,
+#cta #cta-reset-pass .cta-input-filled .ct-input-label-cta {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+#cta #cta-login .ct-input-field-cta:focus + .ct-input-label-cta .ct-input-label-content-cta,
+#cta #cta-register .ct-input-field-cta:focus + .ct-input-label-cta .ct-input-label-content-cta,
+#cta #cta-reset-pass .ct-input-field-cta:focus + .ct-input-label-cta .ct-input-label-content-cta,
+#cta #cta-login .cta-input-filled .ct-input-label-content-cta,
+#cta #cta-register .cta-input-filled .ct-input-label-content-cta,
+#cta #cta-reset-pass .cta-input-filled .ct-input-label-content-cta {
+    -webkit-transform: translate3d(0, 100%, 0);
+    -moz-transform: translate3d(0, 100%, 0);
+    -o-transform: translate3d(0, 100%, 0);
+    -ms-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+}
+
+#cta #cta-login .ct-input-field-cta:focus + .ct-input-field-cta,
+#cta #cta-register .ct-input-field-cta:focus + .ct-input-field-cta,
+#cta #cta-reset-pass .ct-input-field-cta:focus + .ct-input-field-cta,
+#cta #cta-login .cta-input-filled .ct-input-field-cta,
+#cta #cta-register .cta-input-filled .ct-input-field-cta,
+#cta #cta-reset-pass .cta-input-filled .ct-input-field-cta {
+    background-color: transparent;
+    border-color: #66afe9;
+}
+
+#cta #cta-login .cta-login-form .form-container .cta-form,
+#cta #cta-register .cta-register-form .form-container-register .cta-form.register-group,
+#cta #cta-reset-pass .cta-reset-pass-form .form-container .cta-form {
+    display: inline-block;
+    width: 100%;
+}
+
+#cta #cta-login .cta-login-form .form-container .cta-form .btn,
+#cta #cta-register .cta-register-form .form-container-register .cta-form .btn {
+    padding: 6px 0px;
+}
+
+#cta #cta-register .cta-register-form .form-container-register .cta-form {
+    display: inline-block;
+}
+
+#cta #cta-login .cta-login-form .form-container .cta-form .login-btn,
+#cta #cta-register .cta-register-form .form-container-register .cta-form .register-btn,
+#cta #cta-reset-pass .cta-reset-pass-form .form-container .cta-form .email-btn {
+    line-height: 32px;
+    height: 45px;
+    font-size: 18px;
+    font-weight: 400 !important;
+    display: inline-block;
+    padding: 5px 0px;
+}
+
+#cta #cta-login .cta-login-form .form-control,
+#cta #cta-register .cta-register-form .form-control,
+#cta #cta-reset-pass .cta-reset-pass-form .form-control {
+    box-shadow: unset;
+    height: 38px;
+}
+
+#cta #cta-login .cta-login-form ul.ct-checkbox-list,
+#cta #cta-register .cta-register-form ul.ct-checkbox-list {
+    padding: 0px;
+    margin: 0px;
+}
+
+#cta #cta-login .cta-login-form .ct-show-pass,
+#cta #cta-register .cta-register-form .ct-show-pass {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+#cta #cta-register .cta-register-form .ct-show-pass {
+    right: 15px;
+}
+
+#cta #cta-login .cta-login-form .ct-show-pass input[type="checkbox"] + label .fa,
+#cta #cta-register .cta-register-form .ct-show-pass input[type="checkbox"] + label .fa {
+    cursor: pointer;
+}
+
+#cta #cta-login .cta-login-form .ct-show-pass input[type="checkbox"],
+#cta #cta-register .cta-register-form .ct-show-pass input[type="checkbox"] {
+    display: none;
+}
+
+#cta #cta-login .cta-login-form .ct-show-pass input[type="checkbox"]:checked + label .fa:before,
+#cta #cta-register .cta-register-form .ct-show-pass input[type="checkbox"]:checked + label .fa:before {
+    content: "\f06e";
+}
+
+#cta #cta-login .cta-login-form ul.ct-checkbox-list label span,
+#cta #cta-register .cta-register-form ul.ct-checkbox-list label span {
+    margin-right: 5px !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+#cta #cta-login .cta-login-form ul.ct-checkbox-list input[type="checkbox"]:checked + label span:before,
+#cta #cta-register .cta-register-form ul.ct-checkbox-list input[type="checkbox"]:checked + label span:before {
+    width: 11px;
+    height: 11px;
+}
+
+
+/* stripe payment inputs */
+
+#cta #cta-register .col-xs-5 {
+    width: 44.66666667% !important;
+}
+
+#cta #cta-register .ct-stripe-wrapper {
+    display: block;
+    float: left;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+#cta #cta-register .ct-stripe-wrapper .ct-stripe-header {
+    font-size: 18px;
+    padding: 5px;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#cta #cta-register .ct-stripe-wrapper .ct-stripe-header .ct-card-header {
+    float: left;
+    line-height: 25px;
+}
+
+#cta #cta-register .ct-stripe-card {
+    width: 100%;
+    float: left;
+}
+
+#cta #cta-register .ct-stripe-card .ct-card-input-container {
+    float: left;
+    margin-top: 13px;
+    position: relative;
+}
+
+#cta #cta-register .ct-card-sample-img .float-right {
+    float: right;
+}
+
+
+/* admin/staff profile page */
+
+#cta #cta-profile .ct-left-menu,
+#cta #cta-crm .ct-left-menu,
+#cta #cta-user-profile .ct-left-menu {
+    background: #E1E7EB none repeat scroll 0% 0%;
+    height: 100%;
+    min-width: 170px;
+    color: #8D8D8D;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+#cta #cta-profile .ct-left-menu ul li a,
+#cta #cta-crm .ct-left-menu ul li a,
+#cta #cta-user-profile .ct-left-menu ul li a {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    color: #8D8D8D;
+    line-height: 20px;
+    padding: 18px 0px;
+    text-align: center;
+}
+
+#cta #cta-profile .ct-left-menu ul li.active a,
+#cta #cta-profile .ct-left-menu ul li a:hover {
+    background-color: #F1F5F7 !important;
+    color: #495861 !important;
+    border-radius: 0px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    color: #C1C8CD;
+    line-height: 20px;
+    padding: 18px 0px;
+    text-align: center;
+}
+
+
+/* admin profile WIDGET new css */
+
+#cta #cta-profile .cta-embed-button ol.ct-embed-code {
+    margin: 0;
+    padding-left: 27px;
+    padding-right: 36px;
+    list-style-type: none;
+}
+
+#cta #cta-profile .cta-embed-button ol.ct-embed-code li.embed-code-li {
+    padding-top: 13px;
+    padding-bottom: 12px;
+    border-top: 1px solid #d7d7d7;
+    color: #314451;
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: normal;
+    float: left;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+#cta #cta-profile .cta-embed-button .ct-custom-new-radio ul.ct-new-radio-list {
+    width: 100%;
+}
+
+#cta #cta-profile .cta-embed-button ol.ct-embed-code li .col-xs-5 {
+    width: 41.66666667% !important;
+}
+
+#cta #cta-profile .cta-embed-button ol.ct-embed-code li span.ct-embed-count {
+    margin-left: -25px;
+    padding-top: 1px;
+    padding-bottom: 4px;
+    display: inline-block;
+    float: left;
+    color: #5cb85c;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+#cta #cta-profile .cta-embed-button ol.ct-embed-code li .show-on-btn-click ol.second-child-ol {
+    border-top: 0 none !important;
+}
+
+#cta #cta-profile .cta-embed-button ol.ct-embed-code li div.ct-embed-code {
+    padding-top: 5px;
+    border-top: thin dashed rgba(215, 215, 215, 0.75);
+    font-size: 17px;
+    margin: 15px 0 15px;
+    float: left;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+#cta #cta-profile .cta-embed-button ol.ct-embed-code li.embed-code-li .single-location-dropdown,
+#cta #cta-profile .cta-embed-button ol.ct-embed-code li.embed-code-li .show-on-btn-click {
+    display: none;
+    float: left;
+    width: 100%;
+}
+
+
+/* New page What's New? style Latest */
+
+#cta #cta-cleanto-welcome .cta-welcome-main {
+    padding: 13px 40px 10px 30px;
+    position: relative;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-main .ct-into-text {
+    margin-bottom: 20px;
+    line-height: 28px;
+    font-size: 17px;
+    margin-right: 360px;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-main .ct-cleanto-badge {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-main .ct-cleanto-badge img {
+    width: 220px;
+    height: auto;
+    display: block;
+    margin: 0;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner {
+    position: relative;
+    overflow: auto;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 30px 30px 30px 20px;
+    background: #fff;
+    border-color: #ccc;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    float: left;
+    width: 100%;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-articles .panel-heading,
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-help .panel-heading,
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog .panel-heading {
+    padding: 15px 15px 5px 15px;
+    position: relative;
+    z-index: 3;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px !important;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-articles ul.cta-articles-ul {
+    margin: 10px 10px 10px 0;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-articles ul.cta-articles-ul li {
+    line-height: 16px;
+    list-style-type: none;
+    padding: 0 0 6px;
+    margin-bottom: 5px;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-articles ul.cta-articles-ul li a {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog .ct-changelog-menu ul {
+    margin-bottom: 20px;
+    list-style-type: none;
+    list-style-position: inside;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog .ct-changelog-menu ul li {
+    float: left;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    position: relative;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog .ct-changelog-menu ul li a {
+    text-align: right;
+    font-size: 13px;
+    display: block;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #eaeaea;
+    margin: 0px;
+    padding: 15px 20px;
+    background: #f8f8f8;
+    font-weight: 400;
+    color: #2c3e50;
+    transition: all 300ms linear 0s;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog .ct-changelog-menu ul li.active a {
+    border-color: #21c2f8;
+    color: #21c2f8;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog .ct-changelog-menu ul li.active a {
+    background-color: #fff;
+    border: 1px solid;
+    border-right: none;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul {
+    margin: 10px 10px 10px 0;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul li:first-child {
+    border: none;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul li {
+    line-height: 20px;
+    position: relative;
+    margin-right: 0;
+    border-top: thin dashed rgba(215, 215, 215, 0.75);
+    padding: 8px 0 5px 75px;
+    margin-bottom: 3px;
+}
+
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul li span.ct-added,
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul li span.ct-improved,
+#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul li span.ct-fixed {
+    font-style: normal;
+    display: inline-block;
+    text-transform: uppercase;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    color: #fff;
+    font-weight: 400;
+    text-align: center;
+    min-width: 70px;
+    font-size: 11px;
+    line-height: 18px;
+    height: 18px;
+    padding: 0 4px;
+    margin: 0;
+}
+
+
+/*	#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul li span.ct-added{		left: 9px;	}	#cta #cta-cleanto-welcome .cta-welcome-inner .cta-cleato-changelog ul.cta-changelog-ul li span.ct-fixed{		left: 14px;	}*/
+
+#cta #cta-payments span.ct-payment-img {
+    padding-left: 5px;
+}
+
+#cta #cta-payments span.ct-payment-img img {
+    display: inline-block;
+    width: 12px;
+    height: auto;
+}
+#cta .panel-collapse.collapse{
+	float: left;
+	width: 100%;
+	position: relative;
+}
+
+
+/* back to top */
+
+#cta a.cta-back-to-top {
+    display: none;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    z-index: 999;
+    right: 30px;
+    bottom: 30px;
+}
+
+#cta a.cta-back-to-top i.icon-arrow-up-circle {
+    position: absolute;
+    right: 9px;
+    top: 13px;
+    font-size: 30px;
+}
+
+
+/* Loader css */
+
+.loader2 {
+  color: #ffffff;
+  font-size: 90px;
+  text-indent: -9999em;
+  overflow: hidden;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin: 72px auto;
+  position: relative;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+  animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+}
+@-webkit-keyframes load6 {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+@keyframes load6 {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+@-webkit-keyframes round {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes round {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.ct_custom_css_loader_preview_overlay{
+	background-color: #000;
+	display: inline-block;
+	opacity: 0.5;
+	border-radius: 5px;
+	margin-left: 2%;
+	padding: 20px !important;
+}
+
+
+#ct-calendar-all .ct-manual-booking-modal .modal-body{
+	float: left;
+	width: 100%;
+	display: inline-block;
+	max-height: 490px;
+	overflow: auto;
+		overflow-x: none;
+}
+
+/******Addons Page CSS*******/
+#addons_page h1, #addons_page h2, #addons_page h3, #addons_page h4, #addons_page h5, #addons_page h6, #addons_page a, #addons_page label{
+	font-family: 'Raleway', sans-serif;
+	}
+	
+#addons_page p, #addons_page section{
+	font-family: 'Open Sans', sans-serif;
+	}
+	
+#addons_page section{
+	text-align:center;
+	}
+#addons_page a{
+	text-decoration:none;
+	font-weight: lighter;
+	}
+	
+#addons_page .main_head{
+	color:#07ba57;
+	text-align:center;
+	line-height:36px;	
+	}
+	
+#addons_page .head_line{
+	background-color:#3d3d3d;
+	height:2px;
+	width:110px;
+	margin:10px auto;
+	display:block;
+	}
+	
+#addons_page .addon_box{
+	height:auto;
+	background-color:#fff;
+	float:left;
+	margin:15px;
+	border:1px solid #d9d9d9;
+	border-radius:4px;
+	padding:20px;
+	transition:all 0.5s;
+	overflow:hidden;
+	width:100%;
+	}
+	
+#addons_page .addon_box h3{
+	color:#0073aa;
+	margin-bottom:0px !important;
+	margin-top:-20px !important;
+	}
+	
+#addons_page .addon_box label{
+	color:#0073aa;
+	font-size:32px;
+	font-weight:bold;
+	text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+	
+#addons_page .addon_box span{
+	color:#000 !important;
+	font-size:14px !important;
+	font-weight:400 !important;
+	}
+	
+#addons_page .addon_box h4{
+	color:#0073aa;
+	text-align: right;
+	}
+	
+#addons_page .addon_box p{
+	padding:10px 0;
+	}
+	
+#addons_page .addon_box strong{
+	color:#000;
+	font-weight:400;
+	font-size:18px !important;
+	padding-bottom:15px;
+	}
+	
+#addons_page .addon_box:hover{
+	box-shadow: -1px 3px 9px 1px #cbcbcb;
+	}
+	
+#addons_page .addon_box img{
+	margin: 40px auto 20px auto;
+    display: block;
+	}
+#addons_page .addon_box .version_no{
+	position:relative;
+	right: -221px;
+    top:-2px;
+	padding:5px 60px;
+	transform:rotate(45deg);
+	background-color:#ff7600;
+	color:#fff;
+	font-size:16px;
+	box-shadow: 1px 2px 2px 0px #cbcbcb;
+	transition:all 0.5s;
+	width:181px;
+	}
+#addons_page .addon_box .version_full{
+	right: -710px !important;
+
+	}
+#addons_page .addon_box .version_no:hover{
+	transform:rotate(45deg) scale(1.1);
+	}
+
+#addons_page .ct_set_installed_color a,
+#addons_page .ct_set_installed_color{
+	color:#12bf47 !important;
+}
+#addons_page .ct_set_delete_ext_color a,
+#addons_page .ct_set_delete_ext_color{
+	color:red !important;
+}
+
+#addons_page .Extension_verify_purchasecode_modal h4.modal-title{
+	color: unset !important;
+    text-align: unset !important;
+}
+#addons_page .Extension_verify_purchasecode_modal label.purchase_code_err{
+	color: red !important;
+	font-size: unset !important;
+	font-weight: unset !important;
+	text-align: unset !important;
+    margin: unset !important;
+    display: none !important;
+}
+#addons_page .ct_three_column{
+	float:right;
+	margin-left: 15px;
+}

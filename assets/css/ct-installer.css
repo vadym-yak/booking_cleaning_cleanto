@@ -1,0 +1,149 @@
+/*
+Cleanto Installer
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700');
+html{
+	
+	-webkit-font-smoothing: antialiased !important;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+body {
+	/* background: url(../images/booking-bg.jpg) repeat !important; */
+   
+}
+#cti  { 	
+	/* font-family: 'Raleway', sans-serif; */
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+	line-height: 24px;
+}	 
+#cti{
+	/* content: "";
+	position: absolute;
+	background: rgba(255, 255, 255, 0.25) url(../images/ct-grid.png) repeat 0 0;
+	display: block;
+	min-height: 100%;
+	width: 100%;
+	z-index: -1;
+	border: 1px solid rgba(0,0,0,0.3); */
+}
+#cti{
+ content: "";
+ position: absolute;
+ background: rgba(0, 0, 0, 0.25)  url(../images/ct-grid.png) repeat 0 0;
+ display: block;
+ min-height: 100%;
+ width: 100%;
+ z-index: -1;
+}
+	
+.cti-wrapper{
+	clear: both;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+#cti .modal-body,
+#cti .np{
+	padding: 0px;
+}
+#cti label{
+	font-weight: normal;
+	font-size: 13px;
+}
+
+#cti .cti-inner{
+	background: #ffffff;
+	margin: 10px;
+	position: relative;
+	top: 50px;
+    float: left;
+ width: 100%;
+}
+#cti .cti-inner #cleanto-installer{
+	float: left;
+    width: 100%;
+    display: block;
+    position: relative;
+	-webkit-box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    -o-box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    -ms-box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+    padding: 30px;
+}
+
+#cti #sidebar{
+	float: left;
+	padding: 20px 0 0 0;
+}
+#cti #sidebar .cti-progress{
+	padding-right: 20px;
+}
+#cti ul.left-menu{
+	border-right: 1px solid #e5e5e5;
+	padding: 3px 0 0 0;
+	list-style: none;
+	margin-left: 10px;
+	margin-right: 5px;
+	line-height: 17px;
+	height: 300px;
+}
+#cti ul.left-menu li.active{
+	font-size: 18px;
+	font-weight: bold;
+}
+#cti ul.left-menu li{
+	line-height: 26px;
+	padding-left: 0px;
+	font-size: 17px;
+}
+#cti .modal-content,
+#cti .modal-body,
+#cti .modal-footer{
+	float: left;
+	width: 100%;
+}
+
+#cti #cti-content{
+	background: #ffffff;
+	float: left;
+	padding: 20px 0 10px 0;
+}
+#cti #cti-content .cti-progress-bar{
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+#cti #cti-content .cti-progress-bar b{
+	font-size: 20px;
+}
+#cti #cti-content .cti-info{
+	line-height: 22px;
+	padding-bottom: 10px;
+	font-size: 15px;
+}
+#cti #cti-content table.cti-table{
+	margin-bottom: 20px;
+	font-size: 14px;
+}
+#cti #cti-content table.cti-table h3{
+	margin-top: 13px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#cti #cti-content a.cti-tooltip-link{
+	position: absolute;
+	right: -5px;
+	top: 5px;
+	font-size: 16px;
+}
+#cti #cti-content .tooltip{
+	width: 180px;
+}
+#cti #cti-content #purchase-code-verification{
+	display: none;
+}

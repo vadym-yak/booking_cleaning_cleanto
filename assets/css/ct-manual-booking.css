@@ -1,0 +1,214 @@
+/*
+Cleanto : Admin Manual booking style
+*/
+/*
+Cleanto : Admin Manual booking style
+*/
+
+	
+#ct.mb{
+	float: left;
+	display: block;
+	width: 100%;
+	z-index: 1050;
+	background: #ffffff;
+	position: relative;
+}
+#ct.mb .container {
+    width: 100%;
+    max-width: 100%;
+}
+#ct.mb .panel-collapse.collapse {
+    float: initial;
+    width: initial;
+    position: initial;
+}
+#ct.mb .panel-collapse.collapse .panel-body{
+    padding: 0;
+}
+#ct.mb .ct-service-img img:hover {
+    -webkit-transform: scale(1.10);
+    -moz-transform: scale(1.10);
+    -ms-transform: scale(1.10);
+    -o-transform: scale(1.10);
+    transform: unset;
+}
+
+#ct.mb .panel-heading  a:before {
+	content: "\f107";
+	font-family: FontAwesome;
+	float: right;
+	transition: all 0.5s;
+	display: inline-block;
+	font-size: 24px;
+	line-height: 24px;
+}
+#ct.mb .panel-heading.active a:before {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+} 
+
+
+#ct.mb .ct-main-left h4.panel-title a{
+	width: 100%;
+	display: inline-block;
+}
+#ct.mb .ct-hidden {
+    display: none;
+}
+#ct.mb .ct-mb-hidden {
+	display:block;
+}
+#ct.mb .ct-mb-show {
+	display: none;
+}
+
+#ct.mb .calendar-body .ct-show-time .time-slot-container ul.time-slot-ul{
+	padding: 2px 15px 10px;
+	margin: 0 auto;
+}
+#ct.mb #ct-price-scroll {
+    position: relative !important;
+	border-width: 1px !important;
+	border-style: solid !important;
+}	
+#ct.mb .ct-main-right{
+	margin: 20px auto;
+	float: none;
+}
+#ct.mb button.dropdown-toggle.btn-default{
+	float: left !important;
+	padding-right: 25px !important;
+	background: #fff !important;
+	color: inherit !important;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+	border-width: 1px !important;
+	border-style: solid;
+	border-color: #cfcfcf !important;
+	color: inherit;
+	display: inline-block;
+	font-size: 13px;
+	padding: 5px 15px;
+	line-height: 28px;
+	width: 100%;
+	height: 40px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	font-family: inherit;
+	-webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	-moz-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+
+
+/*********************************/
+/*       Responsive Design      */
+/*********************************/
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+ 
+}
+/* Desktops and laptops ----------- */
+@media only screen  and (max-width : 1350px) {
+ 
+}
+ 
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+}
+
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+}
+
+/**********
+iPad 3
+**********/
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+
+}
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (max-width : 767px) {
+	
+
+}
+/* Smartphones (landscape) ----------- */
+@media only screen and (max-width : 767px) and (orientation: landscape){
+
+}
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px){ 
+  
+  }
+  
+  
+ /* Portrait */
+@media only screen 
+	and (min-device-width: 375px) 
+	and (max-device-width: 667px)
+	and (orientation: portrait) { 
+
+
+
+	}
+
+/* Landscape */
+@media only screen 
+	and (min-device-width: 375px) 
+	and (max-device-width: 667px)
+	and (orientation: landscape) {
+
+
+	}  
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+	#ct-calendar-all .ct-manual-booking-modal .modal-body {
+		max-height: 370px;
+	}
+	#ct .ct-addon-count .ct-btn-group {
+		padding: 0 10px;
+	}
+
+}
+/* (320x480) Smartphone, Landscape */
+@media only screen and (device-width: 480px) and (orientation: landscape) {
+    /* insert styles here */
+}
+
+
+
+/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+
+@media only screen and (max-width: 319px) {
+	
+}
+
+	
