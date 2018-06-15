@@ -1186,7 +1186,6 @@ ucfirst(strtolower($label_language_values['dec'])));
                                     <div class="discount-text f-l"><span
                                             class="discount-price"><?php if ($f_discount['labels'] != '') { ?> <?php echo ucwords($f_discount['labels']); } ?></span>
                                     </div>
-									
                                     <input type="radio" name="frequently_discount_radio" <?php if (ucwords($freq_dis_title['discount_typename']) == 'Once') {
                                         echo 'checked';
                                     } else if (ucwords($freq_dis_title['discount_typename']) == 'Weekly') {
@@ -1197,6 +1196,8 @@ ucfirst(strtolower($label_language_values['dec'])));
                                         echo 'checked';
                                     } ?> data-id='<?php echo $f_discount['id']; ?>' class="cart_frequently_discount"
                                            id="discount-often-<?php echo $f_discount['id']; ?>"
+                                           data-per="<?php echo $f_discount['rates']; ?>"
+                                           data-type="<?php echo $f_discount['d_type']; ?>"
                                            data-name="<?php echo ucwords($label_language_values[strtolower(str_replace("-","_",$f_discount['discount_typename']))]); ?> "/>
                                     <label class="ct-btn-discount border-c"
                                            for="discount-often-<?php echo $f_discount['id']; ?>">
@@ -1213,7 +1214,7 @@ ucfirst(strtolower($label_language_values['dec'])));
                 <?php
                 } else {
                     ?>
-                    <input type="radio" name="frequently_discount_radio" checked data-id='0' class="cart_frequently_discount" id="discount-often-0" data-name="" style="display:none;"/>
+                    <input type="radio" name="frequently_discount_radio" checked data-id='0' class="cart_frequently_discount" id="discount-often-0" data-per="0" data-type="" data-name="" style="display:none;"/>
                 <?php
                 }
                 ?>
@@ -1946,6 +1947,13 @@ if( $settings->get_option('ct_appointment_details_display') == 'on' && ($address
                                 <div class="ct-cart-label-total-amount ofh"><?php echo $label_language_values['total']; ?></div>
                                 <div class="ct-cart-total-amount ofh">
                                     <span class="ct-total-amount cart_total"></span>
+                                </div>
+                            </div>
+
+                            <div class="ct-form-rown rown-next">
+                                <div class="ct-cart-label-total-amount ofh">Next Total</div>
+                                <div class="ct-cart-total-amount ofh">
+                                    <span class="ct-total-amount cart_next_total"></span>
                                 </div>
                             </div>
 

@@ -2411,6 +2411,16 @@ jQuery(document).on('change', '.myservices_methods_units_status', function (even
     }
 });
 
+// when click check box to set the unit pricing to hourly or not
+jQuery(document).on('change', '.chkunithourly', function () {
+    var id = $(this).attr("id").replace('chkunithourly','');
+    if($(this).is(":checked")) {
+        $(".hours-section" + id).show();
+    } else {
+        $(".hours-section" + id).hide();
+    }
+});
+
 /* SERVICE METHODS UNITS UPDATE */
 jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
     var i = jQuery(this).data('id');
@@ -2419,6 +2429,9 @@ jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
     var maxlimit = jQuery('.mytxt_service_method_editmaxlimit' + i).val();
     var maxlimit_title = jQuery('.mytxt_service_method_editmaxlimit_title' + i).val();
 
+    var is_hourly = jQuery('#chkunithourly' + i).prop("checked") ? 1 : 0;
+    var hourly_from = jQuery('#hours-from' + i).val();
+    var hourly_to = jQuery('#hours-to' + i).val();
 
     jQuery('#service_method_unit_price' + i).validate();
 
@@ -2437,6 +2450,7 @@ jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
             required: true, pattern_onlynumber: true,
             messages: {required: errorobj_please_enter_maxlimit, pattern_onlynumber: errorobj_enter_only_digits}
         });
+
 
 
     if (!jQuery('#service_method_unit_price' + i).valid()) {

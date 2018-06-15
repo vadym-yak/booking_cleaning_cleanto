@@ -1,3 +1,21 @@
+function set_next_total() {
+	jQuery(".rown-next").hide();
+
+	var currency_symbol = "$";
+	var cart_sub_total = parseFloat(jQuery('.cart_sub_total').text().replace(currency_symbol, ""));
+	var tax_val = Math.abs(parseFloat(jQuery('.frequent_discount').text().replace(" " + currency_symbol, "")));
+	var cart_tax = parseFloat(jQuery('.cart_tax').text().replace(currency_symbol, ""));
+
+	var cart_total = parseFloat(cart_sub_total + cart_tax).toFixed(2);
+	var next_total = parseFloat(cart_total - tax_val).toFixed(2);
+
+	if( cart_sub_total ) {
+		jQuery(".cart_total").html(currency_symbol + cart_total);
+		jQuery(".cart_next_total").html(currency_symbol + next_total);
+		jQuery(".rown-next").show();
+	}
+}
+
 /* front language dropdown show hide list */
 jQuery(document).on("click",".select-custom",function() {
 	jQuery(".common-selection-main").addClass('clicked');
@@ -272,28 +290,32 @@ if(scrollable_cart_value == 'Y'){
 		formbottom = jQuery("#ct").offset().top + jQuery("#ct").height() - (offset.top/2) ;
 
 		$window.scroll(function() {
-
-			if ($window.scrollTop() > offset.top && $window.scrollTop() < formbottom) {
-				$sidebar.stop().animate({
-					marginTop: $window.scrollTop() - offset.top + jQuery(window).height() - jQuery('.ct-price-scroll').height() - 20
-				});
+				$sidebar.css("margin-top", $window.scrollTop() - offset.top + 30 + 	"px" );
 				jQuery(".ct-price-scroll").css({'position' : 'absolute'});
 				jQuery("#ct-not-scroll").addClass('not-scroll-custom');
-				
-			} else {
-				if($window.scrollTop() > formbottom) {
+			// if ($window.scrollTop() > offset.top && $window.scrollTop() < formbottom) {
+			// 	// $sidebar.stop().animate({
+			// 	// 	marginTop: $window.scrollTop() - offset.top + jQuery(window).height() - jQuery('.ct-price-scroll').height() - 20
+			// 	// });
 
-					$sidebar.stop().animate({
-						marginTop: formbottom + 1
-					});
-				}
-				else {
-					$sidebar.stop().animate({
-						marginTop: 0
-					});
-					jQuery(".ct-price-scroll").css({'box-shadow' : '0px none'});
-				}
-			}
+			// 	$sidebar.css("margin-top", $window.scrollTop() - offset.top + 20 + 	"px" );
+			// 	jQuery(".ct-price-scroll").css({'position' : 'absolute'});
+			// 	jQuery("#ct-not-scroll").addClass('not-scroll-custom');
+				
+			// } else {
+			// 	if($window.scrollTop() > formbottom) {
+
+			// 		// $sidebar.stop().animate({
+			// 		// 	marginTop: formbottom + 1
+			// 		// });
+			// 	}
+			// 	else {
+			// 		// $sidebar.stop().animate({
+			// 		// 	marginTop: 0
+			// 		// });
+			// 		jQuery(".ct-price-scroll").css({'box-shadow' : '0px none'});
+			// 	}
+			// }
 		});
 	}
 }else{
@@ -315,7 +337,7 @@ jQuery(document).ready(function () {
     jQuery('a.ct-back-to-top, a.ct-simple-back-to-top').click(function() {
         jQuery('html, body').animate({
             scrollTop: 0
-        }, 2000);
+        }, 1000);
         return false;
     });
 });
@@ -1309,6 +1331,7 @@ jQuery(document).on('click','.ser_details',function(){
     jQuery( ".cart_empty_msg" ).show();
     jQuery( ".cart_tax" ).empty();
     jQuery( ".cart_total" ).empty();
+    jQuery( ".rown-next").hide();
     jQuery( ".remain_amount" ).empty();
     jQuery( ".partial_amount" ).empty();
     jQuery( ".cart_discount" ).empty();
@@ -1621,6 +1644,7 @@ jQuery(document).on('click','.add',function(){
                             jQuery('.cart_tax').html(cart_session_data.cart_tax);
                             jQuery('.cart_total').html(cart_session_data.total_amount);
                         }
+                        set_next_total();
                     }
                 });
             }
@@ -1757,6 +1781,7 @@ jQuery(document).on('click','.minus',function(){
                             jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                             jQuery('.cart_total').html(cart_session_data.total_amount);
                         }
+                        set_next_total();
                     }
                 });
             }
@@ -1766,7 +1791,7 @@ jQuery(document).on('click','.minus',function(){
 
 
 jQuery(document).on('click','.addons_servicess',function(){
-	 var site_url=siteurlObj.site_url;
+	var site_url=siteurlObj.site_url;
     var ajax_url=ajaxurlObj.ajax_url;
     var addon_id = jQuery(this).data('id');
     var status = jQuery(this).data('status');
@@ -1847,6 +1872,7 @@ jQuery(document).on('click','.addons_servicess',function(){
                     jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                     jQuery('.cart_total').html(cart_session_data.total_amount);
                 }
+                set_next_total();
             }
         });
     }
@@ -1909,6 +1935,7 @@ jQuery(document).on('click','.cart_frequently_discount',function(){
                 jQuery('.cart_sub_total').html(cart_session_data.cart_sub_total);
                 jQuery('.cart_tax').html(cart_session_data.cart_tax);
                 jQuery('.cart_total').html(cart_session_data.total_amount);
+                set_next_total();
             }
         });
     }else{
@@ -1923,6 +1950,7 @@ jQuery(document).on('click','.cart_frequently_discount',function(){
         jQuery( ".cart_discount" ).empty();
         jQuery('.freq_disc_empty_cart_error').show();
         jQuery('.freq_disc_empty_cart_error').html(errorobj_your_cart_is_empty_please_add_cleaning_services);
+        set_next_total();
     }
 });
 
@@ -2124,6 +2152,7 @@ jQuery(document).on('click','.s_m_units_design',function(){
                     }
                 });
             }
+            set_next_total();
         }
     });
 });
@@ -2173,6 +2202,7 @@ jQuery(document).on("click",".select_language_view",function() {
 
 /* remove item btn-from the cart */
 jQuery(document).on("click",".remove_item_from_cart",function() {
+	console.log('remove_item_from_cart');
 	var ajax_url=ajaxurlObj.ajax_url;
 	var m_name = jQuery(this).data('mnamee');
 	var unit_id = jQuery(this).data('units_id');
@@ -2233,6 +2263,7 @@ jQuery(document).on("click",".remove_item_from_cart",function() {
 				jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
 				jQuery('.cart_total').html(cart_session_data.total_amount);
 			}
+			set_next_total();
 		}
 	});
    
@@ -2368,6 +2399,7 @@ jQuery(document).on('click','.addd',function(){
                             jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                             jQuery('.cart_total').html(cart_session_data.total_amount);
                         }
+                        set_next_total();
                     }
                 });
             }
@@ -2498,6 +2530,7 @@ jQuery(document).on('click','.minuss',function(){
                             jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                             jQuery('.cart_total').html(cart_session_data.total_amount);
                         }
+                        set_next_total();
                     }
                 });
             }
@@ -2583,6 +2616,7 @@ jQuery(document).on('keyup','#ct_area_m_units',function(event){
                     jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                     jQuery('.cart_total').html(cart_session_data.total_amount);
                 }
+                set_next_total();
             }
         });
     }else if(area_uniit == 0){
@@ -2687,6 +2721,7 @@ jQuery(document).on('keyup','#ct_area_m_units',function(event){
                                 jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                                 jQuery('.cart_total').html(cart_session_data.total_amount);
                             }
+                            set_next_total();
                         }
                     });
                 }
@@ -2801,6 +2836,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
                 jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                 jQuery('.cart_total').html(cart_session_data.total_amount);
             }
+            set_next_total();
         }
     });
 });
@@ -2861,6 +2897,7 @@ jQuery(document).on('click touchstart','#apply_coupon',function(){
                         jQuery('.cart_total').html(cart_session_data.total_amount);
                         jQuery('.cart_discount').html('- '+cart_session_data.cart_discount);
                     }
+                    set_next_total();
                 }
             });
         }
@@ -2900,6 +2937,7 @@ jQuery(document).on('click touchstart','.reverse_coupon',function(){
                 jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                 jQuery('.cart_total').html(cart_session_data.total_amount);
             }
+            set_next_total();
         }
     });
 });
@@ -3293,6 +3331,7 @@ jQuery(document).on('click','.add_addon_in_cart_for_multipleqty',function(){
                     jQuery('.cart_tax').html(cart_session_data.cart_tax);
                     jQuery('.cart_total').html(cart_session_data.total_amount);
                 }
+                set_next_total();
             }
         });
     }else{
@@ -3345,6 +3384,7 @@ jQuery(document).on('click','.add_addon_in_cart_for_multipleqty',function(){
                     jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                     jQuery('.cart_total').html(cart_session_data.total_amount);
                 }
+                set_next_total();
             }
         });
     }
