@@ -396,7 +396,6 @@ jQuery(document).ready(function () {
                     dataType: 'html',
 
                     success: function (response) {
-						
 
                         var app_details = jQuery.parseJSON(response);
 
@@ -537,7 +536,10 @@ jQuery(document).ready(function () {
 							jQuery('.pop_p_status').hide();
 						}
                         jQuery(".client_vc_status").html(app_details.vaccum_cleaner);
-                        jQuery(".client_parking").html(app_details.parking);
+                        jQuery(".client_parking").html(app_details.parking + app_details.p_type);
+                        jQuery(".client_residence").html(app_details.residence_type);
+                        jQuery(".client_level").html(app_details.how_level);
+                        
                         jQuery(".client_payment").html(app_details.payment_type);
 						
                         jQuery(".contact_status").html(app_details.contact_status);
@@ -2452,7 +2454,6 @@ jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
         });
 
 
-
     if (!jQuery('#service_method_unit_price' + i).valid()) {
         return false;
     }
@@ -2465,6 +2466,9 @@ jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
             'base_price': base_price,
             'maxlimit': maxlimit,
             'maxlimit_title': maxlimit_title,
+            'is_hourly' : is_hourly,
+            'hourly_from' : hourly_from,
+            'hourly_to' : hourly_to,
             'operationedit': 1
         },
         url: ajax_url + "service_method_units_ajax.php",

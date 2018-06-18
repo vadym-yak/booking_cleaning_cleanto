@@ -17,6 +17,7 @@ class cleanto_users{
 	public $notes;
 	public $vc_status;
 	public $p_status;
+    public $p_type;
 	public $contact_status;
 	public $status;
 	public $usertype;
@@ -27,7 +28,7 @@ class cleanto_users{
 	
 	/* Function for add users */
 	public function add_user(){
-	$query="insert into `".$this->table_name."` (`id`,`user_email`,`user_pwd`,`first_name`,`last_name`,`phone`,`zip`,`address`,`city`,`state`,`notes`,`vc_status`,`p_status`,`contact_status`,`status`,`usertype`) values(NULL,'".$this->user_email."','".$this->user_pwd."','".$this->first_name."','".$this->last_name."','".$this->phone."','".$this->zip."','".$this->address."','".$this->city."','".$this->state."','".$this->notes."','".$this->vc_status."','".$this->p_status."','".$this->contact_status."','".$this->status."','".$this->usertype."')";
+	$query="insert into `".$this->table_name."` (`id`,`user_email`,`user_pwd`,`first_name`,`last_name`,`phone`,`zip`,`address`,`city`,`state`,`notes`,`vc_status`,`p_status`,`p_type`,`contact_status`,`status`,`usertype`) values(NULL,'".$this->user_email."','".$this->user_pwd."','".$this->first_name."','".$this->last_name."','".$this->phone."','".$this->zip."','".$this->address."','".$this->city."','".$this->state."','".$this->notes."','".$this->vc_status."','".$this->p_status."','".$this->p_type."','".$this->contact_status."','".$this->status."','".$this->usertype."')";
 	$result=mysqli_query($this->conn,$query);	
 	$value=mysqli_insert_id($this->conn);
 	return $value;
@@ -35,7 +36,7 @@ class cleanto_users{
 
 /* Function for update users  */
 public function update_user(){	
-$query="update `".$this->table_name."` set `user_email`='".$this->user_email."',`user_pwd`='".$this->user_pwd."',`first_name`='".$this->first_name."',`last_name`='".$this->last_name."',`phone`='".$this->phone."',`zip`='".$this->zip."',`address`='".$this->address."',`city`='".$this->city."',`state`='".$this->state."',`notes`='".$this->notes."',`vc_status`='".$this->vc_status."',`p_status`='".$this->p_status."',`contact_status`='".$this->contact_status."' ,`status`='".$this->status."', `usertype`='".$this->usertype."' where `id`='".$this->user_id."'";
+$query="update `".$this->table_name."` set `user_email`='".$this->user_email."',`user_pwd`='".$this->user_pwd."',`first_name`='".$this->first_name."',`last_name`='".$this->last_name."',`phone`='".$this->phone."',`zip`='".$this->zip."',`address`='".$this->address."',`city`='".$this->city."',`state`='".$this->state."',`notes`='".$this->notes."',`vc_status`='".$this->vc_status."',`p_status`='".$this->p_status."',`p_type`='".$this->p_type."',`contact_status`='".$this->contact_status."' ,`status`='".$this->status."', `usertype`='".$this->usertype."' where `id`='".$this->user_id."'";
 $result=mysqli_query($this->conn,$query);
 return $result;
 }

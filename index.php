@@ -1467,10 +1467,40 @@ ucfirst(strtolower($label_language_values['dec'])));
                                                    name="parking" value="Parking-No"/>
                                             <label for="parking-no"><span></span><?php echo $label_language_values['no']; ?></label>
                                         </li>
-
                                     </ul>
+                                    <div class="parking-type">
+	                                    <label>What kind of pets?</label>
+	                                    <input id="pets-kind" type="text" class="" name="parking" value=""/>
+                                	</div>
                                 </div>
 								<?php }?>
+								<div class="row">
+                                    
+
+                                    <div class="col-md-6">
+                                    	<label>Type of Residence</label>
+                                        <select class="ct-option-select" id="residence-type">
+                                            <option value="House">House</option>
+                                            <option value="Apartment">Apartment</option>
+                                            <option value="Condo">Condo</option>
+                                            <option value="Townhouse">Townhouse</option>
+                                            <option value="Duplex">Duplex</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6" style="margin-top: 20px; margin-bottom: 20px;">
+                                    	<label>How many levels</label>
+                                        <select class="ct-option-select" id="how-level">
+                                            <option value="1 Level">1 Level</option>
+                                            <option value="2 Level">2 Level</option>
+                                            <option value="3 Level">3 Level</option>
+                                            <option value="4 Level">4 Level</option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+
+
 								<?php if($settings->get_option('ct_company_willwe_getin_status') != "" &&  $settings->get_option('ct_company_willwe_getin_status') == "Y"){?>
                                 <div class="ct-options-new ct-md-12 ct-xs-12 mb-10 ct-form-row">
                                     <label><?php echo $label_language_values['how_will_we_get_in']; ?></label>

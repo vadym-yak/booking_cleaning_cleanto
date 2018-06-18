@@ -5,16 +5,26 @@ function set_next_total() {
 	var cart_sub_total = parseFloat(jQuery('.cart_sub_total').text().replace(currency_symbol, ""));
 	var tax_val = Math.abs(parseFloat(jQuery('.frequent_discount').text().replace(" " + currency_symbol, "")));
 	var cart_tax = parseFloat(jQuery('.cart_tax').text().replace(currency_symbol, ""));
+    var frequently_discount_id=jQuery("input[name=frequently_discount_radio]:checked").data('id');
 
 	var cart_total = parseFloat(cart_sub_total + cart_tax).toFixed(2);
 	var next_total = parseFloat(cart_total - tax_val).toFixed(2);
 
 	if( cart_sub_total ) {
 		jQuery(".cart_total").html(currency_symbol + cart_total);
-		jQuery(".cart_next_total").html(currency_symbol + next_total);
-		jQuery(".rown-next").show();
+		if ( frequently_discount_id != 1 ) {
+			jQuery(".cart_next_total").html(currency_symbol + next_total);
+			jQuery(".rown-next").show();
+		}
 	}
 }
+jQuery(document).on('change', '#parking-yes', function() {
+	jQuery('.parking-type').show();
+});
+
+jQuery(document).on('change', '#parking-no', function() {
+	jQuery('.parking-type').hide();
+});
 
 /* front language dropdown show hide list */
 jQuery(document).on("click",".select-custom",function() {
@@ -411,6 +421,7 @@ jQuery(document).ready(function () {
 	});
 });
 jQuery(document).on('click','#complete_bookings',function(e){
+
 	var recurrence_booking = jQuery('#recurrence-booking').prop("checked");
 	if(recurrence_booking == true){
         var recurrence_booking_1 ='Y';
@@ -500,9 +511,12 @@ jQuery(document).on('click','#complete_bookings',function(e){
     if(prkng_status == undefined){
 		var p_status = '-';
 	}else{
-		if(prkng_status == true){ var p_status = 'Y'; }else{ var p_status = 'N'; }
+		if(prkng_status == true){ var p_status = 'Y'; var p_type = jQuery('#pets-kind').val();}else{ var p_status = 'N'; var p_type = '';}
 	}
     
+    var residence_type = jQuery("#residence-type").val();
+	var how_level      = jQuery("#how-level").val();
+
 	var con_status = jQuery("#contact_status").val();
 		if(con_status == 'Other'){
 			var contact_status = jQuery("#other_contact_status").val();
@@ -559,7 +573,7 @@ jQuery(document).on('click','#complete_bookings',function(e){
 	var cc_exp_year = jQuery('.cc-exp-year').val();
 	var cc_card_code = jQuery('.cc-cvc').val();
 	
-    dataString={existing_username:existing_username,existing_password:existing_password,password:password,firstname:firstname,lastname:lastname,email:email,phone:phone,user_address:user_address,user_zipcode:user_zipcode,user_city:user_city,user_state:user_state,address:address,zipcode:zipcode,city:city,state:state,notes:notes,vc_status:vc_status,p_status:p_status,contact_status:contact_status,payment_method:payment_method,staff_id:staff_id,amount:amount,discount:discount,taxes:taxes,partial_amount:partial_amount,net_amount:net_amount,booking_date_time:booking_date_time,frequently_discount:frequently_discount,coupon_code:coupon_code,cc_card_num:cc_card_num,cc_exp_month:cc_exp_month,cc_exp_year:cc_exp_year,cc_card_code:cc_card_code,guest_user_status:guest_user_status,recurrence_booking:recurrence_booking_1,recurrence_booking_type:recurrence_booking_type,recurrence_end_date:recurrence_end_date,action:"complete_booking"};
+    dataString={existing_username:existing_username,existing_password:existing_password,password:password,firstname:firstname,lastname:lastname,email:email,phone:phone,user_address:user_address,user_zipcode:user_zipcode,user_city:user_city,user_state:user_state,address:address,zipcode:zipcode,city:city,state:state,notes:notes,vc_status:vc_status,p_status:p_status,p_type:p_type,residence_type:residence_type,how_level:how_level,contact_status:contact_status,payment_method:payment_method,staff_id:staff_id,amount:amount,discount:discount,taxes:taxes,partial_amount:partial_amount,net_amount:net_amount,booking_date_time:booking_date_time,frequently_discount:frequently_discount,coupon_code:coupon_code,cc_card_num:cc_card_num,cc_exp_month:cc_exp_month,cc_exp_year:cc_exp_year,cc_card_code:cc_card_code,guest_user_status:guest_user_status,recurrence_booking:recurrence_booking_1,recurrence_booking_type:recurrence_booking_type,recurrence_end_date:recurrence_end_date,action:"complete_booking"};
 
     if(jQuery('#user_details_form').valid()){
 		/*if(jQuery('.make_service_disable').prop("checked") != true && cart_counting == 1){*/
@@ -2738,6 +2752,116 @@ jQuery(document).on('keyup','#ct_area_m_units',function(event){
     }
 });
 
+var sel_hourly_item;
+//change unit hours
+jQuery(document).on('change', '.hourly-select-main select', function() {
+	var unit_id = jQuery(this).data("units_id");
+	if ( !sel_hourly_item || (sel_hourly_item.data('units_id') != unit_id)) return;
+
+	//duplicate of jQuery(document).on('click','.add_item_in_cart',function(){
+	jQuery('.freq_disc_empty_cart_error').hide();
+    var site_url=siteurlObj.site_url;
+    var ajax_url=ajaxurlObj.ajax_url;
+    jQuery('.coupon_display').hide();
+    jQuery('.hide_coupon_textbox').show();
+    jQuery('.ct-display-coupon-code').hide();
+    jQuery('.coupon_invalid_error').hide();
+    var s_m_qty=sel_hourly_item.data('duration_value');
+    var s_m_rate=sel_hourly_item.data('rate');
+    var service_id=sel_hourly_item.data('service_id');
+    var method_id=sel_hourly_item.data('method_id');
+    var method_name=sel_hourly_item.data('method_name');
+    var units_id=sel_hourly_item.data('units_id');
+    var type=sel_hourly_item.data('type');
+    var frequently_discount_id=jQuery("input[name=frequently_discount_radio]:checked").data('id');
+    var m_name = sel_hourly_item.data('mnamee');
+    var s_m_hour = jQuery('#sel-hours-' + units_id).val() ? jQuery('#sel-hours-' + units_id).val() : 1;
+
+    jQuery.ajax({
+        type : 'post',
+        data : {
+            'method_id' : method_id,
+            'service_id' : service_id,
+            's_m_qty' : s_m_qty,
+            's_m_rate' : s_m_rate,
+            's_m_hour' : s_m_hour,
+            'method_name' : method_name,
+            'units_id' : units_id,
+            'type' : type,
+            'frequently_discount_id' : frequently_discount_id,
+            'add_to_cart' : 1
+        },
+        url : site_url+"front/firststep.php",
+        success : function(res){
+            jQuery('.freq_discount_display').show();
+            jQuery('.hide_right_side_box').show();
+            jQuery('.partial_amount_hide_on_load').show();
+            jQuery('.empty_cart_error').hide();
+			jQuery('.no_units_in_cart_error').hide();
+            jQuery('.coupon_invalid_error').hide();
+            jQuery("#total_cart_count").val('2');
+            var cart_session_data=jQuery.parseJSON(res);
+			jQuery('#no_units_in_cart_err').val(cart_session_data.unit_status);
+			jQuery('#no_units_in_cart_err_count').val(cart_session_data.unit_require);
+            if(cart_session_data.status == 'update'){
+                jQuery( ".cart_empty_msg" ).hide();
+                jQuery('.update_qty_of_s_m_'+cart_session_data.method_name_without_space).html(cart_session_data.s_m_html);
+                jQuery('.update_qty_of_s_m_'+cart_session_data.method_name_without_space).val('data-service_id',service_id);
+                jQuery('.update_qty_of_s_m_'+cart_session_data.method_name_without_space).val('data-method_id',method_id);
+                jQuery('.update_qty_of_s_m_'+cart_session_data.method_name_without_space).val('data-units_id',units_id);
+
+                jQuery('.cart_sub_total').html(cart_session_data.cart_sub_total);
+                jQuery('.partial_amount').html(cart_session_data.partial_amount);
+                jQuery('.remain_amount').html(cart_session_data.remain_amount);
+                jQuery('.cart_tax').html(cart_session_data.cart_tax);
+                jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
+                jQuery('.cart_total').html(cart_session_data.total_amount);
+            }else if(cart_session_data.status == 'insert'){
+                jQuery( ".cart_empty_msg" ).hide();
+                jQuery('.cart_item_listing').append(cart_session_data.s_m_html);
+                jQuery('.partial_amount').html(cart_session_data.partial_amount);
+                jQuery('.remain_amount').html(cart_session_data.remain_amount);
+                jQuery('.cart_sub_total').html(cart_session_data.cart_sub_total);
+                jQuery('.cart_tax').html(cart_session_data.cart_tax);
+                jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
+                jQuery('.cart_total').html(cart_session_data.total_amount);
+            }else if(cart_session_data.status == 'firstinsert'){
+                jQuery( ".cart_empty_msg" ).hide();
+                jQuery('.cart_item_listing').append(cart_session_data.s_m_html);
+                jQuery('.partial_amount').html(cart_session_data.partial_amount);
+                jQuery('.remain_amount').html(cart_session_data.remain_amount);
+                jQuery('.cart_sub_total').html(cart_session_data.cart_sub_total);
+                jQuery('.cart_tax').html(cart_session_data.cart_tax);
+                jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
+                jQuery('.cart_total').html(cart_session_data.total_amount);
+            }else if(cart_session_data.status == 'empty calculation'){
+                jQuery('.freq_discount_display').hide();
+                jQuery('.partial_amount_hide_on_load').hide();
+                jQuery('.hide_right_side_box').hide();
+                jQuery( ".cart_empty_msg" ).show();
+                jQuery( ".cart_item_listing" ).empty();
+                jQuery( ".cart_sub_total" ).empty();
+                jQuery( ".cart_tax" ).empty();
+                jQuery( ".cart_total" ).empty();
+                jQuery( ".remain_amount" ).empty();
+                jQuery( ".partial_amount" ).empty();
+                jQuery( ".cart_discount" ).empty();
+                jQuery('.frequent_discount').empty();
+            }else if(cart_session_data.status == 'delete particuler'){
+                jQuery( ".cart_empty_msg" ).hide();
+                jQuery( ".update_qty_of_s_m_"+m_name).remove();
+                jQuery('.partial_amount').html(cart_session_data.partial_amount);
+                jQuery('.remain_amount').html(cart_session_data.remain_amount);
+                jQuery('.cart_sub_total').html(cart_session_data.cart_sub_total);
+                jQuery('.cart_discount').html('- '+cart_session_data.cart_discount);
+                jQuery('.cart_tax').html(cart_session_data.cart_tax);
+                jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
+                jQuery('.cart_total').html(cart_session_data.total_amount);
+            }
+            set_next_total();
+        }
+    });
+})
 jQuery(document).on('click','.add_item_in_cart',function(){
 	jQuery('.freq_disc_empty_cart_error').hide();
     var site_url=siteurlObj.site_url;
@@ -2746,6 +2870,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
     jQuery('.hide_coupon_textbox').show();
     jQuery('.ct-display-coupon-code').hide();
     jQuery('.coupon_invalid_error').hide();
+    sel_hourly_item = jQuery(this);
     var s_m_qty=jQuery(this).data('duration_value');
     var s_m_rate=jQuery(this).data('rate');
     var service_id=jQuery(this).data('service_id');
@@ -2755,6 +2880,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
     var type=jQuery(this).data('type');
     var frequently_discount_id=jQuery("input[name=frequently_discount_radio]:checked").data('id');
     var m_name = jQuery(this).data('mnamee');
+    var s_m_hour = jQuery('#sel-hours-' + units_id).val() ? jQuery('#sel-hours-' + units_id).val() : 1;
 
     jQuery.ajax({
         type : 'post',
@@ -2763,6 +2889,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
             'service_id' : service_id,
             's_m_qty' : s_m_qty,
             's_m_rate' : s_m_rate,
+            's_m_hour' : s_m_hour,
             'method_name' : method_name,
             'units_id' : units_id,
             'type' : type,

@@ -332,6 +332,20 @@ Version : 3.3
 		width: 100%;
 		cursor: pointer;
 	}
+
+	#ct .hourly-select-main {
+		display: block;
+		height: auto;
+		margin-top: 15px;
+		width: 100%;
+		float: left;
+	}
+
+	#ct .hourly-select-main select {
+		cursor: pointer;
+		font-size: 16px;
+	}
+
 	#ct #cus-select .time-slot-selected{
 		display:block;
 	}
@@ -1853,10 +1867,6 @@ Version : 3.3
 
 	#cta #cta-clean-services-panel table tr td:first-child{
 		width: 20%;
-	}
-
-	.hours-section {
-		display: none;
 	}
 
 	#ct .ct-addons-list-main ul.ct-addon-items-list li{

@@ -4488,7 +4488,7 @@ if(isset($_POST['btn_submit_ferror_labels']))
 										</tr>
 
 										<tr>
-											<td><?php echo $label_language_values['parking'];?></td>
+											<td>Do you have pets?<?php //echo $label_language_values['parking'];?></td>
 											<td>
 												<div class="form-group nm">
 													<label class="ctoggle-large"  for="ct_p_status">

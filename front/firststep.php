@@ -114,7 +114,7 @@ if (isset($_POST['add_to_cart']))
 				$c_rates = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 					{
-					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 					}
 
 				$frequently_discount->id = $_POST['frequently_discount_id'];
@@ -235,6 +235,7 @@ if (isset($_POST['add_to_cart']))
 					"units_id" => $_POST['units_id'],
 					"s_m_qty" => '1',
 					"s_m_rate" => $_POST['s_m_rate'],
+					"s_m_hour" => isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1,
 					"method_name" => $_POST['method_name'],
 					"type" => $_POST['type'],
 					"method_type" => $method_name_without_space
@@ -245,7 +246,7 @@ if (isset($_POST['add_to_cart']))
 				$c_rates = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 					{
-					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 					}
 
 				$frequently_discount->id = $_POST['frequently_discount_id'];
@@ -328,7 +329,7 @@ if (isset($_POST['add_to_cart']))
 				$json_array['cart_tax'] = $general->ct_price_format($taxamount, $symbol_position, $decimal);
 				$json_array['total_amount'] = $general->ct_price_format(($final_subtotal + $taxamount) , $symbol_position, $decimal);
 				$json_array['cart_sub_total'] = $general->ct_price_format($total, $symbol_position, $decimal); /* calculation end */
-				$json_array['s_m_html'] = '<li class="update_qty_of_s_m_' . $method_name_without_space . '" data-service_id="' . $_POST['service_id'] . '" data-method_id="' . $_POST['method_id'] . '" data-units_id="' . $_POST['units_id'] . '"><i data-units_id="' . $_POST['units_id'] . '"data-mnamee="' . $method_name_without_space . '" class="fa fa-times remove_item_from_cart cart_method_name" ></i><div class="ct-item ofh " ><span class="cart_method_name">' . $_POST['method_name'] . '</span> <span class="cart_qty"></span></div><div class="ct-price ofh cart_price">' . $general->ct_price_format_without_symbol($_POST['s_m_rate'], $decimal) . '</div></li>';
+				$json_array['s_m_html'] = '<li class="update_qty_of_s_m_' . $method_name_without_space . '" data-service_id="' . $_POST['service_id'] . '" data-method_id="' . $_POST['method_id'] . '" data-units_id="' . $_POST['units_id'] . '"><i data-units_id="' . $_POST['units_id'] . '"data-mnamee="' . $method_name_without_space . '" class="fa fa-times remove_item_from_cart cart_method_name" ></i><div class="ct-item ofh " ><span class="cart_method_name">' . $_POST['method_name'] . '</span> <span class="cart_qty"></span></div><div class="ct-price ofh cart_price">' . $general->ct_price_format_without_symbol($_POST['s_m_rate'] * (isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1), $decimal) . '</div></li>';
 				$cartss_counter = '';
 				$cartss_statuss = 'unit_not_added';
 				for($iq=0;$iq<sizeof($_SESSION['ct_cart']['method']);$iq++){
@@ -385,7 +386,7 @@ if (isset($_POST['add_to_cart']))
 				$c_rates = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 					{
-					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 					}
 
 				$frequently_discount->id = $_POST['frequently_discount_id'];
@@ -529,6 +530,7 @@ if (isset($_POST['add_to_cart']))
 				"units_id" => $_POST['units_id'],
 				"s_m_qty" => $_POST['s_m_qty'],
 				"s_m_rate" => $_POST['s_m_rate'],
+				"s_m_hour" => isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1,
 				"method_name" => $_POST['method_name'],
 				"type" => $_POST['type'],
 				"method_type" => $method_name_without_space
@@ -539,6 +541,8 @@ if (isset($_POST['add_to_cart']))
 			$json_array['units_id'] = $_POST['units_id'];
 			$json_array['s_m_qty'] = $_POST['s_m_qty'];
 			$json_array['s_m_rate'] = $_POST['s_m_rate']; /**calculation start**/
+			$json_array['s_m_hour'] = isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1;
+
 			if ($freq_dis_data)
 				{
 				if ($freq_dis_data['d_type'] == 'F')
@@ -560,7 +564,7 @@ if (isset($_POST['add_to_cart']))
 				$freqdis_amount = 0;
 				}
 
-			$total = $_POST['s_m_rate'];
+			$total = $_POST['s_m_rate'] * (isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1);
 			$_SESSION['freq_dis_amount'] = $freqdis_amount;
 			$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 			if ($settings->get_option('ct_tax_vat_status') == 'Y')
@@ -668,6 +672,7 @@ if (isset($_POST['add_to_cart']))
 				$_SESSION['ct_cart']["method"][$id]['units_id'] = $_POST['units_id'];
 				$_SESSION['ct_cart']["method"][$id]['s_m_qty'] = $_POST['s_m_qty'];
 				$_SESSION['ct_cart']["method"][$id]['s_m_rate'] = $_POST['s_m_rate'];
+				$_SESSION['ct_cart']["method"][$id]['s_m_hour'] = isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1;
 				$_SESSION['ct_cart']["method"][$id]['method_name'] = $_POST['method_name'];
 				$_SESSION['ct_cart']["method"][$id]['type'] = $_POST['type'];
 				$json_array['service_id'] = $_POST['service_id'];
@@ -675,13 +680,14 @@ if (isset($_POST['add_to_cart']))
 				$json_array['units_id'] = $_POST['units_id'];
 				$json_array['s_m_qty'] = $_POST['s_m_qty'];
 				$json_array['s_m_rate'] = $_POST['s_m_rate'];
+				$json_array['s_m_hour'] = isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1;
 				$json_array['method_name'] = $_POST['method_name'];
 				$json_array['method_name_without_space'] = $method_name_without_space; /* calculation start */
 				$_SESSION['ct_cart']['method'] = array_values($_SESSION['ct_cart']['method']);
 				$c_rates = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 					{
-					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 					}
 
 				$frequently_discount->id = $_POST['frequently_discount_id'];
@@ -763,7 +769,7 @@ if (isset($_POST['add_to_cart']))
 				$json_array['cart_tax'] = $general->ct_price_format($taxamount, $symbol_position, $decimal);
 				$json_array['total_amount'] = $general->ct_price_format(($final_subtotal + $taxamount) , $symbol_position, $decimal);
 				$json_array['cart_sub_total'] = $general->ct_price_format($total, $symbol_position, $decimal); /* calculation end */
-				$json_array['s_m_html'] = '<div class="ct-item ofh"><i data-units_id="' . $_POST['units_id'] . '"data-mnamee="' . $method_name_without_space . '" class="fa fa-times remove_item_from_cart cart_method_name"></i><span class="cart_method_name">' . $_POST['method_name'] . '</span> - <span class="cart_qty">' . $_POST['s_m_qty'] . '</span></div><div class="ct-price ofh cart_price">' . $general->ct_price_format_without_symbol($_POST['s_m_rate'], $decimal) . '</div>';
+				$json_array['s_m_html'] = '<div class="ct-item ofh"><i data-units_id="' . $_POST['units_id'] . '"data-mnamee="' . $method_name_without_space . '" class="fa fa-times remove_item_from_cart cart_method_name"></i><span class="cart_method_name">' . $_POST['method_name'] . '</span> - <span class="cart_qty">' . $_POST['s_m_qty'] . '</span></div><div class="ct-price ofh cart_price">' . $general->ct_price_format_without_symbol($_POST['s_m_rate'] * (isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1), $decimal) . '</div>';
 				$json_array['status'] = 'update';
 				$cartss_counter = '';
 				$cartss_statuss = 'unit_not_added';
@@ -794,6 +800,7 @@ if (isset($_POST['add_to_cart']))
 					"units_id" => $_POST['units_id'],
 					"s_m_qty" => $_POST['s_m_qty'],
 					"s_m_rate" => $_POST['s_m_rate'],
+					"s_m_hour" => isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1,
 					"method_name" => $_POST['method_name'],
 					"type" => $_POST['type'],
 					"method_type" => $method_name_without_space
@@ -804,13 +811,14 @@ if (isset($_POST['add_to_cart']))
 				$json_array['units_id'] = $_POST['units_id'];
 				$json_array['s_m_qty'] = $_POST['s_m_qty'];
 				$json_array['s_m_rate'] = $_POST['s_m_rate'];
+				$json_array['s_m_hour'] = isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1;
 				$json_array['method_name'] = $_POST['method_name'];
 				$json_array['method_name_without_space'] = $method_name_without_space; /* calculation start */
 				$_SESSION['ct_cart']['method'] = array_values($_SESSION['ct_cart']['method']);
 				$c_rates = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 					{
-					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 					}
 
 				$frequently_discount->id = $_POST['frequently_discount_id'];
@@ -893,7 +901,7 @@ if (isset($_POST['add_to_cart']))
 				$json_array['cart_tax'] = $general->ct_price_format($taxamount, $symbol_position, $decimal);
 				$json_array['total_amount'] = $general->ct_price_format(($final_subtotal + $taxamount) , $symbol_position, $decimal);
 				$json_array['cart_sub_total'] = $general->ct_price_format($total, $symbol_position, $decimal); /* calculation end */
-				$json_array['s_m_html'] = '<li class="update_qty_of_s_m_' . $method_name_without_space . '" data-service_id="' . $_POST['service_id'] . '" data-method_id="' . $_POST['method_id'] . '" data-units_id="' . $_POST['units_id'] . '"><i data-units_id="' . $_POST['units_id'] . '"data-mnamee="' . $method_name_without_space . '" class="fa fa-times remove_item_from_cart cart_method_name" ></i><div class="ct-item ofh" ><span class="cart_method_name">' . $_POST['method_name'] . '</span> - <span class="cart_qty">' . $_POST['s_m_qty'] . '</span></div><div class="ct-price ofh cart_price">' . $general->ct_price_format_without_symbol($_POST['s_m_rate'], $decimal) . '</div></li>';
+				$json_array['s_m_html'] = '<li class="update_qty_of_s_m_' . $method_name_without_space . '" data-service_id="' . $_POST['service_id'] . '" data-method_id="' . $_POST['method_id'] . '" data-units_id="' . $_POST['units_id'] . '"><i data-units_id="' . $_POST['units_id'] . '"data-mnamee="' . $method_name_without_space . '" class="fa fa-times remove_item_from_cart cart_method_name" ></i><div class="ct-item ofh" ><span class="cart_method_name">' . $_POST['method_name'] . '</span> - <span class="cart_qty">' . $_POST['s_m_qty'] . '</span></div><div class="ct-price ofh cart_price">' . $general->ct_price_format_without_symbol($_POST['s_m_rate'] * (isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1), $decimal) . '</div></li>';
 				$cartss_counter = '';
 				$cartss_statuss = 'unit_not_added';
 				for($iq=0;$iq<sizeof($_SESSION['ct_cart']['method']);$iq++){
@@ -927,7 +935,7 @@ elseif (isset($_POST['coupon_check']))
 	$c_rates = 0;
 	for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 		{
-		$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+		$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 		}
 
 	$frequently_discount->id = $_POST['frequently_discount_id'];
@@ -1064,7 +1072,7 @@ elseif (isset($_POST['coupon_reversed']))
 		$c_rates = 0;
 		for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 			{
-			$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+			$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 			}
 
 		if ($freq_dis_data)
@@ -1161,7 +1169,7 @@ elseif (isset($_POST['frequently_discount_check']))
 	$c_rates = 0;
 	for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 		{
-		$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate']);
+		$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
 		}
 
 	$frequently_discount->id = $_POST['frequently_discount_id'];

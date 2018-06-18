@@ -604,6 +604,11 @@ elseif(isset($_POST['get_service_addons'])) {
         $fe = 0;
         $fg= 0;
         $strate = 1;
+
+        $is_hourly   = $unt_values_2['is_hourly'];
+        $hourly_from = $unt_values_2['hourly_from'];
+        $hourly_to   = $unt_values_2['hourly_to'];
+        
         ?>
 
         <div class="ct-bedrooms ct-btn-group ct-md-6 ct-sm-6 mb-15 ">
@@ -676,6 +681,22 @@ elseif(isset($_POST['get_service_addons'])) {
                     ?>
                 </div>
             </div>
+            <?php
+                if ( $is_hourly ) {
+            ?>
+            <div class="hourly-select-main">
+                <label>hours</label>
+                <select id="sel-hours-<?php echo $unt_values_2['id']; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>">
+                    <?php
+                        for($i=$hourly_from;$i<=$hourly_to;$i++) {
+                            echo "<option value='".$i."'>".$i." hour(s)</option>";
+                        }
+                    ?>
+                </select>
+            </div>
+            <?php
+                }
+            ?>
         </div>
 
     <?php

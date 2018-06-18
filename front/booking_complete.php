@@ -227,6 +227,21 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $p_status=$_SESSION['ct_details']['p_status'];
     }
 
+    $p_type = '';
+    if(isset($_SESSION['ct_details']['p_type'])){
+        $p_type=$_SESSION['ct_details']['p_type'];
+    }
+
+    $residence_type = '';
+    if(isset($_SESSION['ct_details']['residence_type'])){
+        $residence_type=$_SESSION['ct_details']['residence_type'];
+    }
+
+    $how_level = '';
+    if(isset($_SESSION['ct_details']['how_level'])){
+        $how_level=$_SESSION['ct_details']['how_level'];
+    }
+
     $contact_status='';
     if(isset($_SESSION['ct_details']['contact_status'])){
         $contact_status=mysqli_real_escape_string($conn,$_SESSION['ct_details']['contact_status']);
@@ -282,7 +297,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -311,7 +326,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -394,7 +409,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j days", $dates);
 						$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -414,7 +429,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -443,7 +458,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -494,7 +509,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$date = strtotime("+$j days", $dates);
 			$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -528,7 +543,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -557,7 +572,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -640,7 +655,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j week", $dates);
 						$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -660,7 +675,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -689,7 +704,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -740,7 +755,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$date = strtotime("+$j week", $dates);
 			$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -775,7 +790,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -804,7 +819,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -887,7 +902,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j month", $dates);
 						$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -907,7 +922,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -936,7 +951,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -987,7 +1002,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$date = strtotime("+$j month", $dates);
 			$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -1019,7 +1034,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -1048,7 +1063,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -1130,7 +1145,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					
 					} else {
@@ -1148,7 +1163,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -1177,7 +1192,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -1227,7 +1242,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$j += 2;		
 			$date = strtotime("$j days", $dates);
@@ -1261,7 +1276,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -1290,7 +1305,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -1372,7 +1387,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					
 					} else {
@@ -1390,7 +1405,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -1419,7 +1434,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -1468,7 +1483,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 			$j += 15;		
 			$date = strtotime("$j days", $dates);
@@ -1503,7 +1518,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -1532,7 +1547,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -1613,7 +1628,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$order_client_info->client_email=$_SESSION['ct_details']['email'];
 				$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 				$client_phone = $_SESSION['ct_details']['phone'];
-				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 				$add_guest_user=$order_client_info->add_order_client();
 					}
 					else {
@@ -1631,7 +1646,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -1660,7 +1675,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -1709,7 +1724,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$order_client_info->client_email=$_SESSION['ct_details']['email'];
 				$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 				$client_phone = $_SESSION['ct_details']['phone'];
-				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 				$add_guest_user=$order_client_info->add_order_client();
 						$j += 1;
 						$date = strtotime("$j week", $dates);
@@ -1729,7 +1744,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -1756,7 +1771,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -1834,7 +1849,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 	}
 
@@ -1863,6 +1878,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
             $user->notes=mysqli_real_escape_string($conn,$_SESSION['ct_details']['notes']);
             $user->vc_status=$_SESSION['ct_details']['vc_status'];
             $user->p_status=$_SESSION['ct_details']['p_status'];
+            $user->p_type=$_SESSION['ct_details']['p_type'];
             $user->status='E';
             $user->usertype=serialize(array('client'));
             $user->contact_status=mysqli_real_escape_string($conn,$_SESSION['ct_details']['contact_status']);
@@ -1894,7 +1910,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -1923,7 +1939,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -2006,7 +2022,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j days", $dates);
 						$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -2026,7 +2042,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -2055,7 +2071,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -2106,7 +2122,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$date = strtotime("+$j days", $dates);
 			$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -2141,7 +2157,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -2170,7 +2186,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -2253,7 +2269,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j week", $dates);
 					$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -2273,7 +2289,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -2302,7 +2318,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -2353,7 +2369,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$date = strtotime("+$j week", $dates);
 		$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -2390,7 +2406,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -2419,7 +2435,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -2502,7 +2518,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j month", $dates);
 						$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -2522,7 +2538,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -2551,7 +2567,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -2602,7 +2618,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$date = strtotime("+$j month", $dates);
 			$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -2635,7 +2651,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -2664,7 +2680,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -2746,7 +2762,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					
 					} else {
@@ -2764,7 +2780,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -2793,7 +2809,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -2843,7 +2859,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$j += 2;		
 			$date = strtotime("$j days", $dates);
@@ -2877,7 +2893,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -2906,7 +2922,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -2988,7 +3004,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					} else {
 					$start_date = $booking_date_time;  
@@ -3005,7 +3021,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -3034,7 +3050,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -3083,7 +3099,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 				$j += 15;
 				$date = strtotime("$j days", $dates);
@@ -3119,7 +3135,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -3148,7 +3164,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -3229,7 +3245,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$order_client_info->client_email=$_SESSION['ct_details']['email'];
 				$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 				$client_phone = $_SESSION['ct_details']['phone'];
-				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 				$add_guest_user=$order_client_info->add_order_client();
 					} else {
 					$start_date = $booking_date_time;  
@@ -3246,7 +3262,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -3275,7 +3291,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -3324,7 +3340,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$order_client_info->client_email=$_SESSION['ct_details']['email'];
 				$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 				$client_phone = $_SESSION['ct_details']['phone'];
-				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 				$add_guest_user=$order_client_info->add_order_client();
 				$j += 1;
 				$date = strtotime("$j week", $dates);
@@ -3346,7 +3362,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                         $booking->booking_date_time=$booking_date_time;
                         $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                         $booking->method_id='';
-                        $booking->method_unit_id='';
+                        $booking->method_unit_id=''; $booking->unit_hours='';
                         $booking->method_unit_qty='';
                         $booking->method_unit_qty_rate='';
                         if($appointment_auto_confirm=="Y"){
@@ -3373,7 +3389,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                             $booking->booking_date_time=$booking_date_time;
                             $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                             $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                            $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                            $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                             $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                             $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                             if($appointment_auto_confirm=="Y"){
@@ -3453,7 +3469,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $order_client_info->client_name=ucwords($_SESSION['ct_details']['firstname']).' '.ucwords($_SESSION['ct_details']['lastname']);
                 $order_client_info->client_email=$existing_login[1];
                 $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
-                $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+                $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
                 $add_existing_user=$order_client_info->add_order_client();
 
                 /* unset($_SESSION['login_user_id']); */
@@ -3481,6 +3497,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
             $user->notes=mysqli_real_escape_string($conn,$_SESSION['ct_details']['notes']);
             $user->vc_status=$_SESSION['ct_details']['vc_status'];
             $user->p_status=$_SESSION['ct_details']['p_status'];
+            $user->p_type=$_SESSION['ct_details']['p_type'];
             $user->status='E';
             $user->usertype=serialize(array('client'));
             $user->contact_status=mysqli_real_escape_string($conn,$_SESSION['ct_details']['contact_status']);
@@ -3516,7 +3533,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$recurr_booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id='';
-							$booking->method_unit_id='';
+							$booking->method_unit_id=''; $booking->unit_hours='';
 							$booking->method_unit_qty='';
 							$booking->method_unit_qty_rate='';
 							if($appointment_auto_confirm=="Y"){
@@ -3545,7 +3562,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+								$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 								$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 								$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 								if($appointment_auto_confirm=="Y"){
@@ -3628,7 +3645,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j days", $dates);
 						$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -3648,7 +3665,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                 $booking->booking_date_time=$recurr_booking_date_time;
                 $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                 $booking->method_id='';
-                $booking->method_unit_id='';
+                $booking->method_unit_id=''; $booking->unit_hours='';
                 $booking->method_unit_qty='';
                 $booking->method_unit_qty_rate='';
                 if($appointment_auto_confirm=="Y"){
@@ -3677,7 +3694,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
                     $booking->booking_date_time=$recurr_booking_date_time;
                     $booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
                     $booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+                    $booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
                     $booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
                     $booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
                     if($appointment_auto_confirm=="Y"){
@@ -3728,7 +3745,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$date = strtotime("+$j days", $dates);
 			$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -3761,7 +3778,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 								$booking->booking_date_time=$recurr_booking_date_time;
 								$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 								$booking->method_id='';
-								$booking->method_unit_id='';
+								$booking->method_unit_id=''; $booking->unit_hours='';
 								$booking->method_unit_qty='';
 								$booking->method_unit_qty_rate='';
 								if($appointment_auto_confirm=="Y"){
@@ -3788,7 +3805,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 									$booking->booking_date_time=$recurr_booking_date_time;
 									$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 									$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-									$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+									$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 									$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 									$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 									if($appointment_auto_confirm=="Y"){
@@ -3867,7 +3884,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$order_client_info->client_email=$_SESSION['ct_details']['email'];
 							$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 							$client_phone = $_SESSION['ct_details']['phone'];
-							$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+							$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 							$add_guest_user=$order_client_info->add_order_client();
 							$date = strtotime("+$j week", $dates);
 							$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -3884,7 +3901,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 									$booking->booking_date_time=$recurr_booking_date_time;
 									$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 									$booking->method_id='';
-									$booking->method_unit_id='';
+									$booking->method_unit_id=''; $booking->unit_hours='';
 									$booking->method_unit_qty='';
 									$booking->method_unit_qty_rate='';
 									if($appointment_auto_confirm=="Y"){
@@ -3911,7 +3928,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 										$booking->booking_date_time=$recurr_booking_date_time;
 										$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 										$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-										$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+										$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 										$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 										$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 										if($appointment_auto_confirm=="Y"){
@@ -3958,7 +3975,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j week", $dates);
 								$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -3992,7 +4009,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 			$booking->booking_date_time=$recurr_booking_date_time;
 			$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 			$booking->method_id='';
-			$booking->method_unit_id='';
+			$booking->method_unit_id=''; $booking->unit_hours='';
 			$booking->method_unit_qty='';
 			$booking->method_unit_qty_rate='';
 			if($appointment_auto_confirm=="Y"){
@@ -4019,7 +4036,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$booking->booking_date_time=$recurr_booking_date_time;
 				$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 				$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 				$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 				$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 				if($appointment_auto_confirm=="Y"){
@@ -4098,7 +4115,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					$date = strtotime("+$j month", $dates);
 		$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -4115,7 +4132,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$booking->booking_date_time=$recurr_booking_date_time;
 				$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 				$booking->method_id='';
-				$booking->method_unit_id='';
+				$booking->method_unit_id=''; $booking->unit_hours='';
 				$booking->method_unit_qty='';
 				$booking->method_unit_qty_rate='';
 				if($appointment_auto_confirm=="Y"){
@@ -4142,7 +4159,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$booking->booking_date_time=$recurr_booking_date_time;
 					$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 					$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 					$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 					$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 					if($appointment_auto_confirm=="Y"){
@@ -4190,7 +4207,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 			$order_client_info->client_email=$_SESSION['ct_details']['email'];
 			$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 			$client_phone = $_SESSION['ct_details']['phone'];
-			$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+			$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 			$add_guest_user=$order_client_info->add_order_client();
 			$date = strtotime("+$j month", $dates);
 			$recurr_booking_date_time =  date('Y-m-d H:i:s', $date);
@@ -4221,7 +4238,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 			$booking->booking_date_time=$recurr_booking_date_time;
 			$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 			$booking->method_id='';
-			$booking->method_unit_id='';
+			$booking->method_unit_id=''; $booking->unit_hours='';
 			$booking->method_unit_qty='';
 			$booking->method_unit_qty_rate='';
 			if($appointment_auto_confirm=="Y"){
@@ -4248,7 +4265,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$booking->booking_date_time=$recurr_booking_date_time;
 				$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 				$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 				$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 				$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 				if($appointment_auto_confirm=="Y"){
@@ -4327,7 +4344,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					
 					} else {
@@ -4342,7 +4359,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 						$booking->booking_date_time=$recurr_booking_date_time;
 						$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 						$booking->method_id='';
-						$booking->method_unit_id='';
+						$booking->method_unit_id=''; $booking->unit_hours='';
 						$booking->method_unit_qty='';
 						$booking->method_unit_qty_rate='';
 						if($appointment_auto_confirm=="Y"){
@@ -4369,7 +4386,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$booking->booking_date_time=$recurr_booking_date_time;
 					$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 					$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 					$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 					$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 					if($appointment_auto_confirm=="Y"){
@@ -4414,7 +4431,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 		$j+=2;
 			$date = strtotime("$j days", $dates);
@@ -4446,7 +4463,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 			$booking->booking_date_time=$recurr_booking_date_time;
 			$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 			$booking->method_id='';
-			$booking->method_unit_id='';
+			$booking->method_unit_id=''; $booking->unit_hours='';
 			$booking->method_unit_qty='';
 			$booking->method_unit_qty_rate='';
 			if($appointment_auto_confirm=="Y"){
@@ -4473,7 +4490,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$booking->booking_date_time=$recurr_booking_date_time;
 				$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 				$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 				$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 				$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 				if($appointment_auto_confirm=="Y"){
@@ -4551,7 +4568,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$order_client_info->client_email=$_SESSION['ct_details']['email'];
 					$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 					$client_phone = $_SESSION['ct_details']['phone'];
-					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+					$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 					$add_guest_user=$order_client_info->add_order_client();
 					} else {
 		$start_date = $booking_date_time;  
@@ -4565,7 +4582,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$booking->booking_date_time=$recurr_booking_date_time;
 				$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 				$booking->method_id='';
-				$booking->method_unit_id='';
+				$booking->method_unit_id=''; $booking->unit_hours='';
 				$booking->method_unit_qty='';
 				$booking->method_unit_qty_rate='';
 				if($appointment_auto_confirm=="Y"){
@@ -4592,7 +4609,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$booking->booking_date_time=$recurr_booking_date_time;
 					$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 					$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 					$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 					$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 					if($appointment_auto_confirm=="Y"){
@@ -4639,7 +4656,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 			$j+=15;
 			$date = strtotime("$j days", $dates);
@@ -4673,7 +4690,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 			$booking->booking_date_time=$recurr_booking_date_time;
 			$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 			$booking->method_id='';
-			$booking->method_unit_id='';
+			$booking->method_unit_id=''; $booking->unit_hours='';
 			$booking->method_unit_qty='';
 			$booking->method_unit_qty_rate='';
 			if($appointment_auto_confirm=="Y"){
@@ -4700,7 +4717,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$booking->booking_date_time=$recurr_booking_date_time;
 				$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 				$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+				$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 				$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 				$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 				if($appointment_auto_confirm=="Y"){
@@ -4778,7 +4795,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
         $order_client_info->client_email=$_SESSION['ct_details']['email'];
         $order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 		$client_phone = $_SESSION['ct_details']['phone'];
-        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+        $order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
         $add_guest_user=$order_client_info->add_order_client();
 	} else {
 		$start_date = $booking_date_time;  
@@ -4792,7 +4809,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$booking->booking_date_time=$recurr_booking_date_time;
 				$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 				$booking->method_id='';
-				$booking->method_unit_id='';
+				$booking->method_unit_id=''; $booking->unit_hours='';
 				$booking->method_unit_qty='';
 				$booking->method_unit_qty_rate='';
 				if($appointment_auto_confirm=="Y"){
@@ -4819,7 +4836,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 					$booking->booking_date_time=$recurr_booking_date_time;
 					$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 					$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+					$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 					$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 					$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 					if($appointment_auto_confirm=="Y"){
@@ -4864,7 +4881,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 			$order_client_info->client_email=$_SESSION['ct_details']['email'];
 			$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
 			$client_phone = $_SESSION['ct_details']['phone'];
-			$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+			$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 			$add_guest_user=$order_client_info->add_order_client();
 			
 			$j+=1;
@@ -4886,7 +4903,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 						$booking->booking_date_time=$booking_date_time;
 						$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 						$booking->method_id='';
-						$booking->method_unit_id='';
+						$booking->method_unit_id=''; $booking->unit_hours='';
 						$booking->method_unit_qty='';
 						$booking->method_unit_qty_rate='';
 						if($appointment_auto_confirm=="Y"){
@@ -4913,7 +4930,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 							$booking->booking_date_time=$booking_date_time;
 							$booking->service_id=$_SESSION['ct_cart']['method'][$i]['service_id'];
 							$booking->method_id=$_SESSION['ct_cart']['method'][$i]['method_id'];
-							$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id'];
+							$booking->method_unit_id=$_SESSION['ct_cart']['method'][$i]['units_id']; $booking->unit_hours=$_SESSION['ct_cart']['method'][$i]['s_m_hour'];
 							$booking->method_unit_qty=$_SESSION['ct_cart']['method'][$i]['s_m_qty'];
 							$booking->method_unit_qty_rate=$_SESSION['ct_cart']['method'][$i]['s_m_rate'];
 							if($appointment_auto_confirm=="Y"){
@@ -4994,7 +5011,7 @@ if(isset($_SESSION['ct_details']) && $_SESSION['ct_details']!=''){
 				$order_client_info->client_name=ucwords($_SESSION['ct_details']['firstname']).' '.ucwords($_SESSION['ct_details']['lastname']);
 				$order_client_info->client_email=$_SESSION['ct_details']['email'];
 				$order_client_info->client_phone=$_SESSION['ct_details']['phone'];
-				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status,'contact_status'=>$contact_status)));
+				$order_client_info->client_personal_info=base64_encode(serialize(array('zip'=>$zipcode,'address'=>$address,'city'=>$city,'state'=>$state,'notes'=>$notes,'vc_status'=>$vc_status,'p_status'=>$p_status, 'p_type'=>$p_type, 'residence_type'=>$residence_type, 'how_level'=>$how_level,'contact_status'=>$contact_status)));
 				$add_new_user=$order_client_info->add_order_client();
 			}
         }
