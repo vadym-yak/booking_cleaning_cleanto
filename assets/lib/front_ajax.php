@@ -69,6 +69,9 @@ $lang = $settings->get_option("ct_language");
 $label_language_values = array();
 $language_label_arr = $settings->get_all_labelsbyid($lang);
 
+$is_hourly   = $_SESSION['service_is_hourly'];
+$allow_30    = $_SESSION['service_allow_30'];
+
 if ($language_label_arr[1] != "" && $language_label_arr[3] != "" && $language_label_arr[4] != "" && $language_label_arr[5] != "")
 {
 	$label_decode_front = base64_decode($language_label_arr[1]);
@@ -121,7 +124,7 @@ if(isset($_POST['s_m_units_maxlimit_5'])){
     <div class="ct-address-area-main">
         <div class="ct-area-type">
             <span class="area-header"><?php echo ucwords($maxx_limitts['units_title']); ?></span>
-            <input maxlength="5" type="text" class="ct-area-input ct_area_m_units_rattee" id="ct_area_m_units" data-service_id="<?php echo $_POST['service_id']; ?>" data-units_id="<?php echo $maxx_limitts['id']; ?>"  data-method_id="<?php echo $_POST['method_id']; ?>" data-rate="" data-method_name="<?php echo $maxx_limitts['units_title'] ?>" data-maxx_limit="<?php echo $maxx_limitts['maxlimit']; ?>" placeholder="<?php echo ucwords($maxx_limitts['units_title']); ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"/>
+            <input maxlength="5" type="text" class="ct-area-input ct_area_m_units_rattee" id="ct_area_m_units" data-service_id="<?php echo $_POST['service_id']; ?>" data-units_id="<?php echo $maxx_limitts['id']; ?>"  data-method_id="<?php echo $_POST['method_id']; ?>" data-rate="" data-method_name="<?php echo $maxx_limitts['units_title'] ?>" data-maxx_limit="<?php echo $maxx_limitts['maxlimit']; ?>" placeholder="<?php echo ucwords($maxx_limitts['units_title']); ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"/>
             <span class="area-type"></span>
         </div>
     </div>
@@ -175,7 +178,7 @@ elseif(isset($_POST['operationgetmethods']))
 	unset($_SESSION['staff_id_cal']);
     $_SESSION['service_is_hourly'] = $_POST['is_hourly'];
     $_SESSION['service_allow_30'] = $_POST['allow_30'];
-    $_SESSION['service_price'] = $_POST['allow_30'];
+    $_SESSION['service_price'] = $_POST['price'];
 	
 	$service_array = array("method"=>array());
     $_SESSION['ct_cart'] = $service_array;
@@ -282,7 +285,7 @@ elseif(isset($_POST['get_service_addons'])) {
 
                             ?>
                             <li class="ct-sm-6 ct-md-4 ct-lg-3 ct-xs-12 mb-15">
-                                <input type="checkbox" name="addon-checkbox" class="addon-checkbox add_addon_in_cart_for_multipleqty" data-status="2" data-duration_value="-1" data-id="<?php echo $adonsdata['id']; ?>" id="ct-addon-<?php echo $adonsdata['id']; ?>" data-rate="<?php echo $adonsdata['base_price']; ?>" data-service_id="<?php echo $adonsdata['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $adonsdata['addon_service_name']; ?>" data-units_id="<?php echo $adonsdata['id']; ?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" />
+                                <input type="checkbox" name="addon-checkbox" class="addon-checkbox add_addon_in_cart_for_multipleqty" data-status="2" data-duration_value="-1" data-id="<?php echo $adonsdata['id']; ?>" id="ct-addon-<?php echo $adonsdata['id']; ?>" data-rate="<?php echo $adonsdata['base_price']; ?>" data-service_id="<?php echo $adonsdata['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $adonsdata['addon_service_name']; ?>" data-units_id="<?php echo $adonsdata['id']; ?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0" />
                                 <label class="ct-addon-ser border-c ct_addon_ser<?php echo $adonsdata['id']; ?>" for="ct-addon-<?php echo $adonsdata['id']; ?>"><span></span>
                                     <div class="addon-price"><?php echo $general->ct_price_format($adonsdata['base_price'],$symbol_position,$decimal); ?></div>
                                     <div class="ct-addon-img">
@@ -309,7 +312,7 @@ elseif(isset($_POST['get_service_addons'])) {
                             $mmnameee = 'ad_unit'.$adonsdata['id'];
                             ?>
                             <li class="ct-sm-6 ct-md-4 ct-lg-3 ct-xs-12 mb-15">
-                                <input type="checkbox" name="addon-checkbox" class="addon-checkbox addons_servicess" data-status="2" data-id="<?php echo $adonsdata['id']; ?>" id="ct-addon-<?php echo $adonsdata['id']; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-service_id="<?php echo $adonsdata['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $adonsdata['addon_service_name']; ?>"/>
+                                <input type="checkbox" name="addon-checkbox" class="addon-checkbox addons_servicess" data-status="2" data-id="<?php echo $adonsdata['id']; ?>" id="ct-addon-<?php echo $adonsdata['id']; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-service_id="<?php echo $adonsdata['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $adonsdata['addon_service_name']; ?>" data-duration="0"/>
                                 <label class="ct-addon-ser border-c ct_addon_ser<?php echo $adonsdata['id']; ?>" for="ct-addon-<?php echo $adonsdata['id']; ?>"><span></span>
                                     <div class="addon-price"><?php echo $general->ct_price_format($adonsdata['base_price'],$symbol_position,$decimal); ?></div>
                                     <div class="ct-addon-img">
@@ -357,7 +360,7 @@ elseif(isset($_POST['get_service_addons'])) {
                             $mmnameee = 'ad_unit'.$adonsdata['id'];
                             ?>
                             <li class="ct-sm-6 ct-md-4 ct-lg-3 ct-xs-12 mb-15">
-                                <input type="checkbox" name="addon-checkbox" class="addon-checkbox add_addon_in_cart_for_multipleqty" data-status="2" data-duration_value="-1" data-id="<?php echo $adonsdata['id']; ?>" id="ct-addon-<?php echo $adonsdata['id']; ?>" data-rate="<?php echo $adonsdata['base_price']; ?>" data-service_id="<?php echo $adonsdata['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $adonsdata['addon_service_name']; ?>" data-units_id="<?php echo $adonsdata['id']; ?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" />
+                                <input type="checkbox" name="addon-checkbox" class="addon-checkbox add_addon_in_cart_for_multipleqty" data-status="2" data-duration_value="-1" data-id="<?php echo $adonsdata['id']; ?>" id="ct-addon-<?php echo $adonsdata['id']; ?>" data-rate="<?php echo $adonsdata['base_price']; ?>" data-service_id="<?php echo $adonsdata['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $adonsdata['addon_service_name']; ?>" data-units_id="<?php echo $adonsdata['id']; ?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"/>
                                 <label class="ct-addon-ser border-c ct_addon_ser<?php echo $adonsdata['id']; ?>" for="ct-addon-<?php echo $adonsdata['id']; ?>"><span></span>
                                     <div class="addon-price"><?php echo $general->ct_price_format($adonsdata['base_price'],$symbol_position,$decimal); ?></div>
                                     <div class="ct-addon-img">
@@ -415,11 +418,11 @@ elseif(isset($_POST['get_service_addons'])) {
 									$mmnameee = 'ad_unit'.$adonsdata['id'];
                                     ?>
                                     <div class="ct-btn-group">
-                                        <button data-ids="<?php echo $adonsdata['id']; ?>" id="minus<?php echo $adonsdata['id']; ?>" class="minus ct-btn-left ct-small-btn" type="button" data-units_id="<?php echo $adonsdata['id']; ?>" data-duration_value="" data-mnamee="<?php echo $mmnameee; ?>" data-method_name="<?php echo $adonsdata['addon_service_name'] ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-rate="" data-method_id="0" data-type="<?php echo "addon"; ?>">-</button>
+                                        <button data-ids="<?php echo $adonsdata['id']; ?>" id="minus<?php echo $adonsdata['id']; ?>" class="minus ct-btn-left ct-small-btn" type="button" data-units_id="<?php echo $adonsdata['id']; ?>" data-duration_value="" data-mnamee="<?php echo $mmnameee; ?>" data-method_name="<?php echo $adonsdata['addon_service_name'] ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-rate="" data-method_id="0" data-type="<?php echo "addon"; ?>" data-duration="0">-</button>
 
                                         <input type="text" value="0" class="ct-btn-text addon_qty data_addon_qtyrate qtyyy_<?php echo $mmnameee; ?>" data-rate="<?php echo $uniitt_rate; ?>"/>
 
-                                        <button data-ids="<?php echo $adonsdata['id']; ?>" id="add<?php echo $adonsdata['id']; ?>" data-db-qty="<?php echo $adonsdata["maxqty"]; ?>" data-mnamee="<?php echo $mmnameee; ?>" class="add ct-btn-right float-right ct-small-btn" type="button" data-units_id="<?php echo $adonsdata['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="0" data-duration_value="" data-method_name="<?php echo $adonsdata['addon_service_name'] ?>" data-rate="" data-type="<?php echo "addon"; ?>">+</button>
+                                        <button data-ids="<?php echo $adonsdata['id']; ?>" id="add<?php echo $adonsdata['id']; ?>" data-db-qty="<?php echo $adonsdata["maxqty"]; ?>" data-mnamee="<?php echo $mmnameee; ?>" class="add ct-btn-right float-right ct-small-btn" type="button" data-units_id="<?php echo $adonsdata['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="0" data-duration_value="" data-method_name="<?php echo $adonsdata['addon_service_name'] ?>" data-rate="" data-type="<?php echo "addon"; ?>" data-duration="0">+</button>
                                     </div>
                                 </div>
                                 <div class="addon-name fl ta-c"><?php echo $adonsdata['addon_service_name']; ?></div>
@@ -476,13 +479,13 @@ elseif(isset($_POST['get_service_addons'])) {
                             {
                                 ?>
                                 <span class="ct-addon-box">
-									<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rate']*$i : $unt_ratess['rates']; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" ><?php echo $i; ?></a>
+									<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rate']*$i : $unt_ratess['rates']; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 								</span>
                             <?php
                             }else{
                                 ?>
                                 <span class="ct-addon-box">
-									<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i; ?></a>
+									<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 								</span>
                             <?php
                             }
@@ -491,7 +494,7 @@ elseif(isset($_POST['get_service_addons'])) {
                         {
                             ?>
                             <span class="ct-addon-box">
-								<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rate']*$i : $unt_ratess['rate']; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i; ?></a>
+								<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rate']*$i : $unt_ratess['rate']; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 							</span>
                         <?php
                         }
@@ -508,7 +511,7 @@ elseif(isset($_POST['get_service_addons'])) {
                             
                             ?>
                             <span class="ct-addon-box">
-								<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo $base_rates; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i; ?></a>
+								<a href="javascript:void(0);" class="br-3 ct-addon-btn add_item_in_cart" data-rate="<?php echo $base_rates; ?>" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $addon_dataaa['id']; ?>" data-service_id="<?php echo $addon_dataaa['service_id']; ?>" data-method_id="0" data-method_name="<?php echo $addon_dataaa['addon_service_name'];?>" data-type="<?php echo "addon"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 							</span>
                         <?php
                         }
@@ -556,7 +559,7 @@ elseif(isset($_POST['get_service_addons'])) {
                 {
 					?>
                     <span class="duration-box">
-						<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i; ?></a>
+						<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 					</span>
                     <?php
                     /* print the rate given in db*/
@@ -564,7 +567,7 @@ elseif(isset($_POST['get_service_addons'])) {
                     /* print the rate of the previous one */
                     ?>
                     <span class="duration-box">
-						<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i; ?></a>
+						<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 					</span>
                 <?php
                 }
@@ -573,7 +576,7 @@ elseif(isset($_POST['get_service_addons'])) {
             {
                 ?>
                 <span class="duration-box">
-					<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i; ?></a>
+					<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 				</span>
                 <?php
             }
@@ -589,7 +592,7 @@ elseif(isset($_POST['get_service_addons'])) {
 				} 
                 ?>
 				<span class="duration-box">
-					<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo $base_rates; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i; ?></a>
+					<a href="javascript:void(0);" class="br-3 ct-duration-btn add_item_in_cart" data-rate="<?php echo $base_rates; ?>" data-units_id="<?php echo $unt_values['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values['units_title'] ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="0"><?php echo $i; ?></a>
 				</span>
             <?php
             }
@@ -608,20 +611,15 @@ elseif(isset($_POST['get_service_addons'])) {
         $fg= 0;
         $strate = 1;
 
-        $is_hourly   = $_SESSION['service_is_hourly'];
-        $allow_30    = $_SESSION['service_allow_30'];
         $hourly_from = $unt_values_2['hourly_from'];
         $hourly_to   = $unt_values_2['hourly_to'];
-        
+        $duration = $is_hourly ? 0 : number_format((float)($unt_values_2['hourly_from'] + $unt_values_2['hourly_to'] / 60), 2, '.', '');
         ?>
 
         <div class="ct-bedrooms ct-btn-group ct-md-6 ct-sm-6 mb-15 ">
             <label> <?php echo $unt_values_2['units_title']; ?></label>
-            <?php
-                $duration = number_format((float)($unt_values_2['hourly_from'] + $unt_values_2['hourly_to'] / 60), 2, '.', '');
-            ?>
             <div class="common-selection-main">
-                <div class="selected-is select-bedrooms" data-duration="<?php echo $duration; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-un_id="<?php echo $unt_values_2['id']; ?>" title="<?php echo $label_language_values['choose_your']." ".$unt_values_2['units_title']; ?>">
+                <div class="selected-is select-bedrooms" data-duration="<?php echo $duration; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-un_id="<?php echo $unt_values_2['id']; ?>" title="<?php echo $label_language_values['choose_your']." ".$unt_values_2['units_title']; ?>" data-duration="<?php echo $duration ?>">
                  
                     <div class="data-list" id="ct_selected_<?php echo $unt_values_2['id']; ?>">
                         <p class="ct-count"><?php echo $unt_values_2['units_title']; ?></p>
@@ -646,7 +644,7 @@ elseif(isset($_POST['get_service_addons'])) {
                             if($unt_ratess['rules'] == 'E')
                             {
                                 ?>
-                                <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>">
+                                <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>">
                                     <p class="ct-count"><?php echo $i." ". $unt_values_2['limit_title']; ?></p>
                                 </div>
                                 <?php
@@ -654,7 +652,7 @@ elseif(isset($_POST['get_service_addons'])) {
                             }else{
                                 /* print the rate of the previous one */
                                 ?>
-                                <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>">
+                                <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>">
                                     <p class="ct-count"><?php echo $i." ". $unt_values_2['limit_title']; ?></p>
                                 </div>
                             <?php
@@ -663,7 +661,7 @@ elseif(isset($_POST['get_service_addons'])) {
                         else if($unt_ratess['rules'] == 'E')
                         {
                             ?>
-                            <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>">
+                            <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>">
                                 <p class="ct-count"><?php echo $i." ". $unt_values_2['limit_title']; ?></p>
                             </div>
                             <?php
@@ -679,7 +677,7 @@ elseif(isset($_POST['get_service_addons'])) {
 								$base_rates=$unt_values_2['base_price'];
 							} 
                             ?>
-                            <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo $base_rates; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>">
+                            <div class="data-list select_bedroom add_item_in_cart" data-duration_value="<?php echo $i; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_2['units_title'] ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-rate="<?php echo $base_rates; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>">
                                 <p class="ct-count"><?php echo $i." ". $unt_values_2['limit_title']; ?></p>
                             </div>
                         <?php
@@ -718,6 +716,11 @@ elseif(isset($_POST['get_service_addons'])) {
         $fe = 0;
         $fg= 0;
         $strate = 1;
+
+        $hourly_from = $unt_values_3['hourly_from'];
+        $hourly_to   = $unt_values_3['hourly_to'];
+        $duration = $is_hourly ? 0 : number_format((float)($unt_values_3['hourly_from'] + $unt_values_3['hourly_to'] / 60), 2, '.', '');
+
         ?>
 
         <div class="ct-bedrooms ct-btn-group fl ct-md-12 mt-5 mb-15 np">
@@ -742,13 +745,13 @@ elseif(isset($_POST['get_service_addons'])) {
                         {
                             ?>
                             <span class="ct-box bedroom-box">
-								<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
+								<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
 							</span>
                         <?php
                         }else{
                             ?>
                             <span class="ct-box bedroom-box">
-								<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
+								<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $strate*$i : $strate; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
 							</span>
                         <?php
                         }
@@ -757,7 +760,7 @@ elseif(isset($_POST['get_service_addons'])) {
                     {
                         ?>
                         <span class="ct-box bedroom-box">
-							<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
+							<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo ($calculation_policy == "M") ? $unt_ratess['rates']*$i : $unt_ratess['rates']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
 						</span>
                     <?php
                     }
@@ -773,7 +776,7 @@ elseif(isset($_POST['get_service_addons'])) {
 						}
                         ?>
                         <span class="ct-box bedroom-box">
-							<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo $base_rates; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
+							<a href="javascript:void(0);" class="br-3 ct-bedroom-btn select_m_u_btn u_<?php echo $unt_values_3['id']; ?>_btn add_item_in_cart" data-units_id="<?php echo $unt_values_3['id']; ?>" data-duration_value="<?php echo $i; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" data-method_name="<?php echo $unt_values_3['units_title'] ?>" data-un_title="<?php echo $unt_values_3['units_title']; ?>" data-rate="<?php echo $base_rates; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>"><?php echo $i." ". $unt_values_3['limit_title']; ?></a>
 						</span>
                     <?php
                     }
@@ -788,6 +791,11 @@ elseif(isset($_POST['get_service_addons'])) {
     $objservice_method_unit->services_id = $_POST['service_id'];
     $objservice_method_unit->methods_id = $_POST['method_id'];
     $unt_values_4 = $objservice_method_unit->getunits_by_service_methods_front();
+
+    $hourly_from = $unt_values_4['hourly_from'];
+    $hourly_to   = $unt_values_4['hourly_to'];
+    $duration = $is_hourly ? 0 : number_format((float)($unt_values_4['hourly_from'] + $unt_values_4['hourly_to'] / 60), 2, '.', '');
+
     while($u_value_4 = mysqli_fetch_array($unt_values_4)){
         $objservice_method_unit->maxlimit=1;
         $objservice_method_unit->units_id=$u_value_4['id'];
@@ -798,15 +806,16 @@ elseif(isset($_POST['get_service_addons'])) {
         }else{
             $uniitt_rate=$u_value_4['base_price'];
         }
+
         ?>
         <div class="ct-bedrooms ct-btn-group ct-md-6 ct-sm-6">
             <label> <?php echo $u_value_4['units_title']; ?></label>
             <?php
             $mmnameee = 'ad_unit'.$u_value_4['id'];
             ?>
-            <button id="minus-addon-<?php echo $u_value_4['id']; ?>" data-ids="<?php echo $u_value_4['id']; ?>" class="minuss ct-btn-left ct-small-btn" data-units_id="<?php echo $u_value_4['id']; ?>" data-duration_value="" data-method_name="<?php echo $u_value_4['units_title'] ?>" type="button" data-service_id="<?php echo $_POST['service_id']; ?>" data-rate="" data-method_id="<?php echo $_POST['method_id']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>">-</button>
+            <button id="minus-addon-<?php echo $u_value_4['id']; ?>" data-ids="<?php echo $u_value_4['id']; ?>" class="minuss ct-btn-left ct-small-btn" data-units_id="<?php echo $u_value_4['id']; ?>" data-duration_value="" data-method_name="<?php echo $u_value_4['units_title'] ?>" type="button" data-service_id="<?php echo $_POST['service_id']; ?>" data-rate="" data-method_id="<?php echo $_POST['method_id']; ?>" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>">-</button>
             <input id="qty<?php echo $u_value_4['id']; ?>" type="text" value="0" class="qty<?php echo $u_value_4['id']; ?> ct-btn-text data_qtyrate" data-rate="<?php echo $uniitt_rate; ?>" />
-            <button id="add-addon-<?php echo $u_value_4['id']; ?>" data-units_id="<?php echo $u_value_4['id']; ?>"  data-ids="<?php echo $u_value_4['id']; ?>" data-db-qty="<?php echo $u_value_4["maxlimit"]; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" class="addd ct-btn-right float-right ct-small-btn" data-duration_value="" data-method_name="<?php echo $u_value_4['units_title'] ?>" data-rate="" type="button" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>">+</button>
+            <button id="add-addon-<?php echo $u_value_4['id']; ?>" data-units_id="<?php echo $u_value_4['id']; ?>"  data-ids="<?php echo $u_value_4['id']; ?>" data-db-qty="<?php echo $u_value_4["maxlimit"]; ?>" data-service_id="<?php echo $_POST['service_id']; ?>" data-method_id="<?php echo $_POST['method_id']; ?>" class="addd ct-btn-right float-right ct-small-btn" data-duration_value="" data-method_name="<?php echo $u_value_4['units_title'] ?>" data-rate="" type="button" data-type="<?php echo "method_units"; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-duration="<?php echo $duration ?>">+</button>
         </div>
     <?php
     }

@@ -1931,7 +1931,7 @@ if( $settings->get_option('ct_appointment_details_display') == 'on' && ($address
                                 <div class="ct-image">
                                     <img src="<?php echo SITE_URL; ?>/assets/images/icon-time.png" alt="" style="width: 18px;">
                                 </div>
-                                <p class="ct-text f_hourly_time">sdfsad</p>
+                                <p class="ct-text f_hourly_time"></p>
                             </div>
                             <div class="ct-form-rown ct-addons-list-main">
                                 <div class="step_heading f-l"><h6 class="header6 ct-item-list"><?php echo $label_language_values['your_cart_items']; ?></h6>

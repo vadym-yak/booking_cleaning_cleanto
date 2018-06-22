@@ -1345,6 +1345,7 @@ jQuery(document).on('click','.ser_details',function(){
     jQuery( ".cart_empty_msg" ).show();
     jQuery( ".cart_tax" ).empty();
     jQuery( ".cart_total" ).empty();
+    jQuery( ".f_hourly_time").empty();
     jQuery( ".rown-next").hide();
     jQuery( ".remain_amount" ).empty();
     jQuery( ".partial_amount" ).empty();
@@ -1598,6 +1599,7 @@ jQuery(document).on('click','.add',function(){
                     },
                     url : site_url+"front/firststep.php",
                     success : function(res){
+                    	console.log(res);
                         jQuery('.freq_discount_display').show();
                         jQuery('.hide_right_side_box').show();
                         jQuery('.partial_amount_hide_on_load').show();
@@ -1854,6 +1856,7 @@ jQuery(document).on('click','.addons_servicess',function(){
                 'method_name' : method_name,
                 'units_id' : addon_id,
                 'type' : type,
+                'units_duration' : 0,
                 'frequently_discount_id' : frequently_discount_id,
                 'add_to_cart' : 1
             },
@@ -2758,6 +2761,11 @@ jQuery(document).on('keyup','#ct_area_m_units',function(event){
     }
 });
 
+function time_format( duration ) {
+	var hour = Math.floor(duration);
+	var min  = parseInt((duration - hour) * 60);
+	return hour + "hours " + min + "minutes";
+}
 var sel_hourly_item;
 //change unit hours
 jQuery(document).on('change', '.hourly-select-main select', function() {
@@ -2782,7 +2790,7 @@ jQuery(document).on('change', '.hourly-select-main select', function() {
     var frequently_discount_id=jQuery("input[name=frequently_discount_radio]:checked").data('id');
     var m_name = sel_hourly_item.data('mnamee');
     var s_m_hour = jQuery('#sel-hours-' + units_id).val() ? jQuery('#sel-hours-' + units_id).val() : 1;
-
+    console.log(s_m_hour);
     jQuery.ajax({
         type : 'post',
         data : {
@@ -2799,6 +2807,7 @@ jQuery(document).on('change', '.hourly-select-main select', function() {
         },
         url : site_url+"front/firststep.php",
         success : function(res){
+        	console.log(jQuery.parseJSON(res));
             jQuery('.freq_discount_display').show();
             jQuery('.hide_right_side_box').show();
             jQuery('.partial_amount_hide_on_load').show();
@@ -2864,6 +2873,7 @@ jQuery(document).on('change', '.hourly-select-main select', function() {
                 jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                 jQuery('.cart_total').html(cart_session_data.total_amount);
             }
+            jQuery('.f_hourly_time').html(time_format(cart_session_data.s_m_duration));
             set_next_total();
         }
     });
@@ -2888,7 +2898,20 @@ jQuery(document).on('click','.add_item_in_cart',function(){
     var m_name = jQuery(this).data('mnamee');
     var u_duration = jQuery(this).data('duration');
     var s_m_hour = jQuery('#sel-hours-' + units_id).val() ? jQuery('#sel-hours-' + units_id).val() : 1;
-
+    var data = {
+            'method_id' : method_id,
+            'service_id' : service_id,
+            's_m_qty' : s_m_qty,
+            's_m_rate' : s_m_rate,
+            's_m_hour' : s_m_hour,
+            'method_name' : method_name,
+            'units_id' : units_id,
+            'units_duration' : u_duration,
+            'type' : type,
+            'frequently_discount_id' : frequently_discount_id,
+            'add_to_cart' : 1
+        };
+        console.log(data);
     jQuery.ajax({
         type : 'post',
         data : {
@@ -2906,6 +2929,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
         },
         url : site_url+"front/firststep.php",
         success : function(res){
+        	console.log(res);
             jQuery('.freq_discount_display').show();
             jQuery('.hide_right_side_box').show();
             jQuery('.partial_amount_hide_on_load').show();
@@ -2971,6 +2995,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
                 jQuery('.frequent_discount').html(cart_session_data.frequent_discount);
                 jQuery('.cart_total').html(cart_session_data.total_amount);
             }
+            jQuery('.f_hourly_time').html(time_format(cart_session_data.s_m_duration));
             set_next_total();
         }
     });

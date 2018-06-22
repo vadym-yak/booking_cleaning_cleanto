@@ -69,6 +69,9 @@ if($settings->get_option('ct_smtp_authetication') == 'true'){
 
 $mail->SMTPSecure = $settings->get_option('ct_smtp_encryption');
 $mail->SMTPAuth = $mail_SMTPAuth;
+
+$duration = isset($_POST['units_duration']) ? $_POST['units_duration'] : "0";
+
 if (isset($_POST['add_to_cart']))
 	{
 	$json_array = array();
@@ -80,70 +83,69 @@ if (isset($_POST['add_to_cart']))
 	$freq_dis_data = $frequently_discount->readone();
 	$method_name_without_space = '';
 	if ($_POST['type'] == 'method_units')
-		{
+	{
 		$method_name_without_space = 'mt_unit' . $_POST['units_id'];
-		}
-	  else
-	if ($_POST['type'] == 'addon')
+	}
+	else
+		if ($_POST['type'] == 'addon')
 		{
-		$method_name_without_space = 'ad_unit' . $_POST['units_id'];
+			$method_name_without_space = 'ad_unit' . $_POST['units_id'];
 		} /* remove and add item in to cart when multiple qty option is Y for addons */
-	if ($_POST['s_m_qty'] == - 1)
+		if ($_POST['s_m_qty'] == - 1)
 		{
-		if (isset($_SESSION['ct_cart']['method']))
+			if (isset($_SESSION['ct_cart']['method']))
 			{
-			$cntss = 1;
-			$idss = - 1;
-			$_SESSION['ct_cart']['method'] = array_values($_SESSION['ct_cart']['method']);
-			for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
+				$cntss = 1;
+				$idss = - 1;
+				$_SESSION['ct_cart']['method'] = array_values($_SESSION['ct_cart']['method']);
+				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 				{
-				$method_name = "";
-				$method_name = array_search($method_name_without_space, $_SESSION['ct_cart']['method'][$i]);
+					$method_name = "";
+					$method_name = array_search($method_name_without_space, $_SESSION['ct_cart']['method'][$i]);
 				
-				if ($_SESSION['ct_cart']['method'][$i]['method_type'] == $method_name_without_space)
+					if ($_SESSION['ct_cart']['method'][$i]['method_type'] == $method_name_without_space)
 					{
-					$idss = $i;
+						$idss = $i;
 					}
-				  else
+				  	else
 					{
-					$cntss = $cntss + 1;
+						$cntss = $cntss + 1;
 					}
 				}
-
 			if ($idss != - 1)
 				{
 				unset($_SESSION['ct_cart']["method"][$idss]);
 				$_SESSION['ct_cart']['method'] = array_values($_SESSION['ct_cart']['method']); /**calculation start**/
 				$c_rates = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
-					{
+				{
 					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
-					}
+				}
 
 				$frequently_discount->id = $_POST['frequently_discount_id'];
 				$freq_dis_data = $frequently_discount->readone();
 				if ($freq_dis_data)
-					{
+				{
 					if ($freq_dis_data['d_type'] == 'F')
-						{
+					{
 						$freqdis_amount = $freq_dis_data['rates'];
-						}
-					  else
+					}
+				  	else
 					if ($freq_dis_data['d_type'] == 'P')
-						{
+					{
 						$p_value = $freq_dis_data['rates'] / 100;
 						$freqdis_amount = $c_rates * $p_value;
-						}
-					  else
-						{
-						}
 					}
-				  else
+					else
 					{
-					$freqdis_amount = 0;
 					}
+				}
+			  	else
+				{
+					$freqdis_amount = 0;
+				}
 
-				$total = $c_rates;
+				$total = ($is_hourly==0) ? ($c_rates + $service_price) : $c_rates;
 				$_SESSION['freq_dis_amount'] = $freqdis_amount;
 				$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 				if ($settings->get_option('ct_tax_vat_status') == 'Y')
@@ -230,7 +232,7 @@ if (isset($_POST['add_to_cart']))
 				$json_array['unit_status'] = $cartss_counter;
 				echo json_encode($json_array); /**calculation end**/
 				}
-			  else
+			else
 				{
 				$cartitems = array(
 					"service_id" => $_POST['service_id'],
@@ -275,7 +277,7 @@ if (isset($_POST['add_to_cart']))
 					$freqdis_amount = 0;
 					}
 
-				$total = $c_rates;
+				$total = ($is_hourly==0) ? ($c_rates + $service_price) : $c_rates;
 				$_SESSION['freq_dis_amount'] = $freqdis_amount;
 				$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 				if ($settings->get_option('ct_tax_vat_status') == 'Y')
@@ -415,7 +417,7 @@ if (isset($_POST['add_to_cart']))
 					$freqdis_amount = 0;
 					}
 
-				$total = $c_rates;
+				$total = ($is_hourly==0) ? ($c_rates + $service_price) : $c_rates;
 				$_SESSION['freq_dis_amount'] = $freqdis_amount;
 				$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 				if ($settings->get_option('ct_tax_vat_status') == 'Y')
@@ -523,21 +525,24 @@ if (isset($_POST['add_to_cart']))
 				echo json_encode($json_array); /**calculation end**/
 			}
 		}
-	  else
+	else
 		{ /* for first time add item into cart when cart is empty */
 		if (isset($_SESSION['ct_cart']["method"]) && count($_SESSION['ct_cart']["method"]) == 0)
 			{
+			$s_m_hour = isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1;
 			$cartitems = array(
 				"service_id" => $_POST['service_id'],
 				"method_id" => $_POST['method_id'],
 				"units_id" => $_POST['units_id'],
 				"s_m_qty" => $_POST['s_m_qty'],
 				"s_m_rate" => $_POST['s_m_rate'],
-				"s_m_hour" => isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1,
+				"s_m_hour" => $s_m_hour,
 				"method_name" => $_POST['method_name'],
 				"type" => $_POST['type'],
+				's_m_duration' => $_SESSION['service_is_hourly'] ? $s_m_hour : $duration,
 				"method_type" => $method_name_without_space
 			);
+
 			array_push($_SESSION['ct_cart']["method"], $cartitems);
 			$json_array['service_id'] = $_POST['service_id'];
 			$json_array['method_id'] = $_POST['method_id'];
@@ -545,6 +550,7 @@ if (isset($_POST['add_to_cart']))
 			$json_array['s_m_qty'] = $_POST['s_m_qty'];
 			$json_array['s_m_rate'] = $_POST['s_m_rate']; /**calculation start**/
 			$json_array['s_m_hour'] = isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1;
+			$json_array['s_m_duration'] = $_SESSION['service_is_hourly'] ? $s_m_hour : $duration;
 
 			if ($freq_dis_data)
 				{
@@ -568,6 +574,8 @@ if (isset($_POST['add_to_cart']))
 				}
 
 			$total = $_POST['s_m_rate'] * (isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1);
+			if ($is_hourly==0) 
+				$total += $service_price;
 			$_SESSION['freq_dis_amount'] = $freqdis_amount;
 			$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 			if ($settings->get_option('ct_tax_vat_status') == 'Y')
@@ -648,7 +656,7 @@ if (isset($_POST['add_to_cart']))
 				$json_array['unit_status'] = $cartss_counter;
 			echo json_encode($json_array);
 			}
-		  else
+		else
 			{
 			$cnt = 1;
 			$id = - 1;
@@ -676,6 +684,7 @@ if (isset($_POST['add_to_cart']))
 				$_SESSION['ct_cart']["method"][$id]['s_m_qty'] = $_POST['s_m_qty'];
 				$_SESSION['ct_cart']["method"][$id]['s_m_rate'] = $_POST['s_m_rate'];
 				$_SESSION['ct_cart']["method"][$id]['s_m_hour'] = isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1;
+				$_SESSION['ct_cart']["method"][$id]['s_m_duration'] = $_SESSION['service_is_hourly'] ? (isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 0) : $duration;
 				$_SESSION['ct_cart']["method"][$id]['method_name'] = $_POST['method_name'];
 				$_SESSION['ct_cart']["method"][$id]['type'] = $_POST['type'];
 				$json_array['service_id'] = $_POST['service_id'];
@@ -688,11 +697,13 @@ if (isset($_POST['add_to_cart']))
 				$json_array['method_name_without_space'] = $method_name_without_space; /* calculation start */
 				$_SESSION['ct_cart']['method'] = array_values($_SESSION['ct_cart']['method']);
 				$c_rates = 0;
+				$durations = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
-					{
+				{
 					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
-					}
-
+					$durations += isset($_SESSION['ct_cart']['method'][$i]['s_m_duration']) ? $_SESSION['ct_cart']['method'][$i]['s_m_duration'] : 0;
+				}
+				$json_array['s_m_duration'] = $durations;
 				$frequently_discount->id = $_POST['frequently_discount_id'];
 				$freq_dis_data = $frequently_discount->readone();
 				if ($freq_dis_data)
@@ -716,7 +727,7 @@ if (isset($_POST['add_to_cart']))
 					$freqdis_amount = 0;
 					}
 
-				$total = $c_rates;
+				$total = ($is_hourly==0) ? ($c_rates + $service_price) : $c_rates;
 				$_SESSION['freq_dis_amount'] = $freqdis_amount;
 				$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 				if ($settings->get_option('ct_tax_vat_status') == 'Y')
@@ -795,7 +806,7 @@ if (isset($_POST['add_to_cart']))
 				$json_array['unit_status'] = $cartss_counter;
 				echo json_encode($json_array);
 				} /* for insert new items into cart */
-			  else
+		  	else
 				{
 				$cartitems = array(
 					"service_id" => $_POST['service_id'],
@@ -804,6 +815,7 @@ if (isset($_POST['add_to_cart']))
 					"s_m_qty" => $_POST['s_m_qty'],
 					"s_m_rate" => $_POST['s_m_rate'],
 					"s_m_hour" => isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 1,
+					"s_m_duration" => $_SESSION['service_is_hourly'] ? (isset($_POST['s_m_hour']) ? $_POST['s_m_hour'] : 0) : $duration,
 					"method_name" => $_POST['method_name'],
 					"type" => $_POST['type'],
 					"method_type" => $method_name_without_space
@@ -819,11 +831,13 @@ if (isset($_POST['add_to_cart']))
 				$json_array['method_name_without_space'] = $method_name_without_space; /* calculation start */
 				$_SESSION['ct_cart']['method'] = array_values($_SESSION['ct_cart']['method']);
 				$c_rates = 0;
+				$durations = 0;
 				for ($i = 0; $i < (count($_SESSION['ct_cart']['method'])); $i++)
 					{
 					$c_rates = ($c_rates + $_SESSION['ct_cart']['method'][$i]['s_m_rate'] * $_SESSION['ct_cart']['method'][$i]['s_m_hour']);
+					$durations += isset($_SESSION['ct_cart']['method'][$i]['s_m_duration']) ? $_SESSION['ct_cart']['method'][$i]['s_m_duration'] : 0;
 					}
-
+				$json_array['s_m_duration'] = $durations;
 				$frequently_discount->id = $_POST['frequently_discount_id'];
 				$freq_dis_data = $frequently_discount->readone();
 				if ($freq_dis_data)
@@ -847,7 +861,7 @@ if (isset($_POST['add_to_cart']))
 					$freqdis_amount = 0;
 					}
 
-				$total = $c_rates;
+				$total = ($is_hourly==0) ? ($c_rates + $service_price) : $c_rates;
 				$_SESSION['freq_dis_amount'] = $freqdis_amount;
 				$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 				if ($settings->get_option('ct_tax_vat_status') == 'Y')
@@ -1198,7 +1212,7 @@ elseif (isset($_POST['frequently_discount_check']))
 		$freqdis_amount = 0;
 		}
 
-	$total = $c_rates;
+	$total = ($is_hourly==0) ? ($c_rates + $service_price) : $c_rates;
 	$_SESSION['freq_dis_amount'] = $freqdis_amount;
 	$final_subtotal = $total - $_SESSION['freq_dis_amount'];
 	if ($settings->get_option('ct_tax_vat_status') == 'Y' && $total != '' && $total != 0)
