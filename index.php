@@ -989,7 +989,12 @@ ucfirst(strtolower($label_language_values['dec'])));
 										echo "class='ct-sm-6 ct-md-4 ct-lg-3 ct-xs-12 remove_service_class ser_details'";										
 									}  ?>
                                         data-servicetitle="<?php echo $s_arr['title']; ?>"
-                                        data-id="<?php echo $s_arr['id']; ?>">
+                                        data-id="<?php echo $s_arr['id']; ?>"
+                                        data-is_hourly="<?php echo $s_arr['is_hourly']; ?>"
+                                        data-allow_30="<?php echo $s_arr['allow_30']; ?>"
+                                        data-price="<?php echo $s_arr['price']; ?>"
+                                        >
+
                                         <input type="radio" name="service-radio"
                                                id="ct-service-<?php echo $s_arr['id']; ?>"
                                                class="make_service_disable"/>
@@ -1166,7 +1171,11 @@ ucfirst(strtolower($label_language_values['dec'])));
                 $freq_dis_title = mysqli_fetch_array($fd_data);
                 if (mysqli_num_rows($d_data) > 0) {
                     ?>
-                    <div class="ct-discount-list ct-common-box">
+                    <div class="ct-discount-list ct-common-box" <?php
+                    	if ($settings->get_option('ct_disable_turn_off_days') != 'on')
+                    		echo 'style="display: none;"';
+                    ?>
+                    >
                         <div class="ct-list-header">
                             <h3 class="header3"><?php echo $label_language_values['how_often_would_you_like_us_provide_service']; ?>
 							 <?php if($settings->get_option("ct_front_tool_tips_status")=='on' && $settings->get_option("ct_front_tool_tips_frequently_discount")!=''){?>
@@ -1456,7 +1465,7 @@ ucfirst(strtolower($label_language_values['dec'])));
 								if($settings->get_option('ct_p_status')=="Y"){
 									?>
                                 <div class="ct-custom-radio ct-options-new ct-md-6 ct-sm-6 ct-xs-12 mb-10">
-                                    <label><?php echo $label_language_values['do_you_have_parking']; ?></label>
+                                    <label>Do you have pets?</label>
                                     <ul class="ct-radio-list">
                                         <li>
                                             <input id="parking-yes" type="radio" checked="checked" class="input-radio p_status" name="parking" value="Parking-Yes"/>
@@ -1918,6 +1927,12 @@ if( $settings->get_option('ct_appointment_details_display') == 'on' && ($address
                                 </div>
                                 <p class="ct-text sel-datetime f_discount_name"></p>
                             </div>
+                            <div class="ct-summary">
+                                <div class="ct-image">
+                                    <img src="<?php echo SITE_URL; ?>/assets/images/icon-time.png" alt="" style="width: 18px;">
+                                </div>
+                                <p class="ct-text f_hourly_time">sdfsad</p>
+                            </div>
                             <div class="ct-form-rown ct-addons-list-main">
                                 <div class="step_heading f-l"><h6 class="header6 ct-item-list"><?php echo $label_language_values['your_cart_items']; ?></h6>
                                 </div>
@@ -1991,8 +2006,23 @@ if( $settings->get_option('ct_appointment_details_display') == 'on' && ($address
                             <!-- discount coupons -->
                         </div>
                         <!-- cart wrapper end here -->
-
-
+                        <div class="ta-center fl">
+							<?php if($settings->get_option("ct_loader")== 'css' && $settings->get_option("ct_custom_css_loader") != ''){ ?>
+								<div class="ct-loading-main-complete_booking" align="center">
+									<?php echo $settings->get_option("ct_custom_css_loader"); ?>
+								</div>
+							<?php }elseif($settings->get_option("ct_loader")== 'gif' && $settings->get_option("ct_custom_gif_loader") != ''){ ?>
+								<div class="ct-loading-main-complete_booking" align="center">
+									<img style="margin-top:18%;" src="<?php echo BASE_URL; ?>/assets/images/gif-loader/<?php echo $settings->get_option("ct_custom_gif_loader"); ?>"></img>
+								</div>
+							<?php }else{ ?>
+								<div class="ct-loading-main-complete_booking">
+									<div class="loader">Loading...</div>
+								</div>
+							<?php } ?>					
+							
+		                    <a href="javascript:void(0)" type='submit' data-currency_symbol="<?php echo $settings->get_option('ct_currency_symbol'); ?>" id='complete_bookings' class="ct-button ct-btn-big ct_remove_id"><?php echo $label_language_values['complete_booking'];?></a>
+		                </div>
                     </div>
                 </div>
                 <!-- features -->
@@ -2137,23 +2167,6 @@ if( $settings->get_option('ct_appointment_details_display') == 'on' && ($address
 						</div>
 					</div>
 				<?php } ?>
-                <div class="ta-center fl">
-					<?php if($settings->get_option("ct_loader")== 'css' && $settings->get_option("ct_custom_css_loader") != ''){ ?>
-						<div class="ct-loading-main-complete_booking" align="center">
-							<?php echo $settings->get_option("ct_custom_css_loader"); ?>
-						</div>
-					<?php }elseif($settings->get_option("ct_loader")== 'gif' && $settings->get_option("ct_custom_gif_loader") != ''){ ?>
-						<div class="ct-loading-main-complete_booking" align="center">
-							<img style="margin-top:18%;" src="<?php echo BASE_URL; ?>/assets/images/gif-loader/<?php echo $settings->get_option("ct_custom_gif_loader"); ?>"></img>
-						</div>
-					<?php }else{ ?>
-						<div class="ct-loading-main-complete_booking">
-							<div class="loader">Loading...</div>
-						</div>
-					<?php } ?>					
-					
-                    <a href="javascript:void(0)" type='submit' data-currency_symbol="<?php echo $settings->get_option('ct_currency_symbol'); ?>" id='complete_bookings' class="ct-button ct-btn-big ct_remove_id"><?php echo $label_language_values['complete_booking'];?></a>
-                </div>
             </div>
 
             </form>

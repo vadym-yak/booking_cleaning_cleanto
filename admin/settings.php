@@ -254,12 +254,15 @@ $selected_frontend_fonts_display = $_POST['selected_frontend_fonts_display'];
 $ct_calendar_defaultView = $_POST['ct_calendar_defaultView'];
 $ct_calendar_firstDay = $_POST['ct_calendar_firstDay'];
 $slotstatus=(isset($_POST["fadded_slots"]) && $_POST["fadded_slots"]=='on') ? 'on':'off';
+$doffdaystatus=(isset($_POST["d_off_days"]) && $_POST["d_off_days"]=='on') ? 'on':'off';
 $gucstatus=(isset($_POST["guc_check"]) && $_POST["guc_check"]=='on') ? 'on':'off';
 $eu_nu_status=(isset($_POST["eu_nu_check"]) && $_POST["eu_nu_check"]=='on') ? 'on':'off';
 $ct_cart_scrollable_status=(isset($_POST['ct_cart_scrollable']) && $_POST['ct_cart_scrollable']=='on') ? 'Y':'N';
-$array1=array('ct_primary_color','ct_secondary_color','ct_text_color','ct_text_color_on_bg','ct_primary_color_admin','ct_secondary_color_admin','ct_text_color_admin','ct_hide_faded_already_booked_time_slots','ct_guest_user_checkout','ct_time_format','ct_date_picker_date_format','ct_custom_css','ct_front_image','ct_login_image','ct_favicon_image','ct_existing_and_new_user_checkout','ct_cart_scrollable','ct_phone_display_country_code','ct_frontend_fonts','ct_loader','ct_custom_gif_loader','ct_custom_css_loader','ct_calendar_defaultView','ct_calendar_firstDay');	 
+$array1=array('ct_primary_color','ct_secondary_color','ct_text_color','ct_text_color_on_bg','ct_primary_color_admin','ct_secondary_color_admin','ct_text_color_admin','ct_hide_faded_already_booked_time_slots','ct_guest_user_checkout','ct_time_format','ct_date_picker_date_format','ct_custom_css','ct_front_image','ct_login_image','ct_favicon_image','ct_existing_and_new_user_checkout','ct_cart_scrollable','ct_phone_display_country_code','ct_frontend_fonts','ct_loader','ct_custom_gif_loader','ct_custom_css_loader','ct_calendar_defaultView','ct_calendar_firstDay', 'ct_disable_turn_off_days');	 
 
-$array2=array($_POST['ct_primary_color'],$_POST['ct_secondary_color'],$_POST['ct_text_color'],$_POST['ct_text_color_on_bg'],$_POST['ct_primary_color_admin'],$_POST['ct_secondary_color_admin'],$_POST['ct_text_color_admin'],$slotstatus,$gucstatus,$_POST['ct_time_format'],$_POST['ct_date_picker_date_format'],$_POST['cust_css'],$frontimagename,$loginimagename,$favimagename,$eu_nu_status,$ct_cart_scrollable_status,$phone_country_code,$selected_frontend_fonts_display,$_POST['ct_loader_option'],$ct_frontend_gif_imagename,$_POST['ct_custom_css_loader'],$ct_calendar_defaultView,$ct_calendar_firstDay);
+$array2=array($_POST['ct_primary_color'],$_POST['ct_secondary_color'],$_POST['ct_text_color'],$_POST['ct_text_color_on_bg'],$_POST['ct_primary_color_admin'],$_POST['ct_secondary_color_admin'],$_POST['ct_text_color_admin'],$slotstatus,$gucstatus,$_POST['ct_time_format'],$_POST['ct_date_picker_date_format'],$_POST['cust_css'],$frontimagename,$loginimagename,$favimagename,$eu_nu_status,$ct_cart_scrollable_status,$phone_country_code,$selected_frontend_fonts_display,$_POST['ct_loader_option'],$ct_frontend_gif_imagename,$_POST['ct_custom_css_loader'],$ct_calendar_defaultView,$ct_calendar_firstDay,$doffdaystatus);
+
+	//$doffdaystatus -> index:24
 
 	if($gucstatus=='off' && $eu_nu_status=='off'){
 		
@@ -1635,6 +1638,17 @@ if(isset($_POST['btn_submit_ferror_labels']))
 											</label>
                                         </div>
                                         <a class="ct-tooltip-link" href="#" data-toggle="tooltip" title="With this you can hide the already booked slots just to hide your bookings from your Competitors."><i class="fa fa-info-circle fa-lg"></i></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label>Disable turn off days.</label></td>
+                                    <td>
+                                        <div class="form-group">
+                                            <label for="disable-off-days">
+												<input data-toggle="toggle" data-size="small" name="d_off_days" type='checkbox' <?php if($setting->ct_disable_turn_off_days=='on'){echo 'checked';}?> id="disable-off-days" data-on="<?php echo $label_language_values['o_n'];?>"  data-off="<?php echo $label_language_values['off'];?>" data-onstyle='primary' data-offstyle='default' />
+											</label>
+                                        </div>
+                                        <a class="ct-tooltip-link" href="#" data-toggle="tooltip" title="With this you can disabled turned off days for customers"><i class="fa fa-info-circle fa-lg"></i></a>
                                     </td>
                                 </tr>
                                 <tr>

@@ -173,6 +173,9 @@ elseif(isset($_POST['action']) && $_POST['action']=='logout'){
 elseif(isset($_POST['operationgetmethods']))
 {
 	unset($_SESSION['staff_id_cal']);
+    $_SESSION['service_is_hourly'] = $_POST['is_hourly'];
+    $_SESSION['service_allow_30'] = $_POST['allow_30'];
+    $_SESSION['service_price'] = $_POST['allow_30'];
 	
 	$service_array = array("method"=>array());
     $_SESSION['ct_cart'] = $service_array;
@@ -605,7 +608,8 @@ elseif(isset($_POST['get_service_addons'])) {
         $fg= 0;
         $strate = 1;
 
-        $is_hourly   = $unt_values_2['is_hourly'];
+        $is_hourly   = $_SESSION['service_is_hourly'];
+        $allow_30    = $_SESSION['service_allow_30'];
         $hourly_from = $unt_values_2['hourly_from'];
         $hourly_to   = $unt_values_2['hourly_to'];
         
@@ -613,8 +617,11 @@ elseif(isset($_POST['get_service_addons'])) {
 
         <div class="ct-bedrooms ct-btn-group ct-md-6 ct-sm-6 mb-15 ">
             <label> <?php echo $unt_values_2['units_title']; ?></label>
+            <?php
+                $duration = number_format((float)($unt_values_2['hourly_from'] + $unt_values_2['hourly_to'] / 60), 2, '.', '');
+            ?>
             <div class="common-selection-main">
-                <div class="selected-is select-bedrooms" data-mnamee="<?php echo $mmnameee; ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-un_id="<?php echo $unt_values_2['id']; ?>" title="<?php echo $label_language_values['choose_your']." ".$unt_values_2['units_title']; ?>">
+                <div class="selected-is select-bedrooms" data-duration="<?php echo $duration; ?>" data-mnamee="<?php echo $mmnameee; ?>" data-un_title="<?php echo $unt_values_2['units_title']; ?>" data-un_id="<?php echo $unt_values_2['id']; ?>" title="<?php echo $label_language_values['choose_your']." ".$unt_values_2['units_title']; ?>">
                  
                     <div class="data-list" id="ct_selected_<?php echo $unt_values_2['id']; ?>">
                         <p class="ct-count"><?php echo $unt_values_2['units_title']; ?></p>
@@ -688,7 +695,9 @@ elseif(isset($_POST['get_service_addons'])) {
                 <label>hours</label>
                 <select id="sel-hours-<?php echo $unt_values_2['id']; ?>" data-units_id="<?php echo $unt_values_2['id']; ?>">
                     <?php
-                        for($i=$hourly_from;$i<=$hourly_to;$i++) {
+                        $inc = 1;
+                        if ($allow_30) $inc = 0.5;
+                        for($i=$hourly_from;$i<=$hourly_to;$i+=$inc) {
                             echo "<option value='".$i."'>".$i." hour(s)</option>";
                         }
                     ?>

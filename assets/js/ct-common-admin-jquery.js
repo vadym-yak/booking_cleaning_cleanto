@@ -1825,12 +1825,24 @@ jQuery(document).on("click", ".ct_upload_img1", function (e) {
         }
     });
 });
+/* When Check 'Hourly Service', display Allow 30 min Increments */
+jQuery(document).on('change', '.service-is-hourly', function () {
+    if (jQuery(this).is(':checked')) {
+        jQuery('.tr-allow-30').show();
+    } else {
+        jQuery('.tr-allow-30').hide();
+    }
+});
 
 /*  INSERT SERVICE */
 jQuery(document).on('click', '.myserviceaddbtn', function () {
     var color = jQuery('.mycolortag').val();
     var title = jQuery('.myservicetitle').val();
     var desc = jQuery('.myservicedesc').val();
+    var price = jQuery('.myserviceprice').val();
+    var is_hourly = jQuery('.myserviceishourly').is(':checked') ? 1 : 0;
+    var allow_30 = (jQuery('.myserviceallow30').is(':checked')&&is_hourly) ? 1 : 0;
+
     var image =  jQuery('#pcasctimagename').val();
 
     /*  service edit form validation  */
@@ -1858,6 +1870,9 @@ jQuery(document).on('click', '.myserviceaddbtn', function () {
             'color': color,
             'title': title,
             'description': desc,
+            'price': price,
+            'is_hourly': is_hourly,
+            'allow_30': allow_30,
             'image': image,
             'operationadd': 1,
             'status': 'D',
@@ -1892,6 +1907,9 @@ jQuery(document).on('click', '.edtservicebtn', function () {
     var color = jQuery('.edtservicecolor' + i).val();
     var title = jQuery('.edtservicetitle' + i).val();
     var desc = jQuery('.edtservicedesc' + i).val();
+    var price = jQuery('.edtserviceprice' + i).val();
+    var is_hourly = jQuery('.edtserviceishourly' + i).is(':checked') ? 1 : 0;
+    var allow_30 = (jQuery('.edtserviceallow30' + i).is(':checked')&&is_hourly) ? 1 : 0;
     var image = jQuery('#pcls' + i + 'ctimagename').val();
     /* service edit form validation */
     jQuery('#editform_service' + i).validate();
@@ -1920,6 +1938,9 @@ jQuery(document).on('click', '.edtservicebtn', function () {
             'color': color,
             'title': title,
             'description': desc,
+            'price' : price,
+            'is_hourly': is_hourly,
+            'allow_30': allow_30,
             'image': image,
             'operationedit': 1,
             'status': 'D',
@@ -2017,11 +2038,14 @@ jQuery(document).on('click', '.design_radio_btn_units', function () {
 });
 
 /* SET TITLE FOR THE PAGE OF SERVICES METHODS IN BREADCRUMB */
+// Set is_hourly, allow_30 to localStorage
 jQuery(document).on('click', '.mybtnforassignmethods', function () {
     var id = jQuery(this).data('id');
     var title = jQuery(this).data('name');
     localStorage['serviceid'] = id;
     localStorage['title'] = title;
+    localStorage['is_hourly'] = jQuery(this).data('is_hourly');
+    localStorage ['allow_30'] = jQuery(this).data('allow_30');
     window.location = "service-manage-calculation-methods.php";
 });
 
@@ -2260,6 +2284,8 @@ jQuery(document).ready(function ()
             data: {
                 'service_id': localStorage['serviceid'],
                 'method_id': localStorage['methodid'],
+                'service_is_hourly': localStorage['is_hourly'],
+                'service_allow_30': localStorage['allow_30'],
                 'getservice_method_units': 1
             },
             url: ajax_url + "service_method_units_ajax.php",
@@ -2431,7 +2457,6 @@ jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
     var maxlimit = jQuery('.mytxt_service_method_editmaxlimit' + i).val();
     var maxlimit_title = jQuery('.mytxt_service_method_editmaxlimit_title' + i).val();
 
-    var is_hourly = jQuery('#chkunithourly' + i).prop("checked") ? 1 : 0;
     var hourly_from = jQuery('#hours-from' + i).val();
     var hourly_to = jQuery('#hours-to' + i).val();
 
@@ -2447,12 +2472,13 @@ jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
             required: true, pattern_price: true,
             messages: {required: errorobj_please_assign_base_price_for_unit}
         });
-    jQuery("#txtedtunitmaxlimit" + i).rules("add",
-        {
-            required: true, pattern_onlynumber: true,
-            messages: {required: errorobj_please_enter_maxlimit, pattern_onlynumber: errorobj_enter_only_digits}
-        });
-
+    if (localStorage['is_hourly'] == 1) {
+        jQuery("#txtedtunitmaxlimit" + i).rules("add",
+            {
+                required: true, pattern_onlynumber: true,
+                messages: {required: errorobj_please_enter_maxlimit, pattern_onlynumber: errorobj_enter_only_digits}
+            });
+    }
 
     if (!jQuery('#service_method_unit_price' + i).valid()) {
         return false;
@@ -2466,7 +2492,6 @@ jQuery(document).on('click', '.mybtnservice_method_unitupdate', function () {
             'base_price': base_price,
             'maxlimit': maxlimit,
             'maxlimit_title': maxlimit_title,
-            'is_hourly' : is_hourly,
             'hourly_from' : hourly_from,
             'hourly_to' : hourly_to,
             'operationedit': 1
@@ -5072,7 +5097,7 @@ jQuery(document).on('change','#update_labels',function(){
 					oflang : lang
 				},
 				success: function (response) {
-
+                    console.log(response);
 					jQuery('.myall_lang_label').html(response);
 					jQuery('.myall_lang_label').show();
 					jQuery('.label_setting').show();

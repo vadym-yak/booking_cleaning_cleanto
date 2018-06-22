@@ -74,6 +74,9 @@ if (isset($_POST['add_to_cart']))
 	$json_array = array();
 	$json_array['method_name'] = $_POST['method_name'];
 	$frequently_discount->id = $_POST['frequently_discount_id'];
+	$is_hourly = $_SESSION['service_is_hourly'];
+	$allow_30  = $_SESSION['service_allow_30'];
+	$service_price = $_SESSION['service_price'];
 	$freq_dis_data = $frequently_discount->readone();
 	$method_name_without_space = '';
 	if ($_POST['type'] == 'method_units')

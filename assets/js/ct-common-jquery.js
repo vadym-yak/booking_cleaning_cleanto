@@ -74,13 +74,13 @@ jQuery(document).ready(function() {
 var ct_postalcode_status_check = ct_postalcode_statusObj.ct_postalcode_status;
 var guest_user_status ='off';
 /* scroll to next step */
-	jQuery(document).ready(function(){
-		jQuery('.ct-service').on('click',function(){
-			jQuery('html, body').stop().animate({
-				'scrollTop': jQuery('.ct-scroll-meth-unit').offset().top - 30
-			}, 800, 'swing', function () {});
-		});
-	});
+	// jQuery(document).ready(function(){
+	// 	jQuery('.ct-service').on('click',function(){
+	// 		jQuery('html, body').stop().animate({
+	// 			'scrollTop': jQuery('.ct-scroll-meth-unit').offset().top - 30
+	// 		}, 800, 'swing', function () {});
+	// 	});
+	// });
 /* forget password */
 jQuery(document).ready(function () {
 	jQuery('#ct_forget_password').click(function () {
@@ -1318,7 +1318,7 @@ jQuery(document).on("click",".select_service_method",function() {
 
 jQuery(document).on('click','.ser_details',function(){
 	jQuery(":input",this).prop('checked',true);
-	jQuery('.ct-loading-main').show();
+	// //jQuery('.ct-loading-main').show();
     jQuery('.show_methods_after_service_selection').show();
 	jQuery('.ct_method_tab-slider-tabs').removeClass('ct_methods_slide');
     jQuery('.service_not_selected_error_d2').removeAttr('style','');
@@ -1352,6 +1352,9 @@ jQuery(document).on('click','.ser_details',function(){
     var site_url=siteurlObj.site_url;
     var ajax_url=ajaxurlObj.ajax_url;
     var id = jQuery(this).data('id');
+    var is_hourly = jQuery(this).data('is_hourly');
+    var allow_30 = jQuery(this).data('allow_30');
+    var price = jQuery(this).data('price');
     var name = jQuery(this).data('servicetitle');
     jQuery('.sel-service').html(name);
 
@@ -1377,11 +1380,14 @@ jQuery(document).on('click','.ser_details',function(){
         type : 'post',
         data : {
             'service_id' : id,
+            'is_hourly' : is_hourly,
+            'allow_30' : allow_30,
+            'price' : price,
             'operationgetmethods' : 1
         },
         url : ajax_url+"front_ajax.php",
         success : function(res){
-			jQuery('.ct-loading-main').hide();
+			// jQuery('.ct-loading-main').hide();
 			var methods_data=jQuery.parseJSON(res);
             if(methods_data.status == 'single'){
                 jQuery('.services-method-list-dropdown').hide();
@@ -1506,7 +1512,7 @@ jQuery(document).on('click','.ser_details',function(){
         },
         url : ajax_url+"front_ajax.php",
         success : function(res){
-			jQuery('.ct-loading-main').hide();
+			// jQuery('.ct-loading-main').hide();
             if(res=='Extra Services Not Available'){
                 jQuery('.hide_allsss_addons').hide();
             }else{
@@ -1918,7 +1924,7 @@ jQuery(document).on("change",".new-user",function() {
 /*frequently_discount*/
 
 jQuery(document).on('click','.cart_frequently_discount',function(){
-	jQuery('.ct-loading-main').show();
+	//jQuery('.ct-loading-main').show();
     jQuery('.freq_disc_empty_cart_error').hide();
     var discountname = jQuery(this).data('name');
     jQuery('.f_discount_name').html(discountname);
@@ -1982,7 +1988,7 @@ jQuery(document).on("click","#contact_status",function() {
 
 /******* Service method - display design according to admin selection ******/
 jQuery(document).on('click','.s_m_units_design',function(){
-	jQuery('.ct-loading-main').show();
+	//jQuery('.ct-loading-main').show();
     jQuery('.addons_servicess').each(function(){
         jQuery(this).data('status','2');
         var value = jQuery(this).prop('checked');
@@ -2199,7 +2205,7 @@ jQuery(document).on("click",".select-language",function() {
     jQuery(".ct-language-dropdown").toggle( "blind", {direction: "vertical"}, 300 );
 });
 jQuery(document).on("click",".select_language_view",function() {
-	jQuery('.ct-loading-main').show();
+	//jQuery('.ct-loading-main').show();
 	var ajax_url=ajaxurlObj.ajax_url;
     jQuery('#ct_selected_language').html(jQuery(this).html());
     jQuery(".ct-language-dropdown").hide( "blind", {direction: "vertical"}, 300 );
@@ -2880,6 +2886,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
     var type=jQuery(this).data('type');
     var frequently_discount_id=jQuery("input[name=frequently_discount_radio]:checked").data('id');
     var m_name = jQuery(this).data('mnamee');
+    var u_duration = jQuery(this).data('duration');
     var s_m_hour = jQuery('#sel-hours-' + units_id).val() ? jQuery('#sel-hours-' + units_id).val() : 1;
 
     jQuery.ajax({
@@ -2892,6 +2899,7 @@ jQuery(document).on('click','.add_item_in_cart',function(){
             's_m_hour' : s_m_hour,
             'method_name' : method_name,
             'units_id' : units_id,
+            'units_duration' : u_duration,
             'type' : type,
             'frequently_discount_id' : frequently_discount_id,
             'add_to_cart' : 1
@@ -2975,7 +2983,7 @@ jQuery(document).ready(function(){
     jQuery('.coupon_display').hide();
 });
 jQuery(document).on('click touchstart','#apply_coupon',function(){
-	jQuery('.ct-loading-main').show();
+	//jQuery('.ct-loading-main').show();
     jQuery('.freq_disc_empty_cart_error').hide();
     var site_url=siteurlObj.site_url;
     var ajax_url=ajaxurlObj.ajax_url;
@@ -3036,7 +3044,7 @@ jQuery(document).on('click','#coupon_val',function(){
 
 /*Reverse Coupon Code*/
 jQuery(document).on('click touchstart','.reverse_coupon',function(){
-	jQuery('.ct-loading-main').show();
+	//jQuery('.ct-loading-main').show();
     jQuery('.freq_disc_empty_cart_error').hide();
     var site_url=siteurlObj.site_url;
     var coupon_reverse = jQuery('#display_code').text();
@@ -3107,7 +3115,7 @@ jQuery(document).on('click','.ct-week', function() {
 /******************/
 
 jQuery(document).on("click",".selected_date",function() {
-	 jQuery('.ct-loading-main').show();
+	 //jQuery('.ct-loading-main').show();
     var site_url=siteurlObj.site_url;
     var ajax_url=ajaxurlObj.ajax_url;
     var selected_dates = jQuery(this).data('selected_dates');
@@ -3172,7 +3180,7 @@ jQuery(document).ready(function() {
     });
 });
 jQuery(document).on("click",".previous_next,.today_btttn",function() {
-	 jQuery('.ct-loading-main').show();
+	 //jQuery('.ct-loading-main').show();
 	 /*
      jQuery('.cart_date').html('');
      jQuery('.cart_time').html('');
@@ -3520,7 +3528,7 @@ jQuery(document).on('click','.add_addon_in_cart_for_multipleqty',function(){
 /*Reset Password*/
 jQuery(document).on('click','#reset_pass',function(){
 	
-	jQuery('.ct-loading-main').show();
+	//jQuery('.ct-loading-main').show();
     jQuery('.add_show_error_class').each(function(){
         jQuery(this).trigger('keyup');
     });
@@ -3636,7 +3644,7 @@ jQuery(document).on('click','#email',function(){
 
 /*Reset New Password*/
 jQuery(document).on('click','#reset_new_password',function(){
-	jQuery('.ct-loading-main').show();
+	//jQuery('.ct-loading-main').show();
     var front_url=fronturlObj.front_url;
     var new_reset_pass=jQuery('#n_password').val();
     var retype_new_reset_pass=jQuery('#rn_password').val();
